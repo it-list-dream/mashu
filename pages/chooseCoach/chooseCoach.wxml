@@ -1,0 +1,13 @@
+<view class="coach_list">
+  <view class="coach_item" wx:for="{{6}}" wx:key="index">
+    <image src="/asset/images/coach_list.png"></image>
+    <view class="detail_info">
+      <view class="detail_name">杨某人</view>
+      <view class="info1">初级教练</view>
+      <view class="info1">课时费 <text class="red">￥200/节</text></view>
+      <view class="nex_arrow">
+        <image src="/asset/images/arrow.png"></image>
+      </view>
+    </view>
+  </view>
+</view>

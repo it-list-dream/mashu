@@ -1,0 +1,6 @@
+<view class="card_list">
+  <navigator url="/pages/cardDetail/cardDetail" class="card_item" wx:for="{{6}}" hover-class="none">
+    <image src="/asset/images/VIP.png"></image>
+    <view class="card_content">一年卡</view>
+  </navigator>
+</view>

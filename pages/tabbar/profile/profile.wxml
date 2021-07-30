@@ -1,0 +1,62 @@
+<view class="navbar" style="height:{{navHeight}}px;">
+  　<view class="navbar_title" style="top:{{navTop}}px;">我的</view>
+</view>
+<view class="profile_bg">
+  <image src="/asset/images/profile/profile_bg.png" mode="widthFix"></image>
+  <view class="profile_top">
+    <!-- 登录 -->
+    <view class="profile_wrapper">
+      <veiw class="base_info">
+        <image src="{{status==1? user.avatarUrl:unloginUrl}}"></image>
+        <view class="info_detail" hidden="true">
+          <view>翱度会员</view>
+          <view class="phone">138****8888</view>
+        </view>
+         <view class="unbindPhone">
+            <view class="user_name">{{status==1?user.nickName:'游客'}}</view>
+            <view class="bind_btn" bindtap="loginout">{{status==1?'点击绑定手机号':'登录/注册'}}</view>
+            <!--  点击绑定手机号 登录/注册 -->
+         </view>
+      </veiw>
+      <image class="profile_arrow" src="/asset/images/profile/right_arrow.png"></image>
+    </view>
+    <!-- 卡信息 -->
+    <view class="base_card">
+      <view>卡期限：</view>
+      <view class="card_date">
+        <text> 2021-07-16 ~ 2022-07-20</text>
+        <view class="card_day">剩余365天</view>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 卡卷 -->
+<view class="category">
+  <view class="categiry_item">
+    <view class="stored">
+      <text class="number">0</text>
+      <text>储值余额</text>
+    </view>
+    <view>
+      <text class="number">30</text>
+      <text>课程券</text>
+    </view>
+  </view>
+  <view class="nav">更多</view>
+  <view class="schedule">
+    <view>
+      <image src="/asset/images/profile/order.png"></image>
+      <text class="schedule_title">预约日程</text>
+    </view>
+    <image src="/asset/images/profile/left_arrow.png" mode="widthFix"></image>
+  </view>
+  <view class="schedule">
+    <view>
+      <image src="/asset/images/profile/appoinment.png"></image>
+      <text class="schedule_title">我的订单</text>
+    </view>
+    <image src="/asset/images/profile/left_arrow.png" mode="widthFix"></image>
+  </view>
+  <!-- <open-data type="userAvatarUrl"></open-data>
+  <open-data type="userNickName"></open-data> -->
+</view>

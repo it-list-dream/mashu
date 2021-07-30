@@ -1,0 +1,11 @@
+.swiper {
+  /*height: calc(100vw * 385/690); */
+  padding: 0 30rpx;
+  width: 100%;
+  box-sizing: border-box;
+  height: 385rpx;
+}
+
+.swiper-image {
+  width: 100%;
+}

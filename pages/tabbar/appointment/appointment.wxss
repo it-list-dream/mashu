@@ -1,0 +1,293 @@
+/* Pages/tabbar/appointment/appointment.wxss */
+.scroll_x {
+  white-space: nowrap;
+  /* display: flex; */
+  padding: 20rpx 30rpx;
+  background: pink;
+}
+
+.tabs_item {
+  font-size: 36rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #0B1030;
+}
+
+.choose_coach {
+  padding: 0 30rpx;
+}
+
+.class_list {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 180rpx;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 20rpx 0px rgba(51, 51, 51, 0.1);
+  border-radius: 10rpx 10rpx 0 0;
+}
+
+.choose_class {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 40rpx;
+  top: 28rpx;
+  width: 60rpx;
+  height: 60rpx;
+  background: #0B1030;
+  border-radius: 10rpx;
+}
+
+.choose_class>image {
+  width: 36rpx;
+  height: 40rpx;
+}
+
+.left_box {
+  margin-left: 30rpx;
+}
+
+.left_box>image {
+  width: 116rpx;
+  height: 116rpx;
+  border-radius: 50%;
+}
+
+.right_box>view:nth-child(-n+2) {
+  margin-bottom: 10rpx;
+}
+
+.right_box>view {
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #0B1030;
+}
+
+.right_box {
+  margin-left: 32rpx;
+}
+
+.course {
+  font-size: 32rpx;
+}
+
+.residue {
+  font-size: 24rpx;
+}
+
+.right_box>view:last-child {
+  font-size: 24rpx;
+}
+
+.expiration {
+  margin-left: 60rpx;
+}
+
+.choose_list {
+  position: relative;
+  height: 100rpx;
+  background: #0B1030;
+  box-shadow: 0px 0px 20rpx 0px rgba(245, 148, 63, 0.1);
+  border-radius: 0px 0px 10rpx 10rpx;
+}
+
+.assign_coach {
+  line-height: 100rpx;
+  text-align: center;
+  font-size: 36rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #FFFFFF;
+}
+
+.add {
+  position: absolute;
+  top: 20rpx;
+  right: 30rpx;
+  width: 57rpx;
+  height: 57rpx;
+}
+
+.chooseCoachList {
+  display: flex;
+  width: 690rpx;
+  height: 180rpx;
+  box-sizing: border-box;
+  padding: 32rpx 0 32rpx 28rpx;
+  background: #0B1030;
+  box-shadow: 0px 0px 20rpx 0px rgba(245, 148, 63, 0.1);
+  border-radius: 0px 0px 10rpx 10rpx;
+}
+
+.chooseCoachList image {
+  width: 116rpx;
+  height: 116rpx;
+}
+
+.current_coach {
+  flex: 1;
+  margin-left: 30rpx;
+  font-family: PingFang SC;
+  color: #FFFFFF;
+}
+.current_coach .coach_name{
+  font-size: 32rpx;
+}
+.current_coach>view:nth-child(n+2){
+   margin-top: 10rpx;
+   font-size: 24rpx;
+}
+/* 日历 */
+
+/* 日期 */
+.dayList {
+  position: relative;
+  margin-top: 60rpx;
+}
+
+.dayList .selectDate {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  background: #F0F2F5;
+  border: none !important;
+}
+
+.selectDate image {
+  width: 48rpx;
+  height: 48rpx;
+}
+
+.ch_active {
+  background: #0B1030;
+  color: #ffffff;
+  border: none !important;
+}
+
+.dayList .day_item {
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30rpx;
+  margin-bottom: 30rpx;
+}
+
+.dayList .day {
+  width: 98rpx;
+  height: 113rpx;
+  border-radius: 8rpx;
+  border: 2rpx solid rgba(51, 51, 51, 0.1);
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  text-align: center;
+}
+
+.week {
+  margin-top: 14rpx;
+  font-size: 24rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: rgba(51, 51, 51, 0.4);
+}
+
+.date {
+  margin-top: 20rpx;
+  font-size: 24rpx;
+  font-family: PingFang SC;
+  color: #333333;
+}
+
+/* 日历 */
+.calendar_list {
+  position: absolute;
+  top: 144rpx;
+  left: 0;
+  z-index: 9999;
+  width: 100%;
+  background: #ffffff;
+}
+
+.calendar {
+  background-color: rgb(255, 255, 255);
+}
+
+.calendar-header {
+  position: relative;
+  margin-top: 20rpx !important;
+  font-size: large;
+  color: #333333;
+}
+.calendar-header::before{
+  position: absolute;
+  top: -20rpx;
+  left: 0;
+  content: '';
+  display: block;
+  width: 690rpx;
+  height: 1px;
+  background: #E5E5E5;
+}
+.calendar-board {
+  color: #c7cbe2;
+  font-weight: bold;
+}
+
+/* 私教详情 */
+.trainer {
+  padding: 0 30rpx;
+  background: #ffffff;
+  height: 520rpx;
+}
+
+.trainer .time {
+  display: flex;
+  width: 690rpx;
+  height: 100%;
+  flex-wrap: wrap;
+}
+
+.trainer .time .clock {
+  width: 100%;
+  flex-basis: 20%;
+  background: #FFFFFF;
+}
+
+.clock>view {
+  margin: 0 auto;
+  width: 120rpx;
+  height: 50rpx;
+  line-height: 46rpx;
+  text-align: center;
+  border: 1px solid #E5E5E5;
+  border-radius: 8rpx;
+  font-family: PingFang SC;
+  font-size: 26rpx;
+}
+/* ::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+} */
+/*  */
+.appointmentBtnList {
+  margin:80rpx 0;
+}
+
+.app_btn {
+  margin: 0 auto;
+  width: 690rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  background: #EFC37D;
+  border-radius: 40rpx;
+  font-size: 36rpx;
+  font-family: PingFang SC;
+  font-weight: 600;
+  color: #FFFFFF;
+}

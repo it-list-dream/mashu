@@ -1,0 +1,23 @@
+<view class="order_list">
+  <view class="order_item" wx:for="{{6}}">
+    <view class="store_info">
+      <text>翱度店</text>
+      <text>已支付</text>
+    </view>
+    <view class="order_id">订单编号：6086816569005598</view>
+    <view class="cla_info">
+      <view class="left_info">
+        <image src="/asset/images/horse1.png"></image>
+      </view>
+      <view class="right_info">
+        <view>
+          <text class="base_class">初级课</text>
+          <text class="price">￥300</text>
+        </view>
+        <view class="count align-right">x 1</view>
+        <view class="align-right all_price">合计：<text>￥300</text></view>
+        <view class="align-right date">2021-07-20 15:48</view>
+      </view>
+    </view>
+  </view>
+</view>

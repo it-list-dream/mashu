@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "m-swiper":"/components/m-swiper/m-swiper"
+  },
+  "navigationStyle": "custom"
+}

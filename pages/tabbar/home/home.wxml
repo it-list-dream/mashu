@@ -1,0 +1,94 @@
+<view class="custom_bar" style="height:{{navHeight}}px">
+  <view class="custom_item" style="height:calc({{navHeight - navTop}}px);top:{{navTop}}px">
+    <view class="my_store" style="padding:0 {{menuRight}}px" bindtap="goShop">
+      <image src="/asset/images/home/store.png"></image>
+    </view>
+  </view>
+</view>
+<!-- 轮播图 -->
+<m-swiper images="{{list}}" class="my_swiper"></m-swiper>
+<view class="club_wrapper">
+  <view class="club_title">翱度马术俱乐部</view>
+  <view class="business">营业中：6:00-22:00</view>
+  <view class="phone">联系电话：0510-82851333</view>
+  <view class="address">
+    <image src="/asset/images/home/location.png"></image>
+    <text class="add_detail">上海市普陀区中山西路</text>
+  </view>
+  <image src="/asset/images/home/logo2.png" class="store_logo"></image>
+</view>
+
+<view class="nav_wrapper">
+  <view class="nav_left">
+    <image src="/asset/images/home/hourse02.png"></image>
+    <text>马术教练</text>
+  </view>
+  <view class="nav_right">
+    <text>全部</text>
+    <image src="/asset/images/home/arrow.png"></image>
+  </view>
+</view>
+
+<view class="coach_list">
+  <scroll-view scroll-x class="scroll_x">
+    <block wx:for="{{6}}" wx:key="index">
+      <view class="coach_item">
+        <view>
+          <image class="coach_image" src="/asset/images/home/coach.png"></image>
+        </view>
+        <view class="coach_name">余叮叮</view>
+        <view class="coach_level">初级教练</view>
+      </view>
+    </block>
+  </scroll-view>
+</view>
+
+<view class="nav_wrapper">
+  <view class="nav_left">
+    <image src="/asset/images/home/hourse.png"></image>
+    <text>推荐课程</text>
+  </view>
+  <view class="nav_right">
+    <text>全部</text>
+    <image src="/asset/images/home/arrow.png"></image>
+  </view>
+</view>
+
+<view class="recommend">
+  <block wx:for="{{6}}">
+    <view class="recommend_item">
+      <image src="/asset/images/home/tu1.png" class="house_pic" mode="widthFix"></image>
+      <view class="cl">
+        <view class="class_level">初级课</view>
+        <view class="sign_up">
+          <image src="/asset/images/home/fire.png"></image>
+          <text>火热报名中</text>
+        </view>
+      </view>
+      <view class="price">￥<text>300/节</text></view>
+      <view class="buy_btn">立即购买</view>
+    </view>
+  </block>
+</view>
+
+<navigator class="nav_wrapper" url="/pages/cardList/cardList" hover-class="none">
+  <view class="nav_left">
+    <image src="/asset/images/home/vip.png"></image>
+    <text>活动卡推荐</text>
+  </view>
+  <view class="nav_right">
+    <text>全部</text>
+    <image src="/asset/images/home/arrow.png"></image>
+  </view>
+</navigator>
+<view class="active_card">
+  <block wx:for="{{2}}">
+    <view>
+      <image src="/asset/images/home/card_bg.png"></image>
+      <view class="card_item">
+        <view class="card_year">一年卡</view>
+        <view class="price_btn"> ￥<text>1800</text></view>
+      </view>
+    </view>
+  </block>
+</view>

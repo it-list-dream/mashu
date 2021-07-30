@@ -1,0 +1,39 @@
+<view class="login_page" style="height:{{windowHeight}}px">
+  <image src="/asset/images/login/login_bg.png" class="bg"></image>
+  <view class="navbar" style='height:{{navHeight}}px;'>
+    <view class="navbar-action-wrap" style='top:{{navTop}}px;'>
+      <view class="icon" bindtap="_navBack">
+        <image src="/asset/images/login/white.png" class="icon-arrow"></image>
+      </view>
+    </view>
+    <!-- 标题 -->
+    <view class='navbar-title' style='top:{{navTop}}px;'>我的</view>
+  </view>
+  <!--  -->
+  <view class="login-layout">
+    <view class="avatar">
+      <image src="/asset/images/login/logo.png"></image>
+    </view>
+    <view class="personal_info">
+      <view class="sto_title">{{GymName}}</view>
+      <view class="getInfo">申请获取你的公开信息（昵称、头像等）</view>
+    </view>
+    <!-- 登录 -->
+    <button class="doLogin btn" type="primary" hover-class="none" bindtap="getUserProfile"
+      wx:if="{{!hasUserInfo}}">微信授权</button>
+    <button class="doLogin btn" open-type="getPhoneNumber" hover-class="none" bindgetphonenumber="getPhoneNumber"
+      wx:else>绑定手机号</button>
+    <!--  -->
+    <button class="cancel btn" type="default" hover-class="none" bindtap="onCancel">取消</button>
+    <!-- 绑定手机号码 -->
+    <!-- <modal show="{{showModal}}" height='40%' bindcancel="modalCancel" bindconfirm='modalConfirm'>
+      <view class="succ-icon">
+        <icon type="success" size="50"></icon>
+      </view>
+      <view class="modalTip">
+        <view>微信授权成功</view>
+        <view>授权绑定你的手机号</view>
+      </view>
+    </modal> -->
+  </view>
+</view>

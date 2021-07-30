@@ -1,0 +1,18 @@
+<view class="store_list">
+  <view>
+    <view class="store_count">共2家</view>
+    <block wx:for="{{6}}" wx:key="{{index}}">
+      <view class="store_item">
+        <view class="store_flag">
+          <image src="/asset/images/store.png"></image>
+          <view class="my_store">我的门店</view>
+        </view>
+        <view class="store_content">
+          <view>徐汇店</view>
+          <view class="address">上海市徐汇区永升大厦4层</view>
+          <view class="distance">0.3km</view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

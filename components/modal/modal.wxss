@@ -1,0 +1,69 @@
+.mask {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 9999;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  background-color: #fff;
+  border-radius: 10rpx;
+}
+
+.modal-btn-wrapper {
+  display: flex;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-family: PingFang SC;
+}
+
+.confirm-btn {
+  flex: 1;
+  background: #12D58B;
+  border-radius: 0 0 10rpx 0;
+  text-align: center;
+  font-size: 36rpx;
+  color: #FFFFFF;
+}
+
+.cancel-btn {
+  flex: 1;
+  text-align: center;
+  background: rgba(234, 234, 234, 1);
+  border-radius: 0 0 0 10rpx;
+  font-size: 36rpx;
+  color: #333333;
+  font-weight: normal;
+}
+
+.main-content {
+  flex: 1;
+  height: 100%;
+  overflow-y: hidden;
+}
+
+/* 按钮的样式 */
+.confirm-btn .allow {
+  background-color: transparent;
+  border-radius: 0;
+  padding: 0;
+  margin: 0;
+  color: #fff;
+  width: 100%;
+  height: 100%;
+  line-height: 100rpx;
+  font-weight: normal;
+}
+.allow::after {
+  /*button的边框样式是通过::after方式实现的*/
+  border: none !important;
+}

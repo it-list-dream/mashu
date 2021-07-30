@@ -1,0 +1,27 @@
+.card_list{
+   padding: 20rpx 0 30rpx 0;
+}
+.card_item {
+  position: relative;
+  width: 690rpx;
+  height: 460rpx;
+  margin: 0 auto;
+  margin-bottom: 30rpx;
+}
+
+.card_list image {
+  width: 690rpx;
+  height: 460rpx;
+}
+
+.card_content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  font-size: 40rpx;
+  margin: 61rpx 0 0 61rpx;
+  z-index: 99;
+  font-family: FZCuHeiSongS-B-GB;
+  color: #FBDDA2;
+}

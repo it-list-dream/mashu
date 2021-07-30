@@ -1,0 +1,21 @@
+<view class="appointment_header">
+  <block wx:for="{{tabs_list}}" wx:key="index">
+    <view bindtap="chooseTabs" data-index="{{index}}" class="rewrads_item {{index==chooseId?'rewards_active':''}}">
+      {{item}}</view>
+  </block>
+</view>
+
+<view class="coach_item" wx:for="{{6}}" wx:key="index">
+  <image src="/asset/images/course.png"></image>
+  <view class="detail_info">
+    <view class="detail_all">
+      <text>高级课</text>
+      <text class="remaining">剩余(10张券)</text>
+    </view>
+    <view class="info1">时长：60分钟</view>
+    <view class="info1">
+      <view>截止：2021-06-13</view>
+      <view class="app_btn">预约</view>
+    </view>
+  </view>
+</view>

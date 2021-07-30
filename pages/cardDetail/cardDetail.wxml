@@ -1,0 +1,47 @@
+<view class="card_detail">
+  <view class="card_item">
+    <image src="/asset/images/VIP.png"></image>
+    <view class="card_content">一年卡</view>
+  </view>
+  <view class="card_info price">￥1800</view>
+  <view class="card_info">卡类型:一年卡</view>
+  <view class="card_info">有效期:一年</view>
+  <view class="support_store">
+    <text>支持门店: </text>
+    <text>如渔科技店、体验店、会员店、 全店通。</text>
+  </view>
+  <view class="introduction">
+    <view class="introduction_title">介绍：</view>
+    <view class="intro_content">
+      学习对象：从来没有骑过马，对马的知识不了解。学习目的:初步了解骑马的正确原理，以安全骑马为重。课前能力评定：根据学员的年龄、身体条件等来评定，学习内容：正确的骑马姿势；马匹慢步、快步节奏的控制；轻快步；停止和简单的转圈和变换方向；跑步。
+    </view>
+  </view>
+  <!--  -->
+  <view class="bottom_fixed">
+    <view class="pay_way">
+      <view>
+        <text>选择会籍</text>
+        <view class="border_con">
+          <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+            <view class="border_title">{{array[member_index]}}</view>
+            <image src="/asset/images/arrow_bottom.png"></image>
+          </picker>
+        </view>
+      </view>
+      <view>
+        <text>支付方式</text>
+        <view class="border_con">
+          <picker bindchange="bindPickerChange1" value="{{index}}" range="{{array1}}">
+            <view class="border_title">{{array1[pay_index]}}</view>
+            <image src="/asset/images/arrow_bottom.png"></image>
+          </picker>
+
+        </view>
+      </view>
+    </view>
+    <view class="all_total">
+      <view class="all_price">合计：1800元</view>
+      <view class="buy_btn">购买</view>
+    </view>
+  </view>
+</view>

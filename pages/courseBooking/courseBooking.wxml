@@ -1,0 +1,56 @@
+<view class="course_booking">
+  <view class="booking_item">
+    <view class="course_info">
+      <text>课程名</text>
+      <text>初级课</text>
+    </view>
+    <view class="course_info">
+      <text>预约日期</text>
+      <text>2021-07-01</text>
+    </view>
+    <view class="course_info">
+      <text>预约时间</text>
+      <text>15:00-16:00</text>
+    </view>
+    <view class="course_info">
+      <text>课程费用</text>
+      <view><text class="red">￥280</text> × 1</view>
+    </view>
+    <view class="course_info">
+      <text>教练费用</text>
+      <view>
+        <text class="coach">教练 杨某人</text>
+        <text class="red money">￥200</text>
+      </view>
+    </view>
+    <view class="course_info">
+      <text>课程名</text>
+      <view class="course_name1">
+        <text class="level">初级课</text>
+        <image src="/asset/images/arrow11.png" mode="widthFix"></image>
+      </view>
+    </view>
+    <navigator class="askClassRules red" url="/pages/rules/rules" hover-class="none">约课规则</navigator>
+  </view>
+
+  <view class="all_price">
+    <view class="course_info">
+      <text>总价</text>
+      <text>￥480</text>
+    </view>
+    <view class="course_info">
+      <text>课时</text>
+      <text>课程券 或  ￥280</text>
+    </view>
+    <view class="pay_price course_info">
+      <text>应付</text>
+      <text>￥200</text>
+    </view>
+  </view>
+
+  <!--  -->
+  <view class="price_total">
+     <view>合计 <text class="red">￥200</text></view>
+     <view class="pay_btn">去结算</view>
+  </view>
+</view>

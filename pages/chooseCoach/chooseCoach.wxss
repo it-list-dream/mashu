@@ -1,0 +1,57 @@
+/* pages/chooseCoach/chooseCoach.wxss */
+.coach_list {
+  overflow: hidden;
+  margin-top: 20rpx;
+}
+
+.coach_item {
+  display: flex;
+  box-sizing: border-box;
+  padding: 25rpx 30rpx;
+  margin: 0 auto;
+  margin-bottom: 30rpx;
+  width: 690rpx;
+  height: 230rpx;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 40rpx 0px rgba(102, 102, 102, 0.1);
+  border-radius: 10rpx;
+}
+
+.coach_item image {
+  width: 270rpx;
+  height: 180rpx;
+}
+
+.detail_info {
+  position: relative;
+  margin-left: 30rpx;
+  flex: 1;
+  font-family: PingFang SC;
+  font-weight: 500;
+}
+
+.detail_name {
+  font-size: 30rpx;
+  color: #333333;
+}
+
+.detail_info>.info1 {
+  margin-top: 15rpx;
+  font-size: 30rpx;
+  color: #666666;
+}
+
+.red {
+  color: #F93E3E;
+}
+.nex_arrow {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.nex_arrow image {
+  width: 50rpx;
+  height: 50rpx;
+  vertical-align: top;
+}

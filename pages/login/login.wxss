@@ -1,0 +1,163 @@
+/* pages/login/login.wxss */
+.login {
+  position: relative;
+  width: 100%;
+}
+.bg{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+/*  */
+
+.navbar {
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: transparent;
+}
+
+.icon {
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+}
+.icon-arrow{
+  width: 16px;
+  height: 16px;
+}
+.navbar-title {
+  width: 100%;
+  box-sizing: border-box;
+  padding-left: 115px;
+  padding-right: 115px;
+  height: 32px;
+  line-height: 32px;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  z-index: 10;
+  font-family: PingFang SC;
+  color: #ffffff;
+  font-size: 16px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.navbar-action-wrap {
+  overflow: hidden;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  position: absolute;
+  left: 10px;
+  z-index: 11;
+  line-height: 1;
+  height: 32px;
+}
+
+.avatar {
+  margin: 0 auto;
+  margin-top: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 188rpx;
+  height: 188rpx;
+  border-radius: 50%;
+  background: #ffffff;
+}
+
+.avatar image {
+  width: 145rpx;
+  height: 100rpx;
+  vertical-align: bottom;
+}
+
+.personal_info {
+  text-align: center;
+  margin: 42rpx 0 75rpx 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100rpx;
+  font-weight: normal;
+}
+
+.sto_title {
+  font-size: 34rpx;
+  font-family: PingFang SC;
+  color: #FFFFFF;
+}
+
+.getInfo {
+  font-size: 28rpx;
+  font-family: PingFang SC;
+  color: #FFFFFF;
+}
+
+.login-layout .btn {
+  width: 690rpx;
+  height: 70rpx;
+  line-height: 35rpx;
+  font-size: 32rpx;
+  font-family: PingFang SC !important;
+  border-radius: 35rpx;
+  color: #FFFFFF;
+  font-weight: normal;
+}
+
+.login-layout .doLogin {
+  background: #EFC37D;
+}
+
+.login-layout .cancel {
+  margin-top: 48rpx;
+  background: rgba(255, 255, 255, 0);
+  border: 1px solid #FFFFFF;
+}
+/* 蒙层 */
+.succ-icon {
+  margin-top: 52rpx;
+  text-align: center;
+}
+
+.modalTip {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30rpx;
+  height: 100rpx;
+}
+
+.modalTip view:first-child {
+  font-size: 34rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color: #333333;
+}
+
+.modalTip view:last-child {
+  margin-top: 28rpx;
+  font-size: 32rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+}

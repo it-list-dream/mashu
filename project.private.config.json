@@ -1,0 +1,108 @@
+{
+  "setting": {},
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "pages/login/login",
+          "pathName": "pages/login/login",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/login/login",
+          "pathName": "pages/login/login",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/shop/shop",
+          "pathName": "pages/shop/shop",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/appointment/appointment",
+          "pathName": "pages/tabbar/appointment/appointment",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/chooseCoach/chooseCoach",
+          "pathName": "pages/chooseCoach/chooseCoach",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/chooseCourse/chooseCourse",
+          "pathName": "pages/chooseCourse/chooseCourse",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/courseBooking/courseBooking",
+          "pathName": "pages/courseBooking/courseBooking",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/rules/rules",
+          "pathName": "pages/rules/rules",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/profile/profile",
+          "pathName": "pages/tabbar/profile/profile",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/appointmentRecord/appointmentRecord",
+          "pathName": "pages/tabbar/appointmentRecord/appointmentRecord",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/order/order",
+          "pathName": "pages/order/order",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/myCourse/myCourse",
+          "pathName": "pages/myCourse/myCourse",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/profile/profile",
+          "pathName": "pages/tabbar/profile/profile",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/cardList/cardList",
+          "pathName": "pages/cardList/cardList",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/cardDetail/cardDetail",
+          "pathName": "pages/cardDetail/cardDetail",
+          "query": "",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

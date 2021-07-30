@@ -1,0 +1,174 @@
+/* pages/cardDetail/cardDetail.wxss */
+.card_detail {
+  padding: 0 30rpx;
+  overflow-x: hidden;
+}
+
+.card_item {
+  position: relative;
+  width: 690rpx;
+  height: 460rpx;
+  margin: 0 auto;
+}
+
+.card_item image {
+  width: 100%;
+  height: 100%;
+}
+
+.card_content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  font-size: 40rpx;
+  margin: 61rpx 0 0 61rpx;
+  z-index: 99;
+  font-family: FZCuHeiSongS-B-GB;
+  color: #FBDDA2;
+}
+
+.card_info {
+  width: 100%;
+  height: 88rpx;
+  line-height: 88rpx;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  color: #333333;
+}
+
+.price {
+  border-bottom: 1px solid#E5E5E5;
+}
+
+.support_store {
+  display: flex;
+  padding: 30rpx 0;
+}
+
+.support_store text:first-child {
+  white-space: nowrap;
+}
+
+.support_store text:last-child {
+  flex: 1;
+}
+
+.introduction_title {
+  white-space: nowrap;
+}
+
+.introduction {
+  margin-bottom: 60rpx;
+  padding: 30rpx 0 320rpx;
+  display: flex;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  color: #333333;
+}
+
+.intro_content {
+  line-height: 45rpx;
+}
+
+.bottom_fixed {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 320rpx;
+  background: #FFFFFF;
+}
+
+.pay_way {
+  display: flex;
+  justify-content: space-around;
+  padding: 0 20rpx;
+  align-items: center;
+  width: 690rpx;
+  height: 120rpx;
+  background: #FFFFFF;
+  margin: 0 auto;
+  box-shadow: 0px 0px 40rpx 0px rgba(51, 51, 51, 0.1);
+  border-radius: 10rpx 10rpx 0px 0px;
+}
+
+.pay_way>view:first-child {
+  flex: 1;
+}
+
+.pay_way>view {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.pay_wa>view>text {
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  color: #333333;
+}
+
+.border_con {
+  position: relative;
+  margin-left: 20rpx;
+  width: 170rpx;
+  height: 48rpx;
+  border: 1px solid #333333;
+}
+
+.border_con image {
+  float: right;
+  margin-top: 8rpx;
+  width: 36rpx;
+  height: 36rpx;
+}
+
+.border_con .border_title {
+  position: relative;
+  margin-left: 14rpx;
+  display: inline-block;
+  font-size: 24rpx;
+  font-family: PingFang SC;
+  color: #333333;
+}
+
+.all_total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 690rpx;
+  box-sizing: border-box;
+  padding: 0 30rpx;
+  height: 120rpx;
+  background: #0C1131;
+  border-radius: 0px 0px 10rpx 10rpx;
+  margin: 0 auto;
+}
+
+.all_price {
+  font-size: 36rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #FFFFFF;
+}
+
+.buy_btn {
+  width: 160rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  background: #EFC37D;
+  border-radius: 30rpx;
+  font-size: 36rpx;
+  font-family: PingFang SC;
+  color: #0C1131;
+}
+
+picker {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}

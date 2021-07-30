@@ -1,0 +1,87 @@
+/* pages/myCourse/myCourse.wxss */
+.appointment_header {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  height: 116rpx;
+  line-height: 116rpx;
+}
+
+.rewrads_item {
+  position: relative;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  color: #666666;
+}
+
+.rewards_active::after {
+  /* display: block; */
+  content: '';
+  position: absolute;
+  left: 28rpx;
+  bottom: 18rpx;
+  width: 30rpx;
+  height: 6rpx;
+  background: #0C1131;
+  border-radius: 4px;
+}
+
+.rewards_active {
+  color: #0C1131;
+}
+
+.coach_item {
+  display: flex;
+  box-sizing: border-box;
+  padding: 25rpx 30rpx;
+  margin: 0 auto;
+  margin-bottom: 30rpx;
+  width: 690rpx;
+  height: 200rpx;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 40rpx 0px rgba(102, 102, 102, 0.1);
+  border-radius: 10rpx;
+}
+
+.coach_item image {
+  width: 210rpx;
+  height: 140rpx;
+}
+
+.detail_info {
+  margin-left: 30rpx;
+  flex: 1;
+  font-family: PingFang SC;
+  font-weight: 500;
+}
+
+.detail_all {
+  font-size: 32rpx;
+  color: #333333;
+  font-family: PingFang SC;
+}
+
+.remaining {
+  margin-left: 30rpx;
+}
+
+.detail_info>.info1 {
+  display: flex;
+  align-items:flex-end;
+  justify-content: space-between;
+  margin-top: 15rpx;
+  font-size: 26rpx;
+  color: #666666;
+}
+
+.app_btn {
+  width: 100rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-align: center;
+  background: #0C1131;
+  border-radius: 20rpx;
+  font-size: 24rpx;
+  font-family: PingFang SC;
+  color: #FFFFFF;
+}
