@@ -1,11 +1,11 @@
-// pages/courseBooking/courseBooking.js
+// pages/courseDetail/courseDetail.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-     useCoupon:true
+
   },
 
   /**

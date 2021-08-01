@@ -22,9 +22,12 @@
       <view>
         <text>选择会籍</text>
         <view class="border_con">
+          <!-- indicator-style="25px"  -->
           <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
-            <view class="border_title">{{array[member_index]}}</view>
-            <image src="/asset/images/arrow_bottom.png"></image>
+            <view class="wrapper">
+              <text class="border_title">{{array[member_index]}}</text>
+              <image src="/asset/images/arrow_bottom.png" style="margin-left:64rpx;"></image>
+            </view>
           </picker>
         </view>
       </view>
@@ -32,10 +35,11 @@
         <text>支付方式</text>
         <view class="border_con">
           <picker bindchange="bindPickerChange1" value="{{index}}" range="{{array1}}">
-            <view class="border_title">{{array1[pay_index]}}</view>
-            <image src="/asset/images/arrow_bottom.png"></image>
+            <view class="wrapper">
+              <text class="border_title">{{array1[pay_index]}}</text>
+              <image src="/asset/images/arrow_bottom.png"></image>
+            </view>
           </picker>
-
         </view>
       </view>
     </view>

@@ -1,0 +1,37 @@
+<view class="coach_detail">
+  <image class="coach_image" src="https://img1.baidu.com/it/u=578563189,1869369225&fm=26&fmt=auto&gp=0.jpg"></image>
+  <view class="coach_info">
+    <image src="/asset/images/profile/h.png"></image>
+    <view class="coach_item flex">
+      <view class="people">
+        <text>六大胖</text>
+        <text>初级教练</text>
+      </view>
+      <view class="cost">
+        课时费 <text class="red">￥200/节</text>
+      </view>
+    </view>
+  </view>
+  <view class="coach_decription">
+    <view class="dec_title">教练简介</view>
+    <view class="dec_content">从事马术行业12年，
+      2004年在北京通顺马场训练1年，
+      2005年-2013年在广东佰骏骑士会、
+      2013至今在俱乐部担任三星教练。参加过多届马术全运会
+      ，2006年开始在省内的障碍比赛取得许多优异的成绩。</view>
+  </view>
+  <!-- 推荐课程 -->
+  <view class="nav_title">推荐课程</view>
+  <view wx:for="{{3}}" class="recommendList">
+    <view class="recommendedCourse">
+      <image class="recom_img" src="https://img2.baidu.com/it/u=344472565,3893048275&fm=253&fmt=auto&app=120&f=JPEG?w=270&h=180" mode="widthFix"></image>
+      <view class="flex-direction">
+        <view>
+          <text class="level_course">初级课</text>
+        <!-- <image></image> -->
+        </view>
+       <view class="red course_price">￥300/节</view>
+      </view>
+    </view>
+  </view>
+</view>

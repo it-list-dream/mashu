@@ -101,6 +101,17 @@
           "pathName": "pages/cardDetail/cardDetail",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/coachDetail/coachDetail",
+          "pathName": "pages/coachDetail/coachDetail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/courseDetail/courseDetail",
+          "pathName": "pages/courseDetail/courseDetail",
+          "scene": null
         }
       ]
     }

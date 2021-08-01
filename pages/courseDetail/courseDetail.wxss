@@ -1,0 +1,140 @@
+/* pages/courseDetail/courseDetail.wxss */
+.couse_detail {
+  padding: 20rpx 30rpx 30rpx;
+}
+
+.course_image {
+  width: 690rpx;
+}
+
+.course_price {
+  height: 88rpx;
+  line-height: 88rpx;
+  font-size: 36rpx;
+  font-family: PingFang SC;
+  color: #333333;
+  border-bottom: 1px solid #E5E5E5;
+}
+
+.same {
+  padding: 24rpx 0;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  color: #333333;
+}
+
+.time {
+  text-indent: 1em;
+}
+
+.introduction {
+  margin-top: 24rpx;
+  display: flex;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+}
+
+.introduction text {
+  text-indent: 1em;
+  white-space: nowrap;
+  color: #333333;
+}
+
+.introduction view {
+  color: #333333;
+  line-height: 50rpx;
+}
+
+.bottom_list {}
+
+.first_box {
+  width: 690rpx;
+  height: 235rpx;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 40rpx 0px rgba(51, 51, 51, 0.1);
+  border-radius: 10rpx;
+}
+
+.buyCountList {
+  padding: 38rpx 30rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* .count{
+  flex: 1;
+} */
+.count text {
+  display: inline-block;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+}
+
+.symbol {
+  width: 50rpx;
+  background: #F0F2F5;
+}
+
+.reduce {
+  border-radius: 6rpx 0 0 6rpx;
+}
+
+.plus {
+  border-radius: 0 6rpx 6rpx 0;
+}
+
+.f_count {
+  padding: 0 24rpx;
+  background: #E5E5E5;
+  /* font-size: 36rpx; */
+  font-family: PingFang SC;
+  color: #333333;
+}
+
+.pay_method {
+  padding: 26rpx;
+}
+
+.pay_method>view {
+  display: inline-block;
+  margin-left: 30rpx;
+  width: 170rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  border: 1px solid #333333;
+}
+
+.choose_pay {
+  font-size: 24rpx;
+  font-family: PingFang SC;
+  color: #333333;
+}
+
+.pay_list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 0 30rpx;
+  width: 690rpx;
+  height: 120rpx;
+  background: #0C1131;
+  border-radius: 0px 0px 10rpx 10rpx;
+}
+
+.pay_list .pay_btn {
+  width: 160rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  background: #EFC37D;
+  border-radius: 30rpx;
+  font-size: 36rpx;
+  font-family: PingFang SC;
+  color: #0C1131;
+}
+
+.pay_list .all_price {
+  color: #FFFFFF;
+}

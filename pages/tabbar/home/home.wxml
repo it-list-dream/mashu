@@ -1,24 +1,25 @@
-<view class="custom_bar" style="height:{{navHeight}}px">
-  <view class="custom_item" style="height:calc({{navHeight - navTop}}px);top:{{navTop}}px">
-    <view class="my_store" style="padding:0 {{menuRight}}px" bindtap="goShop">
+<view class='nav-wrap' style='height:{{navHeight}}px;'>
+  <view class="navbar" style='height:{{navHeight}}px;'>
+    <navigator url="/pages/shop/shop" hover-class="none"  class="navbar-action-wrap" style='top:{{navTop}}px;padding:4px {{menuRight}}px'>
       <image src="/asset/images/home/store.png"></image>
-    </view>
+    </navigator>
+    <view class='navbar-title' style='top:{{navTop}}px;'>马术俱乐部</view>
   </view>
 </view>
 <!-- 轮播图 -->
-<m-swiper images="{{list}}" class="my_swiper"></m-swiper>
+<m-swiper images="{{list}}" class="my_swiper" style="margin-top:calc({{navHeight}}px + 20rpx)"></m-swiper>
 <view class="club_wrapper">
   <view class="club_title">翱度马术俱乐部</view>
   <view class="business">营业中：6:00-22:00</view>
   <view class="phone">联系电话：0510-82851333</view>
-  <view class="address">
+  <view class="address" bindtap="showMap">
     <image src="/asset/images/home/location.png"></image>
     <text class="add_detail">上海市普陀区中山西路</text>
   </view>
   <image src="/asset/images/home/logo2.png" class="store_logo"></image>
 </view>
 
-<view class="nav_wrapper">
+<view class="nav_wrapper" style="margin-bottom:10rpx;">
   <view class="nav_left">
     <image src="/asset/images/home/hourse02.png"></image>
     <text>马术教练</text>
@@ -31,7 +32,7 @@
 
 <view class="coach_list">
   <scroll-view scroll-x class="scroll_x">
-    <block wx:for="{{6}}" wx:key="index">
+    <view wx:for="{{6}}" wx:key="index" class="scroll-item">
       <view class="coach_item">
         <view>
           <image class="coach_image" src="/asset/images/home/coach.png"></image>
@@ -39,11 +40,12 @@
         <view class="coach_name">余叮叮</view>
         <view class="coach_level">初级教练</view>
       </view>
-    </block>
+    </view>
   </scroll-view>
 </view>
 
-<view class="nav_wrapper">
+
+<view class="nav_wrapper" style="margin-top:40rpx;">
   <view class="nav_left">
     <image src="/asset/images/home/hourse.png"></image>
     <text>推荐课程</text>
@@ -55,7 +57,7 @@
 </view>
 
 <view class="recommend">
-  <block wx:for="{{6}}">
+  <block wx:for="{{5}}">
     <view class="recommend_item">
       <image src="/asset/images/home/tu1.png" class="house_pic" mode="widthFix"></image>
       <view class="cl">
@@ -71,7 +73,7 @@
   </block>
 </view>
 
-<navigator class="nav_wrapper" url="/pages/cardList/cardList" hover-class="none">
+<navigator class="nav_wrapper" style="margin-top:30rpx;" url="/pages/cardList/cardList" hover-class="none">
   <view class="nav_left">
     <image src="/asset/images/home/vip.png"></image>
     <text>活动卡推荐</text>

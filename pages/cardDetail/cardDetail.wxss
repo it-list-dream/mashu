@@ -110,24 +110,25 @@
 }
 
 .border_con {
-  position: relative;
   margin-left: 20rpx;
   width: 170rpx;
-  height: 48rpx;
+  height: 50rpx;
+  line-height: 50rpx;
   border: 1px solid #333333;
 }
 
 .border_con image {
-  float: right;
-  margin-top: 8rpx;
   width: 36rpx;
   height: 36rpx;
+  vertical-align: middle;
+  margin-left: 20rpx;
 }
-
+.wrapper{
+  display: flex;
+  align-items: center;
+}
 .border_con .border_title {
-  position: relative;
   margin-left: 14rpx;
-  display: inline-block;
   font-size: 24rpx;
   font-family: PingFang SC;
   color: #333333;
@@ -166,9 +167,6 @@
 }
 
 picker {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
 }
