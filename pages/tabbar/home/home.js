@@ -6,18 +6,18 @@ Page({
    * 页面的初始数据
    */
   data: {
-    list: ['/asset/images/home/banner.png','/asset/images/home/banner.png','/asset/images/home/banner.png']
+    list: ['/asset/images/home/banner.png', '/asset/images/home/banner.png', '/asset/images/home/banner.png'],
+    navigateTitle:'教练列表'
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-     this.setData({
+    this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
       menuRight: app.globalData.menuRight
-     })
+    })
   },
 
   /**
@@ -26,7 +26,7 @@ Page({
   onReady: function () {
 
   },
-  goShop(){
+  goShop() {
     wx.navigateTo({
       url: '/pages/shop/shop',
     })
@@ -38,53 +38,69 @@ Page({
 
   },
   //显示地图
-  showMap(){
-    this.openLocationFun(34.203,108.923,15,"李大力健身房","");
+  showMap() {
+    this.openLocationFun(31.252159, 121.521873, 15, "上海市杨浦区大连路地铁站", "");
   },
-   /**  
- * 使用微信内置地图查看位置  
- * 1、latitude：     纬度，范围为-90~90，负数表示南纬 必填  
- * 2、longitude：    经度，范围为-180~180，负数表示西经 必填  
- * 3、scale：        缩放比例，范围1~28，默认为28 选填  
- * 4、name：         位置名 选填  
- * 5、address：      地址的详细说明 选填  
- * 6、cbSuccessFun： 接口调用成功的回调函数 选填  
- * 7、cbFailFun：    接口调用失败的回调函数 选填  
- * 8、cbCompleteFun：接口调用结束的回调函数（调用成功、失败都会执行） 选填  
- */
-openLocationFun: function(latitude, longitude, scale, name, address, cbSuccessFun, cbFailFun, cbCompleteFun){  
-  var openObj= {};  
-  openObj.latitude = latitude;  
-  openObj.longitude = longitude;  
-  openObj.scale = 15;  
-  if(scale>0 && scale < 29) {
-    openObj.scale = scale;
-  }  
-  if(name) {
-    openObj.name = name;
-  }  
-  if(address) {
-    openObj.address = address;
-  }  
-  openObj.success = function (res) {
-    if (cbSuccessFun) {
-      cbSuccessFun();
+  /**  
+   * 使用微信内置地图查看位置  
+   * 1、latitude：     纬度，范围为-90~90，负数表示南纬 必填  
+   * 2、longitude：    经度，范围为-180~180，负数表示西经 必填  
+   * 3、scale：        缩放比例，范围1~28，默认为28 选填  
+   * 4、name：         位置名 选填  
+   * 5、address：      地址的详细说明 选填  
+   * 6、cbSuccessFun： 接口调用成功的回调函数 选填  
+   * 7、cbFailFun：    接口调用失败的回调函数 选填  
+   * 8、cbCompleteFun：接口调用结束的回调函数（调用成功、失败都会执行） 选填  
+   */
+  openLocationFun: function (latitude, longitude, scale, name, address, cbSuccessFun, cbFailFun, cbCompleteFun) {
+    var openObj = {};
+    openObj.latitude = latitude;
+    openObj.longitude = longitude;
+    openObj.scale = 15;
+    if (scale > 0 && scale < 29) {
+      openObj.scale = scale;
     }
-  }  
-  openObj.fail = function (res) {
-    if (cbFailFun) {
-      cbFailFun();
-    } else {
-      console.log("openLocation fail:" + res.errMsg);
+    if (name) {
+      openObj.name = name;
     }
-  }  
-  openObj.complete = function (res) {
-    if (cbCompleteFun) {
-      cbCompleteFun();
+    if (address) {
+      openObj.address = address;
     }
-  }  
-  wx.openLocation(openObj);
-},
+    openObj.success = function (res) {
+      if (cbSuccessFun) {
+        cbSuccessFun();
+      }
+    }
+    openObj.fail = function (res) {
+      if (cbFailFun) {
+        cbFailFun();
+      } else {
+        console.log("openLocation fail:" + res.errMsg);
+      }
+    }
+    openObj.complete = function (res) {
+      if (cbCompleteFun) {
+        cbCompleteFun();
+      }
+    }
+    console.log(openObj)
+    wx.openLocation(openObj);
+  },
+  coachDetail() {
+    wx.navigateTo({
+      url: '/pages/coachDetail/coachDetail',
+    })
+  },
+  courseDetail(){
+    wx.navigateTo({
+      url: '/pages/courseDetail/courseDetail',
+    })
+  },
+  cardDetail(){
+    wx.navigateTo({
+      url: '/pages/cardDetail/cardDetail',
+    })
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */

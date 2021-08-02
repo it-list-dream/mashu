@@ -16,13 +16,14 @@ Page({
     this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
-      windowHeight: app.globalData.windowHeight
+      windowHeight: app.globalData.windowHeight,
+      hasUserInfo: wx.getStorageSync('hasUserInfo') || false
     })
   },
   getUserProfile(e) {
     var that = this;
     wx.getUserProfile({
-      desc: '用于完善会员资料', 
+      desc: '用于完善会员资料',
       success: (res) => {
         console.log(res.userInfo)
         wx.setStorageSync('hasUserInfo', true)
@@ -43,10 +44,15 @@ Page({
       }
     })
   },
-  onCancel(){
-      wx.navigateBack({
-        delta: 1,
-      })
+  onCancel() {
+    wx.navigateBack({
+      delta: 1,
+    })
+  },
+  _navBack(){
+   wx.navigateBack({
+     delta: 1,
+   })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

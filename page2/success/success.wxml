@@ -1,0 +1,8 @@
+<view class="appoinment-succ">
+    <view class="succes_icon"><image src="/asset/images/success.png" succes_icon ></image></view>
+    <view class="sucessTip">预约成功</view>
+    <view class="sucessBtn">
+       <button class="cancel btn" plain hover-class="none" bindtap="backHome">完成</button>
+       <button class="complete btn" open-type="share" hover-class="none">叫上朋友一起练吧</button>
+    </view>
+  </view>

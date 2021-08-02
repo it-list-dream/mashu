@@ -97,6 +97,7 @@
 
 .recommendedCourse .flex-direction {
   margin-left: 30rpx;
+  flex: 1;
 }
 
 .level_course {
@@ -109,4 +110,12 @@
   margin-top: 20rpx;
   font-size: 30rpx;
   font-family: PingFang SC;
+}
+.flex-direction>view{
+  display: flex;
+  justify-content: space-between;
+}
+.flex-direction image{
+  width: 36rpx;
+  height: 36rpx;
 }

@@ -15,7 +15,9 @@
     "pages/cardList/cardList",
     "pages/cardDetail/cardDetail",
     "pages/coachDetail/coachDetail",
-    "pages/courseDetail/courseDetail"
+    "pages/courseDetail/courseDetail",
+    "page2/success/success",
+    "page2/courseList/courseList"
   ],
   "window": {
     "backgroundTextStyle": "light",

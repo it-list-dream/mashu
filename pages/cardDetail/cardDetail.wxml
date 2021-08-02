@@ -4,11 +4,11 @@
     <view class="card_content">一年卡</view>
   </view>
   <view class="card_info price">￥1800</view>
-  <view class="card_info">卡类型:一年卡</view>
-  <view class="card_info">有效期:一年</view>
+  <view class="card_info">卡类型:  一年卡</view>
+  <view class="card_info">有效期:  一年</view>
   <view class="support_store">
     <text>支持门店: </text>
-    <text>如渔科技店、体验店、会员店、 全店通。</text>
+    <text style="margin-left:20rpx;">如渔科技店、体验店、会员店、 全店通。</text>
   </view>
   <view class="introduction">
     <view class="introduction_title">介绍：</view>
@@ -26,7 +26,7 @@
           <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
             <view class="wrapper">
               <text class="border_title">{{array[member_index]}}</text>
-              <image src="/asset/images/arrow_bottom.png" style="margin-left:64rpx;"></image>
+              <image src="/asset/images/arrow_bottom.png"></image>
             </view>
           </picker>
         </view>
@@ -34,12 +34,13 @@
       <view>
         <text>支付方式</text>
         <view class="border_con">
-          <picker bindchange="bindPickerChange1" value="{{index}}" range="{{array1}}">
+          <!-- <picker bindchange="bindPickerChange1" value="{{index}}" range="{{array1}}"> -->
+          <!-- {{array1[pay_index]}} -->
             <view class="wrapper">
-              <text class="border_title">{{array1[pay_index]}}</text>
-              <image src="/asset/images/arrow_bottom.png"></image>
+              <text class="border_title wechat">微信支付</text>
+              <!-- <image src="/asset/images/arrow_bottom.png"></image> -->
             </view>
-          </picker>
+          <!-- </picker> -->
         </view>
       </view>
     </view>

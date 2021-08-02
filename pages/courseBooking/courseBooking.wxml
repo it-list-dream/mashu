@@ -23,7 +23,7 @@
         <text class="red money">￥200</text>
       </view>
     </view>
-    <view class="course_info">
+    <view class="course_info" bindtap="switchCoupon">
       <text>课程名</text>
       <view class="course_name1">
         <text class="level">初级课</text>
@@ -49,7 +49,7 @@
   <!--  -->
   <view class="price_total">
     <view>合计 <text class="red">￥200</text></view>
-    <view class="pay_btn">去结算</view>
+    <view class="pay_btn" bindtap="payMoney">去结算</view>
   </view>
   <view class="coupon_list" wx:if="{{useCoupon}}">
     <view class="coupon_title">使用课程券</view>
@@ -57,12 +57,12 @@
       <image src="/asset/images/coupon.png"></image>
         <text class="coupon_count">10张</text>
         <text  class="coupon_level">初级课程券</text>
-        <view class="coupon_tip">
+        <view class="coupon_tip" bindtap="useCoupon">
           点击使用
         </view>
     </view>
     <view class="btn">
-      <view class="no_used">不使用</view>
+      <view class="no_used" bindtap="noUse">不使用</view>
     </view>
   </view>
 </view>

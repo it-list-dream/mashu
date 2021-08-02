@@ -6,16 +6,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-     unloginUrl:'https://thirdwx.qlogo.cn/mmopen/vi_32/POgEwh4mIHO4nibH0KlMECNjjGxQUq24ZEaGT4poC6icRiccVGKSyXwibcPq4BWmiaIGuG1icwxaQX6grC9VemZoJ8rg/132'
+    unloginUrl: 'https://thirdwx.qlogo.cn/mmopen/vi_32/POgEwh4mIHO4nibH0KlMECNjjGxQUq24ZEaGT4poC6icRiccVGKSyXwibcPq4BWmiaIGuG1icwxaQX6grC9VemZoJ8rg/132'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-   //
     ///wx.setStorageSync('key', data)
-
     this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
@@ -28,21 +26,38 @@ Page({
 
   },
   //登录
-  loginout(){
+  loginout() {
     //console.log(111)
-     wx.navigateTo({
-       url: '/pages/login/login',
-     })
+    wx.navigateTo({
+      url: '/pages/login/login',
+    })
+  },
+  //预约日程
+  appointmentSchedule() {
+    wx.switchTab({
+      url: '/pages/tabbar/appointmentRecord/appointmentRecord',
+    })
+  },
+  //我的订单
+  myOrder() {
+    wx.navigateTo({
+      url: '/pages/order/order',
+    })
+  },
+  myCoupon(){
+    wx.navigateTo({
+      url: '/pages/myCourse/myCourse',
+    })
   },
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    let status = wx.getStorageSync('loginStatus') ||0;
+    let status = wx.getStorageSync('loginStatus') || 0;
     let user = wx.getStorageSync('userInfo');
     this.setData({
-      status:status,
-      user:user
+      status: status,
+      user: user
     })
   },
 

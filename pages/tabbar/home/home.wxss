@@ -98,12 +98,17 @@
   color: #333333;
 }
 
-.address image {
+.address .location_icon {
   width: 26rpx;
   height: 26rpx;
   vertical-align: middle;
 }
-
+.address .bottom_arrow{
+  margin-left: 16rpx;
+  width: 26rpx;
+  height: 26rpx;
+  vertical-align: middle;
+}
 .store_logo {
   position: absolute;
   top: 28rpx;

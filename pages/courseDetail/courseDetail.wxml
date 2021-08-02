@@ -1,9 +1,9 @@
 <view class="couse_detail">
-  <image class="course_image" src="https://img1.baidu.com/it/u=578563189,1869369225&fm=26&fmt=auto&gp=0.jpg"></image>
-  <view class="couse_info">
+  <image class="course_image" src="/asset/images/coachDetail/big_img.png"></image>
+  <view class="couse_info move">
     <view class="course_price">￥1800</view>
     <view class="same">课程名：初级课</view>
-    <view class="same time">时长:60分钟</view>
+    <view class="same time">时长: 60分钟</view>
     <view class="introduction">
       <text>介绍：</text>
       <view>
@@ -16,20 +16,27 @@
       <view class="buyCountList">
         <view>购买节数</view>
         <view class="count">
-          <text class="symbol reduce">-</text>
-          <text class="f_count">1</text>
-          <text class="symbol plus">+</text>
+          <text class="symbol reduce" bindtap="reduce">-</text>
+          <text class="f_count">{{courseNum}}</text>
+          <text class="symbol plus" bindtap="plus">+</text>
         </view>
       </view>
+
       <view class="pay_method">
         <text>支付方式</text>
-        <view>
-          <text class="choose_pay"> 微信支付</text>
+        <view class="pay_item">
+          <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+            <view class="picker_wrapper">
+              <text class="choose_pay">{{array[pay_index]}}</text>
+              <image src="/asset/images/arrow_bottom.png"></image>
+            </view>
+          </picker>
         </view>
       </view>
     </view>
+
     <view class="pay_list">
-      <view class="all_price">合计：300元</view>
+      <view class="all_price">合计：{{allPricce}}元</view>
       <view class="pay_btn">购买</view>
     </view>
   </view>

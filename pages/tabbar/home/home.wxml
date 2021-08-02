@@ -13,13 +13,14 @@
   <view class="business">营业中：6:00-22:00</view>
   <view class="phone">联系电话：0510-82851333</view>
   <view class="address" bindtap="showMap">
-    <image src="/asset/images/home/location.png"></image>
+    <image src="/asset/images/home/location.png" class="location_icon"></image>
     <text class="add_detail">上海市普陀区中山西路</text>
+    <image src="/asset/images/home/arrow.png" class="bottom_arrow"></image>
   </view>
   <image src="/asset/images/home/logo2.png" class="store_logo"></image>
 </view>
 
-<view class="nav_wrapper" style="margin-bottom:10rpx;">
+<navigator url="/pages/chooseCoach/chooseCoach?title={{navigateTitle}}" class="nav_wrapper" style="margin-bottom:10rpx;" hover-class="none">
   <view class="nav_left">
     <image src="/asset/images/home/hourse02.png"></image>
     <text>马术教练</text>
@@ -28,11 +29,11 @@
     <text>全部</text>
     <image src="/asset/images/home/arrow.png"></image>
   </view>
-</view>
+</navigator>
 
 <view class="coach_list">
   <scroll-view scroll-x class="scroll_x">
-    <view wx:for="{{6}}" wx:key="index" class="scroll-item">
+    <view wx:for="{{6}}" wx:key="index" class="scroll-item" bindtap="coachDetail">
       <view class="coach_item">
         <view>
           <image class="coach_image" src="/asset/images/home/coach.png"></image>
@@ -45,7 +46,7 @@
 </view>
 
 
-<view class="nav_wrapper" style="margin-top:40rpx;">
+<navigator url="/page2/courseList/courseList" class="nav_wrapper" style="margin-top:40rpx;" hover-class="none">
   <view class="nav_left">
     <image src="/asset/images/home/hourse.png"></image>
     <text>推荐课程</text>
@@ -54,11 +55,11 @@
     <text>全部</text>
     <image src="/asset/images/home/arrow.png"></image>
   </view>
-</view>
+</navigator>
 
 <view class="recommend">
   <block wx:for="{{5}}">
-    <view class="recommend_item">
+    <view class="recommend_item" bindtap="courseDetail">
       <image src="/asset/images/home/tu1.png" class="house_pic" mode="widthFix"></image>
       <view class="cl">
         <view class="class_level">初级课</view>
@@ -85,7 +86,7 @@
 </navigator>
 <view class="active_card">
   <block wx:for="{{2}}">
-    <view>
+    <view bindtap="cardDetail">
       <image src="/asset/images/home/card_bg.png"></image>
       <view class="card_item">
         <view class="card_year">一年卡</view>

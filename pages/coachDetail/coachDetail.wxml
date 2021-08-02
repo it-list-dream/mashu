@@ -1,7 +1,7 @@
 <view class="coach_detail">
-  <image class="coach_image" src="https://img1.baidu.com/it/u=578563189,1869369225&fm=26&fmt=auto&gp=0.jpg"></image>
+  <image class="coach_image" src="/asset/images/coachDetail/big_img.png"></image>
   <view class="coach_info">
-    <image src="/asset/images/profile/h.png"></image>
+    <image src="/asset/images/profile/h.png" bindtap="preview" data-src="/asset/images/profile/h.png"></image>
     <view class="coach_item flex">
       <view class="people">
         <text>六大胖</text>
@@ -24,11 +24,11 @@
   <view class="nav_title">推荐课程</view>
   <view wx:for="{{3}}" class="recommendList">
     <view class="recommendedCourse">
-      <image class="recom_img" src="https://img2.baidu.com/it/u=344472565,3893048275&fm=253&fmt=auto&app=120&f=JPEG?w=270&h=180" mode="widthFix"></image>
+      <image class="recom_img" src="/asset/images/coachDetail/small_img.png" mode="widthFix"></image>
       <view class="flex-direction">
         <view>
           <text class="level_course">初级课</text>
-        <!-- <image></image> -->
+          <image src="/asset/images/coachDetail/left_icon.png"></image>
         </view>
        <view class="red course_price">￥300/节</view>
       </view>

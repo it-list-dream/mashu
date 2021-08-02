@@ -1,0 +1,62 @@
+/* 预约成功 */
+.appoinment-succ {
+  overflow: hidden;
+  margin-top: 300rpx;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.succes_icon image {
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.sucessTip {
+  margin-top: 35rpx;
+  font-size: 36rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color: #333333;
+}
+
+.sucessBtn {
+  margin-top: 102rpx;
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+
+button::after {
+  border: none;
+}
+
+.btn {
+  width: 300rpx !important;
+  height: 62rpx;
+  padding: 0;
+  line-height: 62rpx;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+  border-radius: 31rpx;
+  text-align: center;
+}
+
+.cancel {
+  border: 1px solid #333333;
+}
+
+.complete {
+  line-height: 62rpx;
+  background: #0D1232;
+  color: #FFFEFE;
+}
+
+/* z */
+.in {
+  background: #12D58B;
+  color: #FFFEFE;
+}

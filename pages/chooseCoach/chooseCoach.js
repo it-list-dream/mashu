@@ -12,9 +12,29 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    //console.log(options)
+    // let title = options.title
+    this.title = options.title;
+    wx.setNavigationBarTitle({
+      title: this.title
+    })
   },
-
+  coachStatus() {
+    if (this.title == '选择教练') {
+      var pages = getCurrentPages(); //当前页面
+      var prevPage = pages[pages.length - 2];
+      prevPage.setData({
+        checked_horse: true,
+      });
+      wx.navigateBack({
+        delta: 1,
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/coachDetail/coachDetail',
+      })
+    }
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

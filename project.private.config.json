@@ -111,6 +111,19 @@
         {
           "name": "pages/courseDetail/courseDetail",
           "pathName": "pages/courseDetail/courseDetail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/success/success",
+          "pathName": "page2/success/success",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/courseList/courseList",
+          "pathName": "page2/courseList/courseList",
+          "query": "",
           "scene": null
         }
       ]

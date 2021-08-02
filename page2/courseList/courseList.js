@@ -1,49 +1,22 @@
-// pages/courseDetail/courseDetail.js
+// page2/courseList/courseList.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    array: ['微信支付', '储值支付'],
-    pay_index: 0,
-    coursePrice:300,
-    allPricce:300,
-    courseNum:1
+
   },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+ 
   },
-
-  bindPickerChange(e) {
-    //console.log(e)
-    this.setData({
-      pay_index: e.detail.value
-    })
-  },
-  reduce(){
-    console.log('---------')
-    let num = this.data.courseNum -1;
-    if(this.data.courseNum >1){
-      this.setData({
-        courseNum:num,
-        allPricce:this.data.coursePrice * num
-      })
-    }else{
-      wx.showToast({
-        icon:"none",
-        title: '课程数量不能为0',
-      })
-    }
-  },
-  plus(){
-    let num = this.data.courseNum + 1;
-    this.setData({
-      courseNum:num,
-      allPricce:this.data.coursePrice * num
+  courseDetail(){
+    wx.navigateTo({
+      url: '/pages/courseDetail/courseDetail',
     })
   },
   /**

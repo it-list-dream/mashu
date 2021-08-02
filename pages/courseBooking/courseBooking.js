@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-     useCoupon:true
+    useCoupon: false
   },
 
   /**
@@ -14,7 +14,26 @@ Page({
   onLoad: function (options) {
 
   },
-
+  switchCoupon() {
+    this.setData({
+      useCoupon: true
+    })
+  },
+  useCoupon() {
+    this.setData({
+      useCoupon: false
+    })
+  },
+  noUse() {
+    this.setData({
+      useCoupon: false
+    })
+  },
+  payMoney(){
+     wx.navigateTo({
+       url: '/page2/success/success',
+     })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

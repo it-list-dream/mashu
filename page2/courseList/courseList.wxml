@@ -1,0 +1,15 @@
+<view class="courseList">
+  <view wx:for="{{3}}" class="recommendList" bindtap="courseDetail">
+    <view class="recommendedCourse">
+      <image class="recom_img" src="/asset/images/coachDetail/small_img.png" mode="widthFix"></image>
+      <view class="flex-direction">
+        <view>
+          <text class="level_course">初级课</text>
+          <image src="/asset/images/coachDetail/left_icon.png"></image>
+        </view>
+        <view class="red course_price">￥300/节</view>
+        <view class="couse_time">时长：60分钟</view>
+      </view>
+    </view>
+  </view>
+</view>

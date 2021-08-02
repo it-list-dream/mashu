@@ -1,5 +1,5 @@
 <view class="coach_list">
-  <view class="coach_item" wx:for="{{6}}" wx:key="index">
+  <view class="coach_item" wx:for="{{6}}" wx:key="index" bindtap="coachStatus">
     <image src="/asset/images/coach_list.png"></image>
     <view class="detail_info">
       <view class="detail_name">杨某人</view>

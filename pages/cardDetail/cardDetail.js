@@ -6,9 +6,9 @@ Page({
    */
   data: {
     array:['张三','李四','王五','小李子'],
-    array1:['微信支付','储值支付'],
+   // array1:['微信支付','储值支付'],
     member_index:0,
-    pay_index:0
+    //pay_index:0
   },
 
   /**
@@ -65,11 +65,12 @@ Page({
       member_index: e.detail.value
     })
   },
-  bindPickerChange1(){
-    this.setData({
-      pay_index: e.detail.value
-    })
-  },
+  // bindPickerChange1(e){
+  //   //console.log(e.detail.value)
+  //   this.setData({
+  //     pay_index: e.detail.value
+  //   })
+  // },
   /**
    * 用户点击右上角分享
    */

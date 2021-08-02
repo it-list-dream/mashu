@@ -37,20 +37,20 @@
       <text class="number">0</text>
       <text>储值余额</text>
     </view>
-    <view>
+    <view bindtap="myCoupon">
       <text class="number">30</text>
       <text>课程券</text>
     </view>
   </view>
   <view class="nav">更多</view>
-  <view class="schedule">
+  <view class="schedule" bindtap="appointmentSchedule">
     <view>
       <image src="/asset/images/profile/order.png"></image>
       <text class="schedule_title">预约日程</text>
     </view>
     <image src="/asset/images/profile/left_arrow.png" mode="widthFix"></image>
   </view>
-  <view class="schedule">
+  <view class="schedule" bindtap="myOrder">
     <view>
       <image src="/asset/images/profile/appoinment.png"></image>
       <text class="schedule_title">我的订单</text>

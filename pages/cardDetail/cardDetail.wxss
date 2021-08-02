@@ -117,21 +117,30 @@
   border: 1px solid #333333;
 }
 
+.wrapper {
+  display: flex;
+  align-items: center;
+  padding: 0 15rpx;
+}
+
 .border_con image {
   width: 36rpx;
   height: 36rpx;
   vertical-align: middle;
-  margin-left: 20rpx;
 }
-.wrapper{
-  display: flex;
-  align-items: center;
-}
+
 .border_con .border_title {
-  margin-left: 14rpx;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   font-size: 24rpx;
   font-family: PingFang SC;
   color: #333333;
+}
+
+.wechat{
+  text-align: center;
 }
 
 .all_total {

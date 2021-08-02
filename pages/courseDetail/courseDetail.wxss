@@ -29,6 +29,7 @@
 
 .introduction {
   margin-top: 24rpx;
+  margin-bottom: 50rpx;
   display: flex;
   font-size: 30rpx;
   font-family: PingFang SC;
@@ -45,9 +46,17 @@
   line-height: 50rpx;
 }
 
-.bottom_list {}
+.bottom_list {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding-bottom: 30rpx;
+  background: #FFFFFF;
+}
 
 .first_box {
+  margin: 0 auto;
   width: 690rpx;
   height: 235rpx;
   background: #FFFFFF;
@@ -96,7 +105,7 @@
   padding: 26rpx;
 }
 
-.pay_method>view {
+.pay_method .pay_item {
   display: inline-block;
   margin-left: 30rpx;
   width: 170rpx;
@@ -105,13 +114,27 @@
   border: 1px solid #333333;
 }
 
+.pay_item image {
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.picker_wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 15rpx;
+}
+
 .choose_pay {
+  flex: 1;
   font-size: 24rpx;
   font-family: PingFang SC;
   color: #333333;
 }
 
 .pay_list {
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -137,4 +160,7 @@
 
 .pay_list .all_price {
   color: #FFFFFF;
+}
+.move{
+  padding-bottom: 375rpx;
 }

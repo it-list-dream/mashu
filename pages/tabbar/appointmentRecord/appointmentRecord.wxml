@@ -5,15 +5,18 @@
   </block>
 </view>
 <view class="reward_content" wx:for="{{4}}">
-  <view class="reward_week">2021-3-18（星期四）</view>
+  <view class="reward_week">
+    <text>2021-3-18（星期四）</text>
+    <text>已完成</text>
+  </view>
   <view class="reward_item">
     <view>
       <image src="/asset/images/home/tu1.png"></image>
     </view>
     <view class="course_cont">
-       <view>初级课</view>
-       <view>教练：六小胖</view>
-       <view>时间：18:00-19:00</view>
+      <view class="level">初级课</view>
+      <view>教练：六小胖</view>
+      <view>时间：18:00-19:00</view>
     </view>
   </view>
 </view>
