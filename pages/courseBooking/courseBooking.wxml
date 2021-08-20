@@ -1,68 +1,109 @@
+<wxs src="../../utils/util.wxs" module="tools" />
 <view class="course_booking">
   <view class="booking_item">
     <view class="course_info">
       <text>课程名</text>
-      <text>初级课</text>
+      <view bindtap="switchCoupon" class="align-center">
+        <text>{{appoinemntInfo.chooseCourse.SE_Name}}</text>
+        <image src="/asset/images/arrow11.png" mode="widthFix" class="icon-arrow"></image>
+      </view>
     </view>
+
     <view class="course_info">
       <text>预约日期</text>
-      <text>2021-07-01</text>
+      <picker mode="date" value="{{date}}" start="{{startDate}}" end="{{lastDate}}" bindchange="bindDateChange">
+        <view class="align-center">
+          <text>{{appoinemntInfo.SearchDate}}</text>
+          <image src="/asset/images/arrow11.png" mode="widthFix" class="icon-arrow"></image>
+        </view>
+      </picker>
     </view>
+
     <view class="course_info">
       <text>预约时间</text>
-      <text>15:00-16:00</text>
+      <picker bindchange="anewChooseTime" value="{{index}}" range="{{datatime}}" range-key="StartTime">
+        <view class="align-center">
+          <text>{{tools.sub(appoinemntInfo.starttime,11,16)}} - {{tools.sub(appoinemntInfo.endtime,11,16)}}</text>
+          <image src="/asset/images/arrow11.png" mode="widthFix" class="icon-arrow"></image>
+        </view>
+      </picker>
     </view>
     <view class="course_info">
       <text>课程费用</text>
-      <view><text class="red">￥280</text> × 1</view>
+      <view><text class="red">￥{{appoinemntInfo.chooseCourse.Price}}</text> × 1</view>
     </view>
+
+    <view class="course_info">
+      <text>教练</text>
+      <picker bindchange="anewChooseCoach" value="{{index}}" range="{{coachList}}" range-key="AI_Name">
+        <view class="align-center">
+          <text>{{appoinemntInfo.chooseCoach.AI_Name}}</text>
+          <image src="/asset/images/arrow11.png" mode="widthFix" class="icon-arrow"></image>
+        </view>
+      </picker>
+    </view>
+
     <view class="course_info">
       <text>教练费用</text>
       <view>
-        <text class="coach">教练 杨某人</text>
-        <text class="red money">￥200</text>
+        <text class="red money">￥{{appoinemntInfo.chooseCoach.ST_Price}}</text>
       </view>
     </view>
-    <view class="course_info" bindtap="switchCoupon">
-      <text>课程名</text>
-      <view class="course_name1">
-        <text class="level">初级课</text>
-        <image src="/asset/images/arrow11.png" mode="widthFix"></image>
-      </view>
-    </view>
+
     <navigator class="askClassRules red" url="/pages/rules/rules" hover-class="none">约课规则</navigator>
   </view>
-  <view class="all_price" hidden="{{useCoupon}}">
+
+  <view class="all_price">
     <view class="course_info">
       <text>总价</text>
-      <text>￥480</text>
+      <text>￥{{totalPrice}}</text>
     </view>
     <view class="course_info">
       <text>课时</text>
-      <text>课程券 或 ￥280</text>
+      <!-- 如果使用课程券   课程券 280 -->
+      <text>{{isUseConpoun?'使用课程券':appoinemntInfo.chooseCourse.Price}}</text>
     </view>
     <view class="pay_price course_info">
       <text>应付</text>
-      <text>￥200</text>
+      <text>￥{{finalPrice}}</text>
     </view>
   </view>
-  <!--  -->
-  <view class="price_total">
-    <view>合计 <text class="red">￥200</text></view>
-    <view class="pay_btn" bindtap="payMoney">去结算</view>
-  </view>
-  <view class="coupon_list" wx:if="{{useCoupon}}">
-    <view class="coupon_title">使用课程券</view>
-    <view class="coupon">
-      <image src="/asset/images/coupon.png"></image>
-        <text class="coupon_count">10张</text>
-        <text  class="coupon_level">初级课程券</text>
-        <view class="coupon_tip" bindtap="useCoupon">
-          点击使用
+
+  <view class="bottom_list">
+    <view class="pay_method">
+      <view class="pay_title">支付方式</view>
+      <picker bindchange="bindChange" value="{{value}}" range="{{payList}}" class="pick">
+        <view class="pay_item">
+          <text>{{payList[pay_index]}}</text>
+          <image src="/asset/images/bottom_arrow.png"></image>
         </view>
+      </picker>
     </view>
+    <view class="price_total">
+      <view>合计 <text class="red">￥{{finalPrice}}</text></view>
+      <view class="pay_btn" bindtap="payMoney">去结算</view>
+    </view>
+  </view>
+</view>
+<!--选择课程  -->
+<view wx:if="{{useCoupon}}" bindtouchmove="false">
+  <view class="coupon_list" animation="{{animationData}}" >
+    <view class="coupon_title">选择课程</view>
+    <scroll-view scroll-y class="scroll-y">
+      <view class="scroll_wrapper">
+        <view class="coupon" wx:for="{{courseList1}}" wx:for-index="idx" wx:key="idx">
+          <image src="/asset/images/coupon.png"></image>
+          <text class="coupon_count">{{item.EO_ID?item.EO_Have+'张':'无'}}</text>
+          <text class="coupon_level">{{item.SE_Name}}</text>
+          <view class="coupon_tip" bindtap="useCoupon1"  data-course="{{item}}">
+            点击使用
+          </view>
+        </view>
+      </view>
+    </scroll-view>
     <view class="btn">
       <view class="no_used" bindtap="noUse">不使用</view>
     </view>
   </view>
+  <view class="close" catchtap="cancelMask" ></view>
 </view>

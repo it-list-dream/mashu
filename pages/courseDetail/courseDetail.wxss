@@ -70,9 +70,9 @@
   justify-content: space-between;
 }
 
-/* .count{
-  flex: 1;
-} */
+.count{
+  display: flex;
+}
 .count text {
   display: inline-block;
   height: 50rpx;
@@ -160,7 +160,4 @@
 
 .pay_list .all_price {
   color: #FFFFFF;
-}
-.move{
-  padding-bottom: 375rpx;
 }

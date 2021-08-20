@@ -22,24 +22,27 @@
   border-bottom: 1px solid #E5E5E5;
 }
 
-.flex>view {
+/* .flex>view {
+  
+} */
+.coach_item {
   margin-left: 30rpx;
 }
 
-.people text:first-child {
+.coach_item view:first-child {
   font-size: 36rpx;
   font-family: PingFang SC;
   color: #333333;
 }
 
-.people text:last-child {
-  margin-left: 20rpx;
+.coach_item view:last-child {
+  margin-top: 20rpx;
   font-size: 28rpx;
   font-family: PingFang SC;
   color: #949494;
 }
 
-.cost {
+/* .cost {
   margin-top: 10rpx;
   font-size: 30rpx;
   font-family: PingFang SC;
@@ -49,7 +52,7 @@
 
 .red {
   color: #F93E3E;
-}
+} */
 
 .dec_title {
   padding: 60rpx 0 30rpx;
@@ -111,11 +114,13 @@
   font-size: 30rpx;
   font-family: PingFang SC;
 }
-.flex-direction>view{
+
+.flex-direction>view {
   display: flex;
   justify-content: space-between;
 }
-.flex-direction image{
+
+.flex-direction image {
   width: 36rpx;
   height: 36rpx;
 }

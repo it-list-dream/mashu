@@ -1,18 +1,26 @@
 // pages/shop/shop.js
+import {
+  getGymList
+} from '../../service/home.js'
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-
+    myStore: []
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    getGymList().then(res => {
+      if (res.data.code == 1) {
+        this.setData({
+          myStore: res.data.data,
+          gymCount:res.data.gymCount
+        })
+      }
+    })
   },
 
   /**

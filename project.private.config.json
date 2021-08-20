@@ -125,6 +125,60 @@
           "pathName": "page2/courseList/courseList",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/tabbar/appointmentRecord/appointmentRecord",
+          "pathName": "pages/tabbar/appointmentRecord/appointmentRecord",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/login/login",
+          "pathName": "pages/login/login",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/test/test",
+          "pathName": "pages/test/test",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/appointment/appointment",
+          "pathName": "pages/tabbar/appointment/appointment",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/myStored/myStored",
+          "pathName": "page2/myStored/myStored",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page",
+          "pathName": "pages/tabbar/profile/profile",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/tabbar/home/home",
+          "pathName": "pages/tabbar/home/home",
+          "query": "sign=123",
+          "scene": null
+        },
+        {
+          "name": "page2/success/success",
+          "pathName": "page2/success/success",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "page2/success/success",
+          "pathName": "page2/success/success",
+          "query": "type=1",
+          "scene": null
         }
       ]
     }

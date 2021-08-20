@@ -1,17 +1,18 @@
 <view class="couse_detail">
   <image class="course_image" src="/asset/images/coachDetail/big_img.png"></image>
-  <view class="couse_info move">
-    <view class="course_price">￥1800</view>
-    <view class="same">课程名：初级课</view>
-    <view class="same time">时长: 60分钟</view>
+  <view class="couse_info" style="padding-bottom: {{isShowPrice?'375rpx':'0'}};">
+    <view class="course_price" wx:if="{{isShowPrice}}">￥{{courseDetail.Price}}</view>
+    <view class="same">课程名： {{courseDetail.SE_Name}}</view>
+    <view class="same time">时长:  {{courseDetail.SE_Time}}分钟</view>
     <view class="introduction">
       <text>介绍：</text>
       <view>
-        学习对象：从来没有骑过马，对马的知识不了解。学习目的:初步了解骑马的正确原理，以安全骑马为重。课前能力评定：根据学员的年龄、身体条件等来评定，学习内容：正确的骑马姿势；马匹慢步、快步节奏的控制；轻快步；停止和简单的转圈和变换方向；跑步。
+        <!-- 学习对象：从来没有骑过马，对马的知识不了解。学习目的:初步了解骑马的正确原理，以安全骑马为重。课前能力评定：根据学员的年龄、身体条件等来评定，学习内容：正确的骑马姿势；马匹慢步、快步节奏的控制；轻快步；停止和简单的转圈和变换方向；跑步。 -->
+        {{courseDetail.Remarks}}
       </view>
     </view>
   </view>
-  <view class="bottom_list">
+  <view class="bottom_list" wx:if="{{isShowPrice}}">
     <view class="first_box">
       <view class="buyCountList">
         <view>购买节数</view>
@@ -36,8 +37,8 @@
     </view>
 
     <view class="pay_list">
-      <view class="all_price">合计：{{allPricce}}元</view>
-      <view class="pay_btn">购买</view>
+      <view class="all_price">合计：{{allPrice}}元</view>
+      <view class="pay_btn" bindtap="payClass">购买</view>
     </view>
   </view>
 </view>

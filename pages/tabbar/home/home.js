@@ -1,5 +1,11 @@
 // pages/tabbar/home/home.js
 const app = getApp();
+import {
+  getGymList,
+  getCoachStyleList,
+  getSuggestEquestrianClass,
+  getSearchGymQR
+} from '../../../service/home.js'
 Page({
 
   /**
@@ -7,12 +13,18 @@ Page({
    */
   data: {
     list: ['/asset/images/home/banner.png', '/asset/images/home/banner.png', '/asset/images/home/banner.png'],
-    navigateTitle:'教练列表'
+    navigateTitle: '教练列表',
+    coachList: [],
+    suggestionList: [],
+    storeLogo: null,
+    myStore: null
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // console.log(options)
+    this.getStoreLogo();
     this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
@@ -26,16 +38,74 @@ Page({
   onReady: function () {
 
   },
-  goShop() {
-    wx.navigateTo({
-      url: '/pages/shop/shop',
+  getStyleList() {
+    let GB_ID = wx.getStorageSync('GB_ID');
+    getCoachStyleList(GB_ID).then(res => {
+      console.log(res)
+      if (res.data.code == 1) {
+        this.setData({
+          coachList: res.data.data
+        })
+      }
     })
+  },
+  getEquestrianClass() {
+    let GB_ID = wx.getStorageSync('GB_ID');
+    //3838
+    let UI_ID = wx.getStorageSync('UI_ID') || 0;
+    getSuggestEquestrianClass(GB_ID, UI_ID).then(res => {
+      //console.log(res)
+      var suggestList = res.data.data;
+      if (res.data.code == 1) {
+        this.setData({
+          suggestionList: suggestList.length>4?suggestList.slice(0,4):suggestList 
+        })
+      }
+    })
+  },
+  getStoreLogo() {
+    //getSearchGymQR
+    getSearchGymQR().then(res => {
+      if (res.data.code == 1) {
+        //console.log(res)
+        wx.setStorageSync('storeLogo', res.data.data[0].GymLogo)
+        this.setData({
+          storeLogo: res.data.data[0].GymLogo
+        })
+      }
+    })
+  },
+  callPhone(phoneNumber) {
+    if (phoneNumber) {
+      wx.makePhoneCall({
+        phoneNumber: phoneNumber
+      }).catch((e) => {
+        console.log(e) //用catch(e)来捕获错误{makePhoneCall:fail cancel}
+      })
+    } else {
+      wx.showToast({
+        icon: 'none',
+        title: '该门店没有预留电话号码',
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    getGymList().then(res => {
+      if (res.data.code == 1) {
+        this.setData({
+          storeList: res.data.data,
+          myStore: res.data.data[0]
+        })
+        wx.setStorageSync('GB_ID', res.data.data[0].GB_ID)
+        //保存门店的电话
+        app.globalData.storePhone = res.data.data[0].GymTel
+        this.getStyleList();
+        this.getEquestrianClass();
+      }
+    })
   },
   //显示地图
   showMap() {
@@ -86,20 +156,32 @@ Page({
     console.log(openObj)
     wx.openLocation(openObj);
   },
-  coachDetail() {
+  //教练
+  coachDetail(e) {
+    // console.log(e.currentTarget.dataset.coach)
+    let coach = JSON.stringify(e.currentTarget.dataset.coach)
     wx.navigateTo({
-      url: '/pages/coachDetail/coachDetail',
+      url: '/pages/coachDetail/coachDetail?coach=' + coach,
     })
   },
-  courseDetail(){
+  courseDetail(e) {
+    // console.log(e.currentTarget.dataset.course)
+    let course = JSON.stringify(e.currentTarget.dataset.course)
     wx.navigateTo({
-      url: '/pages/courseDetail/courseDetail',
+      url: '/pages/courseDetail/courseDetail?course=' + course,
     })
   },
-  cardDetail(){
+  cardDetail() {
     wx.navigateTo({
       url: '/pages/cardDetail/cardDetail',
     })
+  },
+  contactMe(e) {
+    console.log(e.currentTarget.dataset.price)
+    var price = e.currentTarget.dataset.price;
+    if(!price) {
+      this.callPhone(this.data.myStore.GymTel);
+    }
   },
   /**
    * 生命周期函数--监听页面隐藏
@@ -126,13 +208,6 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
 
   }
 })

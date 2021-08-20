@@ -5,6 +5,7 @@
   left: 0;
   z-index: 999;
 }
+
 .navbar {
   position: relative;
   top: 0;
@@ -46,15 +47,18 @@
   z-index: 11;
   line-height: 1;
 }
-.navbar-action-wrap image{
+
+.navbar-action-wrap image {
   width: 40rpx;
   height: 40rpx;
 }
+
 /*  */
 .my_swiper {
   display: block;
   /* margin-top: 20rpx; */
 }
+
 .club_wrapper {
   position: relative;
   margin: 0 auto;
@@ -73,6 +77,10 @@
 }
 
 .club_wrapper .club_title {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-break: break-all;
   font-size: 36rpx;
   font-family: PingFang SC;
   font-weight: 800;
@@ -90,7 +98,12 @@
   font-weight: 500;
   color: #999999
 }
-
+.address{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-break: break-all;
+}
 .address .add_detail {
   font-size: 26rpx;
   font-family: PingFang SC;
@@ -103,18 +116,20 @@
   height: 26rpx;
   vertical-align: middle;
 }
-.address .bottom_arrow{
+
+.address .bottom_arrow {
   margin-left: 16rpx;
   width: 26rpx;
   height: 26rpx;
   vertical-align: middle;
 }
+
 .store_logo {
   position: absolute;
   top: 28rpx;
   right: 38rpx;
-  width: 216rpx;
-  height: 153rpx;
+  width: 230rpx;
+  height: 171rpx;
 }
 
 .nav_wrapper {
@@ -156,25 +171,27 @@
 }
 
 .scroll_x {
+  height: auto;
   white-space: nowrap;
+  overflow: hidden;
 }
-.scroll_x .scroll-item{
+
+.scroll_x .scroll-item {
   display: inline-block;
   width: 257rpx;
-  height: 238rpx;
-  padding:  20rpx 0;
-  margin-right: 30rpx;
+  height: 278rpx;
+  padding: 20rpx 0;
+  margin: 0 15rpx;
+  /* scroll-view横向滚动的时候，元素没有对齐 */
+  vertical-align:top;
 }
+
 .coach_item {
-  width: 257rpx;
-  height: 238rpx;
+  width: 100%;
+  height: 100%;
   background: #FFFFFF;
   box-shadow: 0px 0px 40rpx 0px rgba(81, 58, 9, 0.1);
   border-radius: 10rpx;
-}
-
-.coach_item:last-child {
-  margin-right: 0;
 }
 
 .coach_item .coach_image {
@@ -213,12 +230,14 @@
 
 .recommend_item {
   width: 330rpx;
-  height: 442rpx;
+  /* height: 442rpx; */
+  height: auto;
   background: #FFFFFF;
   box-shadow: 0px 0px 30rpx 0px rgba(81, 58, 9, 0.1);
   border-radius: 10rpx;
   margin-bottom: 30rpx;
 }
+
 .recommend::after {
   content: '';
   width: 330rpx;
@@ -233,7 +252,7 @@
   display: flex;
   padding: 0 30rpx;
   justify-content: space-between;
-  margin-top: 24rpx;
+  margin-top: 22rpx;
 }
 
 .class_level {
@@ -258,7 +277,8 @@
 
 .price {
   padding-left: 30rpx;
-  margin: 26rpx 0;
+  margin-top: 22rpx;
+  /* margin: 22rpx 0; */
   font-size: 24rpx;
   font-family: PingFang SC;
   font-weight: 500;
@@ -267,9 +287,9 @@
 
 .buy_btn {
   float: right;
-  margin-right: 30rpx;
   width: 150rpx;
   height: 50rpx;
+  margin: 22rpx 30rpx 24rpx  0;
   line-height: 50rpx;
   text-align: center;
   background: #0B1030;

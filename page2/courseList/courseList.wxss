@@ -37,7 +37,7 @@
   font-family: PingFang SC;
 }
 
-.flex-direction>view {
+.flex-direction>view:first-child {
   display: flex;
   justify-content: space-between;
 }
@@ -52,8 +52,23 @@
 }
 
 .flex-direction .couse_time {
-  margin-top: 35rpx;
+  margin-top: 20rpx;
   font-size: 26rpx;
   font-family: PingFang SC;
   color: #666666;
+}
+
+.concat{
+  float: right;
+  margin-top: 24rpx;
+  width: 150rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  background: #0B1030;
+  border-radius: 25rpx;
+  font-size: 24rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #FFFFFF;
 }

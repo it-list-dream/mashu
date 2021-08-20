@@ -26,7 +26,7 @@
     <!--  -->
     <button class="cancel btn" type="default" hover-class="none" bindtap="onCancel">取消</button>
     <!-- 绑定手机号码 -->
-    <!-- <modal show="{{showModal}}" height='40%' bindcancel="modalCancel" bindconfirm='modalConfirm'>
+    <modal show="{{showModal}}" height='40%' bindcancel="modalCancel" bindconfirm='modalConfirm' wx:if="{{showModal}}">
       <view class="succ-icon">
         <icon type="success" size="50"></icon>
       </view>
@@ -34,6 +34,6 @@
         <view>微信授权成功</view>
         <view>授权绑定你的手机号</view>
       </view>
-    </modal> -->
+    </modal>
   </view>
 </view>

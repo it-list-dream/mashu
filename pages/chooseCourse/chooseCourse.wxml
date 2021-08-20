@@ -1,13 +1,16 @@
 <view class="coach_list">
-  <view class="coach_item" wx:for="{{6}}" wx:key="index">
-    <image src="/asset/images/course.png"></image>
+<block wx:for="{{EquestrianList}}" wx:key="index">
+  <view class="coach_item" bindtap="chooseCourse" data-course="{{item}}">
+    <image src="{{item.SE_Logo?item.SE_Logo:'/asset/images/course.png'}}"></image>
     <view class="detail_info">
       <view class="detail_all">
-           <text>高级课</text>
-           <text class="remaining">剩余(10张券)</text>     
+           <text>{{item.SE_Name}}</text>
+           <text class="remaining" wx:if="{{item.EO_Have}}">剩余({{item.EO_Have}}张券)</text>    
+           <text class="remaining" wx:else>无课程券</text> 
       </view>
-      <view class="info1">时长：60分钟</view>
-      <view class="info1">截止：2021-06-13</view>
+      <view class="info1">时长：{{item.SE_Time}}分钟</view>
+      <view class="info1" wx:if="{{item.EO_ActiveEnd!==''}}">截止：{{item.EO_ActiveEnd}}</view>
     </view>
   </view>
+</block>
 </view>

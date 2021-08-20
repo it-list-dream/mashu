@@ -1,5 +1,12 @@
 // components/modal/modal.js
 //var api = require('../../utils/request.js')
+import {
+  getMyCardList
+} from '../../service/my.js'
+import {
+  getWxUserLogin,
+  getUserPhoneBind
+} from '../../service/login.js'
 Component({
   /**
    * 组件的属性列表
@@ -54,67 +61,37 @@ Component({
       this.setData({
         show: false
       })
-      this.triggerEvent('cancel',false)
+      this.triggerEvent('cancel', false)
     },
     //通过绑定手机号登录
     getPhoneNumber: function (e) {
       var that = this
       if (e.detail.errMsg == 'getPhoneNumber:ok') {
         //登录
-        // wx.login({
-        //   success: function (res) {
-        //     let code = res.code
-        //     api.request({
-        //       url: "/WxUserLogin",
-        //       data: {
-        //         user_token: wx.getStorageSync('token'),
-        //         code: code
-        //       }
-        //     }).then(res => {
-        //       if (res.data.code == 1) {
-        //         wx.setStorageSync('userOpenid', res.data.openid);
-        //         api.request({
-        //           url: "/userPhoneBind",
-        //           data: {
-        //             user_token: res.data.user_token,
-        //             encryptedDataStr: e.detail.encryptedData,
-        //             iv: e.detail.iv,
-        //           }
-        //         }).then(res => {
-        //           //保存token 
-        //           if (res.data.code == 1) {
-        //             wx.setStorageSync('token', res.data.user_token);
-        //             wx.setStorageSync('loginStatus', 2);
-        //             // 保存手机号码
-        //             wx.setStorageSync('phone', res.data.phone);
-        //              //获取已有的会员信息
-        //             api.request({
-        //               url: "/MyAllVIPCard",
-        //               data: {
-        //                 user_token: wx.getStorageSync('token')
-        //               }
-        //             }).then(res => {
-        //               if (res.data.code == 1) {
-        //                 if(res.data.data.length>0){
-        //                   wx.setStorageSync('UI_ID', res.data.data[0].UI_ID);
-        //                 }
-        //                 //返回上一个页面
-        //                 wx.navigateBack({
-        //                   delta: 1,
-        //                 })
-        //               }
-        //             })
-        //           } else {
-        //             wx.navigateBack({
-        //               delta: 1,
-        //             })
-        //           }
-        //         })
-        //       }
-
-        //     })
-        //   }
-        // })
+        wx.login({
+          success: function (res) {
+            // let code = res.code
+            getWxUserLogin(res.code).then(res => {
+              if (res.data.code == 1) {
+                wx.setStorageSync('userOpenid', res.data.openid);
+                wx.setStorageSync('token', res.data.user_token);
+                getUserPhoneBind(e.detail.encryptedData,
+                  e.detail.iv).then(res => {
+                  //保存token 
+                  if (res.data.code == 1) {
+                    wx.setStorageSync('token', res.data.user_token);
+                    wx.setStorageSync('loginStatus', 2);
+                    // 保存手机号码
+                    wx.setStorageSync('phone', res.data.phone);
+                  }
+                  wx.navigateBack({
+                    delta: 1,
+                  })
+                })
+              }
+            })
+          }
+        })
       } else {
         //返回上一个页面
         wx.navigateBack({
@@ -122,5 +99,14 @@ Component({
         })
       }
     },
+    //
+    getMyCard() {
+      let gb_id = wx.getStorageSync('GB_ID')
+      getMyCardList(gb_id).then(res => {
+        if (res.data.code == 1 && res.data.data.length>0) {
+          wx.setStorageSync('UI_ID', res.data.data[0].UI_ID)
+        }
+      })
+    }
   }
 })

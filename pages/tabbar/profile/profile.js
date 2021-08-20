@@ -1,14 +1,21 @@
 // pages/tabbar/profile/profile.js
 const app = getApp();
+import {
+  getUrlBySign
+} from '../../../service/login.js'
+import {
+  getMyCardList
+} from '../../../service/my.js'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    unloginUrl: 'https://thirdwx.qlogo.cn/mmopen/vi_32/POgEwh4mIHO4nibH0KlMECNjjGxQUq24ZEaGT4poC6icRiccVGKSyXwibcPq4BWmiaIGuG1icwxaQX6grC9VemZoJ8rg/132'
+    unloginUrl: 'https://thirdwx.qlogo.cn/mmopen/vi_32/POgEwh4mIHO4nibH0KlMECNjjGxQUq24ZEaGT4poC6icRiccVGKSyXwibcPq4BWmiaIGuG1icwxaQX6grC9VemZoJ8rg/132',
+    myStoredValue: 0,
+    myCoupon: 0
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
@@ -17,6 +24,39 @@ Page({
     this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
+    })
+    //this.getMyCard();
+    // this.getMyEquestrian();
+  },
+  // getMyEquestrian(){
+  //  getMyEquestrianList(88,3838).then(res=>{
+  //    if(res.data.code ==1){
+  //       this.setData({
+  //         equestrianCount:res.data.data.length
+  //       })
+  //    }
+  //  })
+  // },
+  getMyCard() {
+    let gb_id = wx.getStorageSync('GB_ID');
+    let id = wx.getStorageSync('UI_ID')
+    getMyCardList(gb_id).then(res => {
+      if (res.data.code == 1 && res.data.data.length > 0) {
+        this.setData({
+          myCard: res.data.data[0],
+          myStoredValue: res.data.data[0].UI_Money,
+          myCoupon: res.data.data[0].EO_Have
+        })
+        console.log(111)
+        if (!id) {
+          wx.setStorageSync('UI_ID', res.data.data[0].UI_ID)
+        }
+      }
+    })
+  },
+  stored() {
+    wx.navigateTo({
+      url: '/page2/myStored/myStored?money='+this.data.myStoredValue,
     })
   },
   /**
@@ -27,7 +67,6 @@ Page({
   },
   //登录
   loginout() {
-    //console.log(111)
     wx.navigateTo({
       url: '/pages/login/login',
     })
@@ -44,7 +83,7 @@ Page({
       url: '/pages/order/order',
     })
   },
-  myCoupon(){
+  myCoupon() {
     wx.navigateTo({
       url: '/pages/myCourse/myCourse',
     })
@@ -53,14 +92,55 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.showMyInfo();
+    this.getMyCard();
+  },
+  showMyInfo() {
     let status = wx.getStorageSync('loginStatus') || 0;
+    let phone = wx.getStorageSync('phone') || null;
     let user = wx.getStorageSync('userInfo');
     this.setData({
       status: status,
-      user: user
+      user: user,
+      phone: phone
     })
   },
-
+  //退出
+  exit() {
+    var that = this;
+    var sign = wx.getStorageSync('sign');
+    wx.showModal({
+      title: '',
+      content: '确定是否需要退出',
+      success(res) {
+        if (res.confirm) {
+          //清除所有的登录状态
+          // wx.clearStorageSync();
+          wx.removeStorageSync('token')
+          wx.removeStorageSync('loginStatus');
+          wx.removeStorageSync('phone')
+          wx.removeStorageSync('UI_ID')
+          wx.removeStorageSync('userInfo')
+          wx.removeStorageSync('hasUserInfo')
+          that.getStoreSign(sign);
+          //所有
+          that.showMyInfo();
+          that.getMyCard();
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  },
+  getStoreSign(sign) {
+    var that = this;
+    getUrlBySign(sign).then(res => {
+      if (res.data.code == 1) {
+        wx.setStorageSync('token', res.data.user_token);
+        that.getMyCard();
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */
@@ -86,13 +166,6 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
 
   }
 })

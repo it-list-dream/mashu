@@ -1,26 +1,51 @@
 // pages/myCourse/myCourse.js
+import {
+  getMyEquestrianListHave
+} from '../../service/other.js'
+var uitil = require('../../utils/util.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    tabs_list:['可使用','已过期'],
-    chooseId:0
+    tabs_list: ['可使用', '已过期'],
+    chooseId: 0,
+    //是否过期
+    list: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.classStatus(this.data.chooseId)
   },
-  chooseTabs(e){
+  chooseTabs(e) {
     var index = e.currentTarget.dataset.index;
+    if (index == this.data.chooseId) {
+      return
+    }
+    this.classStatus(index)
     this.setData({
-      chooseId:index
+      chooseId: index
     })
- },
+  },
+  classStatus(isexpire) {
+    var GB_ID = wx.getStorageSync('GB_ID') || 88;
+    var UI_ID = wx.getStorageSync('UI_ID') || 3840;
+    getMyEquestrianListHave(GB_ID, UI_ID, isexpire).then(res => {
+      if (res.data.code == 1) {
+        let newList = res.data.data;
+        newList.forEach(item => {
+          item.EO_ActiveEnd = uitil.format(item.EO_ActiveEnd, 'yyyy-mm-dd')
+        })
+        this.setData({
+          list: newList
+        })
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

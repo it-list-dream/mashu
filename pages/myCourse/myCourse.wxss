@@ -1,4 +1,5 @@
 /* pages/myCourse/myCourse.wxss */
+@import '/template/nothing/nothing.wxss';
 .appointment_header {
   display: flex;
   justify-content: space-evenly;

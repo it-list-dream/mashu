@@ -1,0 +1,35 @@
+<view class="stored_list">
+  <view class="stored_header">
+    <image src="/asset/images/stored_bg.png"></image>
+    <view class="stored_value">
+      <view>可用储值</view>
+      <view class="money">{{money}}</view>
+    </view>
+  </view>
+  <!--  -->
+  <view class="stored_content">
+    <view class="tabs_list">
+      <view class="tabs_item {{index==stored_index?'tabs_active':''}}" wx:for="{{storedTabs}}" wx:key="index"
+        data-index="{{index}}" bindtap="handleTabs">
+        <text>{{item}}</text>
+        <text class="line"></text>
+      </view>
+    </view>
+    <!-- 内容 -->
+    <scroll-view scroll-y class="sroll-y" style="height:calc({{windowHeihgt}}px - 405rpx)" bindscrolltolower="loadMore">
+      <view class="scroll_wrapper">
+        <view class="stored_bill" wx:for="{{storedList}}" wx:key="ROWID">
+          <view>
+            <view class="pay_stored">{{item.TypeName=='充值'?'支付充值':'充值消费'}}</view>
+            <view class="date_time">{{item.Createdate}}</view>
+          </view>
+          <view class="bill_right" style="color: {{item.TypeName=='消费'?'#FF282C':'#333333'}};">
+            {{item.TypeName=='充值'?'+':'-'}} {{item.UP_MoneyShould}}</view>
+        </view>
+
+      </view>
+      <view class="no_more" wx:if="{{!flag && storedList.length>0}}">没有更多了</view>
+      <view class="tip_message" wx:if="{{storedList.length==0}}">暂无数据</view>
+    </scroll-view>
+  </view>
+</view>

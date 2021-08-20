@@ -1,3 +1,9 @@
+@import '/template/nothing/nothing.wxss';
+page {
+  background-color: #F0F2F5;
+  font-family: PingFang SC;
+}
+
 .appointment_header {
   display: flex;
   justify-content: space-evenly;
@@ -33,11 +39,25 @@
   box-sizing: border-box;
   padding: 0 30rpx;
   margin: 0 auto;
-  margin-top: 30rpx;
+  margin-bottom: 30rpx;
   width: 690rpx;
-  height: 348rpx;
   background: #FFFFFF;
   box-shadow: 0px 0px 40rpx 0px rgba(102, 102, 102, 0.1);
+}
+
+scroll-view {
+  overflow-anchor: auto;
+  /* background: yellow; */
+}
+
+.my-scroll {
+  box-sizing: border-box;
+  position: absolute;
+  top: 130rpx;
+  width: 100%;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .reward_week {
@@ -54,12 +74,33 @@
 .reward_item {
   padding: 30rpx 0;
   display: flex;
+  border-bottom: 1px solid #E5E5E5;
 }
 
 .reward_item image {
   width: 300rpx;
   height: 200rpx;
   border-radius: 14rpx;
+}
+
+.cancle_list {
+  display: flex;
+  align-items: center;
+  height: 110rpx;
+  justify-content: flex-end;
+}
+
+.cancel_btn {
+  width: 140rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  border: 1px solid #999999;
+  border-radius: 10rpx;
+  font-size: 28rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #999999;
 }
 
 .course_cont {
@@ -74,4 +115,32 @@
 
 .course_cont>view:nth-child(n+2) {
   margin-top: 16rpx;
+}
+
+/*  */
+
+/* 动画加载效果 */
+.weui-loadmore {
+  width: 100%;
+  height: 100rpx;
+  font-size: 30rpx;
+  text-align: center;
+  margin-top: 30rpx;
+}
+
+.weui-loading {
+  width: 50rpx;
+  height: 50rpx;
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-animation: weuiLoading 1s steps(12, end) infinite;
+  animation: weuiLoading 1s steps(12, end) infinite;
+  background: transparent url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCI+PHBhdGggZmlsbD0ibm9uZSIgZD0iTTAgMGgxMDB2MTAwSDB6Ii8+PHJlY3Qgd2lkdGg9IjciIGhlaWdodD0iMjAiIHg9IjQ2LjUiIHk9IjQwIiBmaWxsPSIjRTlFOUU5IiByeD0iNSIgcnk9IjUiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAgLTMwKSIvPjxyZWN0IHdpZHRoPSI3IiBoZWlnaHQ9IjIwIiB4PSI0Ni41IiB5PSI0MCIgZmlsbD0iIzk4OTY5NyIgcng9IjUiIHJ5PSI1IiB0cmFuc2Zvcm09InJvdGF0ZSgzMCAxMDUuOTggNjUpIi8+PHJlY3Qgd2lkdGg9IjciIGhlaWdodD0iMjAiIHg9IjQ2LjUiIHk9IjQwIiBmaWxsPSIjOUI5OTlBIiByeD0iNSIgcnk9IjUiIHRyYW5zZm9ybT0icm90YXRlKDYwIDc1Ljk4IDY1KSIvPjxyZWN0IHdpZHRoPSI3IiBoZWlnaHQ9IjIwIiB4PSI0Ni41IiB5PSI0MCIgZmlsbD0iI0EzQTFBMiIgcng9IjUiIHJ5PSI1IiB0cmFuc2Zvcm09InJvdGF0ZSg5MCA2NSA2NSkiLz48cmVjdCB3aWR0aD0iNyIgaGVpZ2h0PSIyMCIgeD0iNDYuNSIgeT0iNDAiIGZpbGw9IiNBQkE5QUEiIHJ4PSI1IiByeT0iNSIgdHJhbnNmb3JtPSJyb3RhdGUoMTIwIDU4LjY2IDY1KSIvPjxyZWN0IHdpZHRoPSI3IiBoZWlnaHQ9IjIwIiB4PSI0Ni41IiB5PSI0MCIgZmlsbD0iI0IyQjJCMiIgcng9IjUiIHJ5PSI1IiB0cmFuc2Zvcm09InJvdGF0ZSgxNTAgNTQuMDIgNjUpIi8+PHJlY3Qgd2lkdGg9IjciIGhlaWdodD0iMjAiIHg9IjQ2LjUiIHk9IjQwIiBmaWxsPSIjQkFCOEI5IiByeD0iNSIgcnk9IjUiIHRyYW5zZm9ybT0icm90YXRlKDE4MCA1MCA2NSkiLz48cmVjdCB3aWR0aD0iNyIgaGVpZ2h0PSIyMCIgeD0iNDYuNSIgeT0iNDAiIGZpbGw9IiNDMkMwQzEiIHJ4PSI1IiByeT0iNSIgdHJhbnNmb3JtPSJyb3RhdGUoLTE1MCA0NS45OCA2NSkiLz48cmVjdCB3aWR0aD0iNyIgaGVpZ2h0PSIyMCIgeD0iNDYuNSIgeT0iNDAiIGZpbGw9IiNDQkNCQ0IiIHJ4PSI1IiByeT0iNSIgdHJhbnNmb3JtPSJyb3RhdGUoLTEyMCA0MS4zNCA2NSkiLz48cmVjdCB3aWR0aD0iNyIgaGVpZ2h0PSIyMCIgeD0iNDYuNSIgeT0iNDAiIGZpbGw9IiNEMkQyRDIiIHJ4PSI1IiByeT0iNSIgdHJhbnNmb3JtPSJyb3RhdGUoLTkwIDM1IDY1KSIvPjxyZWN0IHdpZHRoPSI3IiBoZWlnaHQ9IjIwIiB4PSI0Ni41IiB5PSI0MCIgZmlsbD0iI0RBREFEQSIgcng9IjUiIHJ5PSI1IiB0cmFuc2Zvcm09InJvdGF0ZSgtNjAgMjQuMDIgNjUpIi8+PHJlY3Qgd2lkdGg9IjciIGhlaWdodD0iMjAiIHg9IjQ2LjUiIHk9IjQwIiBmaWxsPSIjRTJFMkUyIiByeD0iNSIgcnk9IjUiIHRyYW5zZm9ybT0icm90YXRlKC0zMCAtNS45OCA2NSkiLz48L3N2Zz4=) no-repeat;
+  background-size: 100%;
+}
+
+.weui-loadmore-tips {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 28rpx;
 }

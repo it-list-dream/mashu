@@ -1,0 +1,138 @@
+/* page2/myStored/myStored.wxss */
+.stored_list {
+  height: auto;
+  font-family: PingFang SC;
+}
+
+.stored_header {
+  position: relative;
+  width: 690rpx;
+  height: 190rpx;
+  margin: 0 auto;
+}
+
+.stored_header image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.stored_value {
+  box-sizing: border-box;
+  padding: 36rpx 0 0 60rpx;
+  height: 100%;
+  font-size: 38rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #EFC37D;
+}
+
+.stored_value .money {
+  margin-top: 15rpx;
+}
+
+.tabs_list {
+  display: flex;
+  height: 105rpx;
+  margin-bottom: 30rpx;
+  line-height: 105rpx;
+  text-align: center;
+  justify-content: space-evenly;
+}
+
+.stored_content {
+  margin: 40rpx auto 30rpx;
+  width: 690rpx;
+  height: auto;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 20rpx 0px rgba(51, 51, 51, 0.1);
+  border-radius: 10rpx;
+}
+
+.stored_content .tabs_item {
+  position: relative;
+  width: 33.33%;
+}
+
+.stored_content .tabs_active text {
+  color: #0B1030;
+}
+
+.tabs_active .line {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40rpx;
+  height: 8rpx;
+  background: #0B1030;
+  border-radius: 6rpx;
+}
+
+.tabs_item text:first-child {
+  font-size: 36rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+}
+
+
+.sroll-y .scroll_wrapper {
+  position: relative;
+  box-sizing: border-box;
+  padding: 0 30rpx;
+}
+
+.stored_bill {
+  display: flex;
+  height: 140rpx;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #E5E5E5;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+}
+
+/* .scroll_wrapper .stored_bill:last-child{
+  border: none;
+} */
+.pay_stored {
+  color: #333333;
+  font-size: 32rpx;
+}
+
+.date_time {
+  margin-top: 15rpx;
+  font-size: 26rpx;
+  color: #B6B9BE;
+}
+
+.stored_bill .bill_right {
+  font-size: 32rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+}
+
+/* 暂无数据 */
+.no_more {
+  padding: 30rpx;
+  font-size: 28rpx;
+  color: #999999;
+  font-weight: 500;
+  text-align: center;
+}
+
+.tip_message {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+  font-size: 28rpx;
+  color: #999999;
+}

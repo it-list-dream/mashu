@@ -7,38 +7,37 @@
     <!-- 登录 -->
     <view class="profile_wrapper">
       <veiw class="base_info">
-        <image src="{{status==1? user.avatarUrl:unloginUrl}}"></image>
-        <view class="info_detail" hidden="true">
-          <view>翱度会员</view>
-          <view class="phone">138****8888</view>
+        <image src="{{user?user.avatarUrl:unloginUrl}}"></image>
+        <view class="unbindPhone" wx:if="{{status!== 2}}">
+          <view class="user_name">{{status==1?user.nickName:'游客'}}</view>
+          <view class="bind_btn" bindtap="loginout">{{status==1?'点击绑定手机号':'登录/注册'}}</view>
         </view>
-         <view class="unbindPhone">
-            <view class="user_name">{{status==1?user.nickName:'游客'}}</view>
-            <view class="bind_btn" bindtap="loginout">{{status==1?'点击绑定手机号':'登录/注册'}}</view>
-            <!--  点击绑定手机号 登录/注册 -->
-         </view>
+        <view class="info_detail" wx:if="{{status == 2}}">
+          <view>{{user.nickName}}</view>
+          <view class="phone">{{phone}}</view>
+        </view>
       </veiw>
       <image class="profile_arrow" src="/asset/images/profile/right_arrow.png"></image>
     </view>
     <!-- 卡信息 -->
-    <view class="base_card">
+    <view class="base_card" wx:if="{{myCard}}">
       <view>卡期限：</view>
       <view class="card_date">
-        <text> 2021-07-16 ~ 2022-07-20</text>
-        <view class="card_day">剩余365天</view>
+        <text> {{myCard.UI_FirstDate}} ~ {{myCard.UI_LastDate}}</text>
+        <view class="card_day">剩余{{myCard.RemainingTime}}天</view>
       </view>
     </view>
   </view>
 </view>
 <!-- 卡卷 -->
 <view class="category">
-  <view class="categiry_item">
-    <view class="stored">
-      <text class="number">0</text>
+  <view class="categiry_item" > 
+    <view class="stored" bindtap="stored">
+      <text class="number">{{myStoredValue}}</text>
       <text>储值余额</text>
     </view>
     <view bindtap="myCoupon">
-      <text class="number">30</text>
+      <text class="number">{{myCoupon}}</text>
       <text>课程券</text>
     </view>
   </view>
@@ -57,6 +56,7 @@
     </view>
     <image src="/asset/images/profile/left_arrow.png" mode="widthFix"></image>
   </view>
+  <view class="exitBtn" bindtap="exit" wx:if="{{status == 2}}">退出</view>
   <!-- <open-data type="userAvatarUrl"></open-data>
   <open-data type="userNickName"></open-data> -->
 </view>

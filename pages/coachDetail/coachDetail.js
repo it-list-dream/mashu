@@ -1,4 +1,5 @@
 // pages/coachDetail/coachDetail.js
+import {getClassPriceByTearchId} from '../../service/other.js'
 Page({
 
   /**
@@ -12,7 +13,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log(options)
+    if(options.coach){
+      let coach = JSON.parse(options.coach)
+       this.setData({
+         coach:coach
+       })
+       this.getCoachById(coach.FK_AL_TeachCoach_ID);
+    }
   },
   //预览图片，放大预览
   preview(event) {
@@ -22,6 +30,22 @@ Page({
     //   current: currentUrl, // 当前显示图片的http链接
     //  // urls: this.data.imgList // 需要预览的图片http链接列表
     // })
+  },
+  //
+  getCoachById(teacherId){
+    getClassPriceByTearchId(teacherId).then(res=>{
+      if(res.data.code ==1){
+         this.setData({
+           myCoachList:res.data.data
+         })
+      }
+    })
+  },
+  toCoachDetail(e){
+     let course =JSON.stringify( e.currentTarget.dataset.course);
+     wx.navigateTo({
+       url: '/pages/courseDetail/courseDetail?course='+course,
+     })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

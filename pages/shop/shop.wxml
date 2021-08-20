@@ -1,18 +1,17 @@
+<wxs src="../../utils/util.wxs" module="tools" />
 <view class="store_list">
-  <view>
     <view class="store_count">共2家</view>
-    <block wx:for="{{6}}" wx:key="{{index}}">
+    <block wx:for="{{myStore}}" wx:key="index">
       <view class="store_item">
         <view class="store_flag">
           <image src="/asset/images/store.png"></image>
-          <view class="my_store">我的门店</view>
+          <view class="my_store" wx:if="{{item.IsMyGym}}">我的门店</view>
         </view>
         <view class="store_content">
-          <view>徐汇店</view>
-          <view class="address">上海市徐汇区永升大厦4层</view>
-          <view class="distance">0.3km</view>
+          <view class="store_name">{{tools.sub(item.GB_Address,0,3)}}</view>
+          <view class="address">{{item.GB_Address}}</view>
+          <!-- <view class="distance">0.3km</view> -->
         </view>
       </view>
     </block>
-  </view>
 </view>

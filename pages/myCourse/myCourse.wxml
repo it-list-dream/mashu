@@ -1,3 +1,4 @@
+<import src="/template/nothing/nothing.wxml"/>
 <view class="appointment_header">
   <block wx:for="{{tabs_list}}" wx:key="index">
     <view bindtap="chooseTabs" data-index="{{index}}" class="rewrads_item {{index==chooseId?'rewards_active':''}}">
@@ -5,17 +6,20 @@
   </block>
 </view>
 
-<view class="coach_item" wx:for="{{6}}" wx:key="index">
+<view class="coach_item" wx:for="{{list}}" wx:key="index">
   <image src="/asset/images/course.png"></image>
   <view class="detail_info">
     <view class="detail_all">
       <text>高级课</text>
-      <text class="remaining">剩余(10张券)</text>
+      <text class="remaining">剩余({{item.EO_Have}}张券)</text>
     </view>
-    <view class="info1">时长：60分钟</view>
+    <view class="info1">时长：{{item.SE_Time}}分钟</view>
     <view class="info1">
-      <view>截止：2021-06-13</view>
-      <view class="app_btn">预约</view>
+      <view>截止：{{item.EO_ActiveEnd}}</view>
+      <view class="app_btn" wx:if="{{chooseId == 0}}">预约</view>
     </view>
   </view>
 </view>
+<block wx:if="{{list.length==0}}">
+  <template is="nothing" data="{{message:'暂无内容'}}"></template>
+</block>

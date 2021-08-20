@@ -124,6 +124,7 @@
 .chooseCoachList image {
   width: 116rpx;
   height: 116rpx;
+ border-radius: 50%;
 }
 
 .current_coach {
@@ -188,6 +189,7 @@
   font-family: PingFang SC;
   font-weight: 500;
   text-align: center;
+  box-sizing: border-box;
 }
 
 .week {
@@ -263,6 +265,7 @@
   width: 100%;
   flex-basis: 20%;
   background: #FFFFFF;
+  box-sizing: border-box;
 }
 
 .clock>view {

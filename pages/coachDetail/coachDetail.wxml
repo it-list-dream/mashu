@@ -1,36 +1,41 @@
 <view class="coach_detail">
-  <image class="coach_image" src="/asset/images/coachDetail/big_img.png"></image>
+  <image class="coach_image" src="{{coach.AI_Face?coach.AI_Face:'/asset/images/coachDetail/big_img.png'}}"></image>
   <view class="coach_info">
-    <image src="/asset/images/profile/h.png" bindtap="preview" data-src="/asset/images/profile/h.png"></image>
+    <image src="{{coach.AI_Face?coach.AI_Face:'/asset/images/profile/h.png'}}" bindtap="preview" data-src="/asset/images/profile/h.png"></image>
     <view class="coach_item flex">
-      <view class="people">
+      <view>{{coach.AI_Name}}</view>
+      <view>{{coach.CoachLv}}</view>
+      <!-- <view class="people">
         <text>六大胖</text>
         <text>初级教练</text>
-      </view>
-      <view class="cost">
+      </view> -->
+      <!-- <view class="cost">
         课时费 <text class="red">￥200/节</text>
-      </view>
+      </view> -->
     </view>
   </view>
   <view class="coach_decription">
     <view class="dec_title">教练简介</view>
-    <view class="dec_content">从事马术行业12年，
+    <view class="dec_content">
+    {{coach.AI_Introduction}}
+    <!-- 从事马术行业12年，
       2004年在北京通顺马场训练1年，
       2005年-2013年在广东佰骏骑士会、
       2013至今在俱乐部担任三星教练。参加过多届马术全运会
-      ，2006年开始在省内的障碍比赛取得许多优异的成绩。</view>
+      ，2006年开始在省内的障碍比赛取得许多优异的成绩。 -->
+      </view>
   </view>
   <!-- 推荐课程 -->
   <view class="nav_title">推荐课程</view>
-  <view wx:for="{{3}}" class="recommendList">
-    <view class="recommendedCourse">
-      <image class="recom_img" src="/asset/images/coachDetail/small_img.png" mode="widthFix"></image>
+  <view wx:for="{{myCoachList}}" class="recommendList" wx:key="index">
+    <view class="recommendedCourse" bindtap="toCoachDetail" data-course="{{item}}">
+      <image class="recom_img" src="{{item.SE_Logo1?item.SE_Logo:'/asset/images/coachDetail/small_img.png'}}" mode="widthFix"></image>
       <view class="flex-direction">
         <view>
-          <text class="level_course">初级课</text>
+          <text class="level_course">{{item.SE_Name}}</text>
           <image src="/asset/images/coachDetail/left_icon.png"></image>
         </view>
-       <view class="red course_price">￥300/节</view>
+        <view class="red course_price">￥{{item.ST_Price}}/节</view>
       </view>
     </view>
   </view>

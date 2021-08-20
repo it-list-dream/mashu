@@ -1,127 +1,11 @@
 // Pages/tabbar/appointment/appointment.js
 const util = require('../../../utils/util.js')
 const app = getApp()
-let dateList = [{
-  "StartTime": "08:00",
-  "EndTime": "08:30",
-  "StateMsg": "已过期"
-}, {
-  "StartTime": "08:30",
-  "EndTime": "09:00",
-  "StateMsg": "已过期"
-}, {
-  "StartTime": "09:00",
-  "EndTime": "09:30",
-  "StateMsg": "已过期"
-}, {
-  "StartTime": "09:30",
-  "EndTime": "10:00",
-  "StateMsg": "已过期"
-}, {
-  "StartTime": "10:00",
-  "EndTime": "10:30",
-  "StateMsg": "已过期"
-}, {
-  "StartTime": "10:30",
-  "EndTime": "11:00",
-  "StateMsg": "已过期"
-}, {
-  "StartTime": "11:00",
-  "EndTime": "11:30",
-  "StateMsg": "已过期"
-}, {
-  "StartTime": "11:30",
-  "EndTime": "12:00",
-  "StateMsg": "已过期"
-}, {
-  "StartTime": "12:00",
-  "EndTime": "12:30",
-  "StateMsg": "已过期"
-}, {
-  "StartTime": "12:30",
-  "EndTime": "13:00",
-  "StateMsg": "已过期"
-}, {
-  "StartTime": "13:00",
-  "EndTime": "13:30",
-  "StateMsg": "已过期"
-}, {
-  "StartTime": "13:30",
-  "EndTime": "14:00",
-  "StateMsg": "已过期"
-}, {
-  "StartTime": "14:00",
-  "EndTime": "14:30",
-  "StateMsg": "已过期"
-}, {
-  "StartTime": "14:30",
-  "EndTime": "15:00",
-  "StateMsg": "已过期"
-}, {
-  "StartTime": "15:00",
-  "EndTime": "15:30",
-  "StateMsg": "可预约"
-}, {
-  "StartTime": "15:30",
-  "EndTime": "16:00",
-  "StateMsg": "可预约"
-}, {
-  "StartTime": "16:00",
-  "EndTime": "16:30",
-  "StateMsg": "可预约"
-}, {
-  "StartTime": "16:30",
-  "EndTime": "17:00",
-  "StateMsg": "可预约"
-}, {
-  "StartTime": "17:00",
-  "EndTime": "17:30",
-  "StateMsg": "可预约"
-}, {
-  "StartTime": "17:30",
-  "EndTime": "18:00",
-  "StateMsg": "可预约"
-}, {
-  "StartTime": "18:00",
-  "EndTime": "18:30",
-  "StateMsg": "可预约"
-}, {
-  "StartTime": "18:30",
-  "EndTime": "19:00",
-  "StateMsg": "可预约"
-}, {
-  "StartTime": "19:00",
-  "EndTime": "19:30",
-  "StateMsg": "可预约"
-}, {
-  "StartTime": "19:30",
-  "EndTime": "20:00",
-  "StateMsg": "可预约"
-}, {
-  "StartTime": "20:00",
-  "EndTime": "20:30",
-  "StateMsg": "可预约"
-}, {
-  "StartTime": "20:30",
-  "EndTime": "21:00",
-  "StateMsg": "可预约"
-}, {
-  "StartTime": "21:00",
-  "EndTime": "21:30",
-  "StateMsg": "可预约"
-}, {
-  "StartTime": "21:30",
-  "EndTime": "22:00",
-  "StateMsg": "可预约"
-}, {
-  "StartTime": "22:00",
-  "EndTime": "22:30",
-  "StateMsg": "可预约"
-}, {
-  "StartTime": "22:30",
-  "EndTime": "23:00",
-  "StateMsg": "可预约"
-}];
+import {
+  getPrivateClass,
+  getMyEquestrianList
+} from '../../../service/appointment.js'
+//getMyEquestrianList 课程以及券
 Page({
   /**
    * 页面的初始数据
@@ -149,10 +33,16 @@ Page({
     weekList: [],
     //选择星期
     choosesDay: 0,
-    datatime: dateList,
+    datatime: [],
     //登录
     isLogin: false,
-    num: 0
+    //是否指定教练
+    isChooseCoach: false,
+    num: 0,
+    //当前教练
+    currentCoach: null,
+    //当前课程
+    currentCourse: null
   },
 
   /**
@@ -160,32 +50,56 @@ Page({
    */
   onLoad: function (options) {
     let today = util.format(new Date(), 'yyyy-mm-dd');
-
     this.setData({
       today: today,
       SearchDate: today
     })
-    this.getWeekList();
-    this.getMyCurrentTime();
+    this.getMyChooseCourse();
+  },
+  isLogin() {
+    let status = wx.getStorageSync('loginStatus')
+    if (status !== 2) {
+      this.setData({
+        isLogin: false
+      })
+    } else {
+      this.setData({
+        isLogin: true
+      })
+    }
   },
   //选择日期
   chooseDate(e) {
+    var coachId = this.data.currentCoach.TeacherId;
     var dayIndex = e.currentTarget.dataset.index;
     var date = e.currentTarget.dataset.date.replace(/\./g, '-');
     var sdate = this.data.SearchDate;
     var year = new Date(sdate).getFullYear();
     //console.log(date)
+    var searchDate = year + '-' + date;
     this.setData({
       choosesDay: dayIndex,
-      SearchDate: year + '-' + date
+      SearchDate: searchDate,
+      num: null
     })
-
+    this.getMyPrivateTime(searchDate, coachId)
     if (this.data.date) {
       this.setData({
         date: false
       })
     }
   },
+  getMyPrivateTime(serachDate, CoachID) {
+    getPrivateClass(serachDate, CoachID).then(res => {
+      if (res.data.code == 1) {
+        this.setData({
+          datatime: res.data.data
+        })
+        this.getMyCurrentTime();
+      }
+    })
+  },
+  // 
   //显示日期
   showCalendar() {
     this.setData({
@@ -193,22 +107,46 @@ Page({
     })
   },
   dayClick(event) {
+    console.log(event)
+    let clickYear = event.detail.year;
+    let clickMonth = event.detail.month;
     let clickDay = event.detail.day;
+    clickMonth < 10 ? clickMonth = "0" + clickMonth : clickMonth
+    clickDay < 10 ? clickDay = "0" + clickDay : clickDay
     let changeDay = `dayStyle[1].day`;
     let changeBg = `dayStyle[1].background`;
-    //console.log(changeDay,changeBg)
-    this.setData({
-      [changeDay]: clickDay,
-      [changeBg]: "#84e7d0",
-      date: false
-    })
+    // console.log(changeDay,changeBg)
+    let chose_date = clickYear + '-' + clickMonth + "-" + clickDay
+    var caniclick = Date.parse(chose_date) >= Date.parse(this.data.today)
+    if (caniclick) {
+      this.setData({
+        [changeDay]: clickDay,
+        [changeBg]: "#84e7d0",
+        date: false,
+        SearchDate: chose_date
+      })
+      this.getWeekList(chose_date);
+      this.getMyPrivateTime(chose_date, this.data.currentCoach.TeacherId)
+    } else {
+      wx.showToast({
+        icon: "none",
+        title: '时间已过',
+      })
+    }
   },
   //指定教练
   applyCoach() {
+    var id = this.data.currentCourse.SE_ID;
+    // if(this.data.currentCourse.EO_ID){
+    //     id = this.data.currentCourse.EO_ID
+    // }else{
+    //   id = this.data.currentCourse.SE_ID
+    // }
     wx.navigateTo({
-      url: '/pages/chooseCoach/chooseCoach?title=选择教练',
+      url: '/pages/chooseCoach/chooseCoach?title=选择教练&id=' + id,
     })
   },
+  //选择课程
   chooseCourse() {
     wx.navigateTo({
       url: '/pages/chooseCourse/chooseCourse',
@@ -221,10 +159,17 @@ Page({
     })
   },
   showch1(e) {
+    //获取上课的结束时间
+    var stime = e.currentTarget.dataset.s;
+    var classTime = this.data.currentCourse.SE_Time;
+    var sdate = this.data.SearchDate + ' ' + stime;
+    sdate = new Date(sdate);
+    sdate = sdate.setMinutes(sdate.getMinutes() + Number(classTime));
+    console.log(util.format(sdate, 'yyyy-MM-dd hh:mm'))
     this.setData({
       num: e.currentTarget.dataset.num,
-      starttime: e.currentTarget.dataset.s,
-      endtime: e.currentTarget.dataset.e
+      starttime: this.data.SearchDate + ' ' + stime,
+      endtime: util.format(sdate, 'yyyy-MM-dd hh:mm')
     })
   },
   // 判断哪些时间已过期
@@ -249,6 +194,24 @@ Page({
       url: '/pages/login/login',
     })
   },
+  getMyChooseCourse() {
+    var gb_id = wx.getStorageSync('GB_ID');
+    var ui_id = wx.getStorageSync('UI_ID') || 0;
+    getMyEquestrianList(gb_id, ui_id).then(res => {
+      let newList = res.data.data;
+      // console.log(res)
+      if (res.data.code == 1) {
+        newList.forEach(item => {
+          if( item.EO_ActiveEnd !==''){
+            item.EO_ActiveEnd = util.format(item.EO_ActiveEnd, 'yyyy-mm-dd')
+          }
+        })
+        this.setData({
+          currentCourse: res.data.data[0]
+        })
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -260,11 +223,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    let status = wx.getStorageSync('loginStatus')
-    if (status == 1) {
-      this.setData({
-        isLogin: true
-      })
+    this.isLogin();
+    if (this.data.currentCoach) {
+      let id = this.data.currentCoach.FK_AL_TeachCoach_ID ? this.data.currentCoach.FK_AL_TeachCoach_ID : this.data.currentCoach.TeacherId
+      this.getMyPrivateTime(this.data.SearchDate, id);
+      this.getWeekList();
     }
   },
   getWeekList: function (t) {
@@ -304,15 +267,26 @@ Page({
     })
   },
   appoinment() {
-    var that = this
     if (!this.data.num) {
       wx.showToast({
         title: '请选择时间',
         icon: 'none'
       })
+    } else if (!this.data.currentCoach) {
+      wx.showToast({
+        title: '请选择教练',
+        icon: 'none'
+      })
     } else {
+      let appoinmentObj = {
+        starttime: this.data.starttime,
+        endtime: this.data.endtime,
+        SearchDate: this.data.SearchDate,
+        chooseCourse: this.data.currentCourse,
+        chooseCoach: this.data.currentCoach
+      }
       wx.navigateTo({
-        url: '/pages/courseBooking/courseBooking',
+        url: '/pages/courseBooking/courseBooking?appoinemntInfo=' + JSON.stringify(appoinmentObj),
       })
     }
   },
@@ -320,7 +294,10 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    this.setData({
+      date: false,
+      num: null
+    })
   },
 
   /**
@@ -341,13 +318,6 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
 
   }
 })

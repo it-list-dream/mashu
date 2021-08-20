@@ -5,19 +5,28 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    tipMessage: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    // type 1 表示购买成功 2 表示预约成功
+    var tip;
+    if (options.type == 1) {
+      tip = '购买成功'
+    } else {
+      tip = '预约成功'
+    }
+    this.setData({
+      tipMessage: tip
+    })
   },
-  backHome(){
-     wx.switchTab({
-       url: '/pages/tabbar/home/home',
-     })
+  backHome() {
+    wx.switchTab({
+      url: '/pages/tabbar/home/home',
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -30,41 +39,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
 
   }
 })
