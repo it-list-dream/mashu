@@ -1,10 +1,10 @@
 <view class='nav-wrap' style='height:{{navHeight}}px;'>
   <view class="navbar" style='height:{{navHeight}}px;'>
     <navigator url="/pages/shop/shop" hover-class="none" class="navbar-action-wrap"
-      style='top:{{navTop}}px;padding:4px {{menuRight}}px'>
+      style='top:{{navTop}}px;left:{{menuRight}}px;'>
       <image src="/asset/images/home/store.png"></image>
     </navigator>
-    <view class='navbar-title' style='top:{{navTop}}px;'>马术俱乐部</view>
+    <view class='navbar-title' style="top:{{navTop}}px;font-weight:{{isIphone?'bold':' normal'}};">{{myStore.GB_Name}}</view>
   </view>
 </view>
 <!-- 轮播图 -->
@@ -12,13 +12,14 @@
 <view class="club_wrapper">
   <view class="club_title">{{myStore.GB_Name}}</view>
   <view class="business">营业中：{{myStore.StartShop}}-{{myStore.StopShop}}</view>
-  <view class="phone" bindtap="callPhone" data-phone="{{myStore.GB_Tel}}">联系电话：{{myStore.GymTel}}</view>
+  <view class="phone" data-type="1" bindtap="callPhone" data-phone="{{myStore.GB_Tel}}">联系电话：{{myStore.GymTel}}</view>
   <view class="address" bindtap="showMap">
     <image src="/asset/images/home/location.png" class="location_icon"></image>
     <text class="add_detail">{{myStore.GB_Address}}</text>
     <image src="/asset/images/home/arrow.png" class="bottom_arrow"></image>
   </view>
-  <image src="{{storeLogo?storeLogo:'/asset/images/home/logo2.png'}}" class="store_logo"></image>
+  <!-- storeLogo?storeLogo:'/asset/images/home/logo2.png -->
+  <image src="/asset/images/home/logo2.png" class="store_logo"></image>
 </view>
 
 <navigator url="/pages/chooseCoach/chooseCoach?title={{navigateTitle}}" class="nav_wrapper" style="margin-bottom:10rpx;"
@@ -38,16 +39,18 @@
     <view wx:for="{{coachList}}" wx:key="index" class="scroll-item" bindtap="coachDetail" data-coach="{{item}}">
       <view class="coach_item">
         <view>
-          <image class="coach_image" src="/asset/images/home/coach.png"></image>
+          <image class="coach_image" src="{{item.AI_Face?item.AI_Face:'/asset/images/home/coach.png'}}"></image>
         </view>
         <view class="coach_name">{{item.AI_Name}}</view>
         <view class="coach_level">{{item.CoachLv}}</view>
+        <!--  -->
+        <view class="cancatTa" catchtap="callPhone" data-type="1" data-phone="{{item.AI_Tel}}">联系他</view>
       </view>
     </view>
   </scroll-view>
 </view>
 
-<navigator url="/page2/courseList/courseList" class="nav_wrapper" style="margin-top:40rpx;" hover-class="none">
+<navigator url="/page2/courseList/courseList" class="nav_wrapper sug-nav" hover-class="none">
   <view class="nav_left">
     <image src="/asset/images/home/hourse.png"></image>
     <text>推荐课程</text>
@@ -61,16 +64,21 @@
 <view class="recommend">
   <block wx:for="{{suggestionList}}" wx:key="FK_AL_TeachCoach_ID">
     <view class="recommend_item" bindtap="courseDetail" data-course="{{item}}">
-      <image src="/asset/images/home/tu1.png" class="house_pic" mode="widthFix"></image>
+      <image src="{{item.SE_Logo?item.SE_Logo:'/asset/images/home/tu1.png'}}" class="house_pic"></image>
       <view class="cl">
         <view class="class_level">{{item.SE_Name}}</view>
-        <view class="sign_up">
+        <!-- <view class="sign_up">
           <image src="/asset/images/home/fire.png"></image>
           <text>火热报名中</text>
-        </view>
+        </view> -->
       </view>
-      <view class="price" wx:if="{{item.Price}}">￥<text>{{item.Price}}/节</text></view>
-      <view class="buy_btn" catchtap="contactMe" data-price="{{item.price}}">{{item.Price?'立即购买':'联系我们'}}</view>
+      <block wx:if="{{item.Price}}">
+        <view class="price">￥<text>{{item.Price}}/节</text></view>
+        <view class="buy_btn">立即购买</view>
+      </block>
+      <block wx:else>
+         <view class="buy_btn" catchtap="callPhone" data-phone="{{myStore.GymTel}}">联系我们</view>
+      </block>
     </view>
   </block>
 </view>

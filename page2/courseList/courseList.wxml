@@ -1,11 +1,12 @@
 <view class="courseList">
-  <view wx:for="{{courseList}}" class="recommendList" bindtap="courseDetail" data-course="{{item}}" wx:index="index">
+  <view wx:for="{{courseList}}" class="recommendList" bindtap="courseDetail" data-course="{{item}}" wx:key="index">
     <view class="recommendedCourse">
-      <image class="recom_img" src="/asset/images/coachDetail/small_img.png" mode="widthFix"></image>
+      <image class="recom_img" src="{{item.SE_Logo?item.SE_Logo:'/asset/images/coachDetail/small_img.png'}}" ></image>
       <view class="flex-direction">
         <view>
           <text class="level_course">{{item.SE_Name}}</text>
-          <image src="{{item.SE_Logo?item.SE_Logo:'/asset/images/coachDetail/left_icon.png'}}"></image>
+          <!-- /asset/images/coachDetail/left_icon.png -->
+          <image src="/asset/images/coachDetail/left_icon.png"></image>
         </view>
         <view class="red course_price" wx:if="{{item.Price}}">￥{{item.Price}}/节</view>
         <view class="couse_time">时长： {{item.SE_Time}}分钟</view>

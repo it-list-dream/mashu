@@ -1,11 +1,12 @@
 /* pages/myCourse/myCourse.wxss */
 @import '/template/nothing/nothing.wxss';
+
 .appointment_header {
   display: flex;
   justify-content: space-evenly;
   width: 100%;
-  height: 116rpx;
-  line-height: 116rpx;
+  height: 100rpx;
+  line-height: 100rpx;
 }
 
 .rewrads_item {
@@ -16,19 +17,23 @@
 }
 
 .rewards_active::after {
-  /* display: block; */
   content: '';
   position: absolute;
-  left: 28rpx;
-  bottom: 18rpx;
+  left: 50%;
+  bottom: 0px;
+  transform: translateX(-50%);
   width: 30rpx;
   height: 6rpx;
   background: #0C1131;
-  border-radius: 4px;
+  border-radius: 25%;
 }
 
 .rewards_active {
   color: #0C1131;
+}
+
+.course_content {
+  margin-top: 30rpx;
 }
 
 .coach_item {
@@ -47,19 +52,36 @@
 .coach_item image {
   width: 210rpx;
   height: 140rpx;
+  border-radius: 12rpx;
+  flex-shrink: 0;
 }
 
 .detail_info {
   margin-left: 30rpx;
   flex: 1;
+  overflow: hidden;
   font-family: PingFang SC;
   font-weight: 500;
 }
 
 .detail_all {
+  display: flex;
+  justify-content: space-between;
   font-size: 32rpx;
   color: #333333;
   font-family: PingFang SC;
+
+}
+
+.detail_all text:first-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.detail_all text:last-child {
+  font-size: 26rpx;
+  flex-shrink: 0;
 }
 
 .remaining {
@@ -68,7 +90,7 @@
 
 .detail_info>.info1 {
   display: flex;
-  align-items:flex-end;
+  align-items: flex-end;
   justify-content: space-between;
   margin-top: 15rpx;
   font-size: 26rpx;

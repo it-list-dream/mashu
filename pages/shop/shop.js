@@ -2,6 +2,7 @@
 import {
   getGymList
 } from '../../service/home.js'
+const app = getApp();
 Page({
   /**
    * 页面的初始数据
@@ -22,7 +23,24 @@ Page({
       }
     })
   },
-
+  //
+  chooseShop(e){
+    // console.log(e.currentTarget.dataset.shop)
+     var shop = e.currentTarget.dataset.shop;
+     var my_id = wx.getStorageSync('UI_ID');
+     if(shop.UI_ID){
+       if(shop.UI_ID != my_id){
+        app.globalData.switchStores = true;
+        wx.setStorageSync('UI_ID', shop.UI_ID);
+       }
+     }else{
+       wx.setStorageSync('UI_ID',0)
+     }
+     wx.setStorageSync('GB_ID',shop.GB_ID);
+     wx.navigateBack({
+       delta: 1,
+     })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -62,13 +80,6 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
 
   }
 })

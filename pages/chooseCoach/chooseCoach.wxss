@@ -5,6 +5,7 @@
 }
 
 .coach_item {
+  position: relative;
   display: flex;
   box-sizing: border-box;
   padding: 25rpx 30rpx;
@@ -20,23 +21,33 @@
 .coach_item image {
   width: 270rpx;
   height: 180rpx;
+  border-radius: 12rpx;
+  flex-shrink: 0;
 }
 
 .detail_info {
   position: relative;
   margin-left: 30rpx;
   flex: 1;
+  overflow: hidden;
   font-family: PingFang SC;
   font-weight: 500;
 }
 
 .detail_name {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   font-size: 30rpx;
   color: #333333;
 }
-
-.detail_info>.info1 {
-  margin-top: 15rpx;
+.detail_name image{
+  width: 36rpx;
+  height: 36rpx;
+  flex-shrink: 0;
+}
+.detail_info .info1 {
+  margin-top: 28rpx;
   font-size: 30rpx;
   color: #666666;
 }
@@ -44,14 +55,15 @@
 .red {
   color: #F93E3E;
 }
-.nex_arrow {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-}
 
-.nex_arrow image {
-  width: 50rpx;
-  height: 50rpx;
-  vertical-align: top;
+.phone-box{
+  position: absolute;
+  right: 30rpx;
+  bottom: 24rpx;
+  width: 64rpx;
+  height: 64rpx;
+}
+.phone-box>image{
+  width: 100%;
+  height: 100%;
 }

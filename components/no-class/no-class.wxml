@@ -1,0 +1,7 @@
+<view class="no_info">
+  <view class="no_title">
+    <image src="/asset/images/none/none1.png" class="image"></image>
+    <view class="no_course">今天没课，放飞自我～</view>
+  </view>
+  <view class="pleaseLogin" bindtap="_handleBtn">{{title}}</view>
+</view>

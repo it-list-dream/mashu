@@ -3,9 +3,19 @@
   padding: 20rpx 30rpx 30rpx;
 }
 
+.coach_info {
+  position: relative;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  height: 150rpx;
+  border-bottom: 1px solid #E5E5E5;
+}
+
 .coach_image {
   width: 690rpx;
   height: 460rpx;
+  border-radius: 12rpx;
 }
 
 .coach_info image {
@@ -14,18 +24,13 @@
   border-radius: 50%;
 }
 
-.coach_info {
-  display: flex;
-  width: 100%;
-  align-items: center;
-  height: 150rpx;
-  border-bottom: 1px solid #E5E5E5;
-}
 
-/* .flex>view {
-  
-} */
+
 .coach_item {
+  display: flex;
+  height: 90rpx;
+  flex-direction: column;
+  justify-content: space-between;
   margin-left: 30rpx;
 }
 
@@ -36,12 +41,23 @@
 }
 
 .coach_item view:last-child {
-  margin-top: 20rpx;
   font-size: 28rpx;
   font-family: PingFang SC;
   color: #949494;
 }
 
+.phone-box{
+  position: absolute;
+  top: 50%;
+  right: 24rpx;
+  transform: translateY(-50%);
+  width: 64rpx;
+  height: 64rpx;
+}
+.phone-box>image{
+  width: 100%;
+  height: 100%;
+}
 /* .cost {
   margin-top: 10rpx;
   font-size: 30rpx;
@@ -96,6 +112,8 @@
 .recommendedCourse .recom_img {
   width: 270rpx;
   height: 180rpx;
+  border-radius: 12rpx;
+  flex-shrink: 0;
 }
 
 .recommendedCourse .flex-direction {
@@ -103,8 +121,47 @@
   flex: 1;
 }
 
+.flex-direction .courseCost,
+.flex-direction .coachCost {
+  font-size: 26rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #B7B7B7;
+}
+
+.flex-direction .courseCost {
+  margin-top: 34rpx;
+}
+
+.flex-direction .coachCost {
+  margin-top: 16rpx;
+}
+
+.red {
+  color: #F93E3E;
+}
+
+.concatMe {
+  margin-top: 15rpx;
+  width: 150rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  background: #0B1030;
+  border-radius: 25rpx;
+  font-size: 24rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #FFFFFF;
+}
+
+/*  */
 .level_course {
-  font-size: 36rpx;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 34rpx;
   font-family: PingFang SC;
   color: #333333;
 }
@@ -114,8 +171,11 @@
   font-size: 30rpx;
   font-family: PingFang SC;
 }
-
-.flex-direction>view {
+.flex-direction{
+  flex: 1;
+  overflow: hidden;
+}
+.flex-direction>view:first-child {
   display: flex;
   justify-content: space-between;
 }
@@ -123,4 +183,5 @@
 .flex-direction image {
   width: 36rpx;
   height: 36rpx;
+  flex-shrink: 0;
 }

@@ -32,13 +32,16 @@
 .course_info .icon-arrow {
   margin-left: 26rpx;
   width: 18rpx;
+  height: 31rpx;
 }
 
 .align-center {
   display: flex;
-  height: 100%;
+  /* width: 340rpx;
+  background: pink; */
+  height: 100rpx;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 .course_name1 .level {
@@ -228,7 +231,7 @@
   width: 600rpx;
   height: 174rpx;
   margin: 0 auto;
-  margin-bottom: 30rpx;
+  margin-bottom: 60rpx;
   box-shadow: 0px 0px 40rpx 0px rgba(102, 102, 102, 0.2);
 }
 

@@ -56,7 +56,7 @@ export function getEquestrianBywxPaySuccess(orderNo) {
   })
 }
 //马术在线预约(未购买课程,微信支付支付成功)
-export function getEquestrianOrderClassBywxPaySuccess() {
+export function getEquestrianOrderClassBywxPaySuccess(orderNo) {
   return request({
     url: '/EquestrianOrderClassBywxPaySuccess',
     data: {

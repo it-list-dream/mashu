@@ -2,10 +2,12 @@
 const app = getApp();
 import {
   getUrlBySign
-} from '../../../service/login.js'
+} from '../../../service/login.js';
+
 import {
   getMyCardList
-} from '../../../service/my.js'
+} from '../../../service/my.js';
+
 Page({
 
   /**
@@ -14,50 +16,49 @@ Page({
   data: {
     unloginUrl: 'https://thirdwx.qlogo.cn/mmopen/vi_32/POgEwh4mIHO4nibH0KlMECNjjGxQUq24ZEaGT4poC6icRiccVGKSyXwibcPq4BWmiaIGuG1icwxaQX6grC9VemZoJ8rg/132',
     myStoredValue: 0,
-    myCoupon: 0
+    myCoupon: 0,
+
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    ///wx.setStorageSync('key', data)
     this.setData({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
+      isIphone: app.globalData.isIphone
     })
-    //this.getMyCard();
-    // this.getMyEquestrian();
   },
-  // getMyEquestrian(){
-  //  getMyEquestrianList(88,3838).then(res=>{
-  //    if(res.data.code ==1){
-  //       this.setData({
-  //         equestrianCount:res.data.data.length
-  //       })
-  //    }
-  //  })
-  // },
   getMyCard() {
     let gb_id = wx.getStorageSync('GB_ID');
-    let id = wx.getStorageSync('UI_ID')
     getMyCardList(gb_id).then(res => {
-      if (res.data.code == 1 && res.data.data.length > 0) {
-        this.setData({
-          myCard: res.data.data[0],
-          myStoredValue: res.data.data[0].UI_Money,
-          myCoupon: res.data.data[0].EO_Have
-        })
-        console.log(111)
-        if (!id) {
-          wx.setStorageSync('UI_ID', res.data.data[0].UI_ID)
+      if (res.data.code == 1) {
+        if (res.data.data.length > 0) {
+          this.setData({
+            myCard: res.data.data[0],
+            myStoredValue: res.data.data[0].UI_Money,
+            myCoupon: res.data.data[0].EO_Have || 0
+          })
+        } else {
+          this.setData({
+            myCard: null,
+            myStoredValue: 0,
+            myCoupon: 0
+          })
         }
       }
     })
   },
   stored() {
-    wx.navigateTo({
-      url: '/page2/myStored/myStored?money='+this.data.myStoredValue,
-    })
+    var phone = wx.getStorageSync('phone');
+    if (phone) {
+      wx.navigateTo({
+        url: '/page2/myStored/myStored?money=' + this.data.myStoredValue,
+      })
+    } else {
+      this.loginout();
+    }
+
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -79,14 +80,24 @@ Page({
   },
   //我的订单
   myOrder() {
-    wx.navigateTo({
-      url: '/pages/order/order',
-    })
+    var phone = wx.getStorageSync('phone')
+    if (phone) {
+      wx.navigateTo({
+        url: '/pages/order/order',
+      })
+    } else {
+      this.loginout();
+    }
   },
   myCoupon() {
-    wx.navigateTo({
-      url: '/pages/myCourse/myCourse',
-    })
+    var phone = wx.getStorageSync('phone')
+    if (phone) {
+      wx.navigateTo({
+        url: '/pages/myCourse/myCourse',
+      })
+    } else {
+      this.loginout();
+    }
   },
   /**
    * 生命周期函数--监听页面显示
@@ -117,20 +128,32 @@ Page({
           //清除所有的登录状态
           // wx.clearStorageSync();
           wx.removeStorageSync('token')
-          wx.removeStorageSync('loginStatus');
           wx.removeStorageSync('phone')
           wx.removeStorageSync('UI_ID')
           wx.removeStorageSync('userInfo')
           wx.removeStorageSync('hasUserInfo')
+          wx.setStorageSync('loginStatus', 0)
           that.getStoreSign(sign);
-          //所有
-          that.showMyInfo();
-          that.getMyCard();
         } else if (res.cancel) {
           console.log('用户点击取消')
         }
       }
     })
+  },
+  callPhone(phoneNumber) {
+    var phoneNumber = app.globalData.storePhone;
+    if (phoneNumber) {
+      wx.makePhoneCall({
+        phoneNumber: phoneNumber
+      }).catch((e) => {
+        console.log(e) //用catch(e)来捕获错误{makePhoneCall:fail cancel}
+      })
+    } else {
+      wx.showToast({
+        icon: 'none',
+        title: '该门店没有预留电话号码',
+      })
+    }
   },
   getStoreSign(sign) {
     var that = this;
@@ -138,6 +161,7 @@ Page({
       if (res.data.code == 1) {
         wx.setStorageSync('token', res.data.user_token);
         that.getMyCard();
+        that.showMyInfo();
       }
     })
   },

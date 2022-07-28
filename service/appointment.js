@@ -31,11 +31,21 @@ export function getMyReservationList(json1) {
   })
 }
 
-export function getEquestrianPriceByTeacher(SE_ID){
+export function getEquestrianPriceByTeacher(GB_ID,SE_ID){
   return request({
     url: "/EquestrianPriceByTeacher",
     data: {
+      GB_ID,
       SE_ID
+    }
+  })
+}
+//取消
+export function getCancelReservation(orderNo){
+  return request({
+    url: "/CancelReservation",
+    data: {
+      orderNo
     }
   })
 }

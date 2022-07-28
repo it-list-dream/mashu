@@ -5,6 +5,9 @@
 
 .course_image {
   width: 690rpx;
+  height: 460rpx;
+  border-radius: 12rpx;
+  vertical-align: bottom;
 }
 
 .course_price {
@@ -70,9 +73,10 @@
   justify-content: space-between;
 }
 
-.count{
+.count {
   display: flex;
 }
+
 .count text {
   display: inline-block;
   height: 50rpx;
@@ -159,5 +163,28 @@
 }
 
 .pay_list .all_price {
+  color: #FFFFFF;
+}
+
+/*  */
+.callMeBox{
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding-bottom: 50rpx;
+  background: #FFFFFF;
+}
+.concatMeBtn {
+  margin: 0 auto;
+  width: 690rpx;
+  height: 80rpx;
+  background: #0B1030;
+  border-radius: 40rpx;
+  line-height: 80rpx;
+  text-align: center;
+  font-size: 36rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
   color: #FFFFFF;
 }

@@ -2,12 +2,11 @@
 App({
   onLaunch() {
     // 登录
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-      }
-    })
-
+    // wx.login({
+    //   success: res => {
+    //     // 发送 res.code 到后台换取 openId, sessionKey, unionId
+    //   }
+    // })
     this.getstatusBar();
   },
   getstatusBar(){
@@ -24,6 +23,13 @@ App({
         this.globalData.navHeight = navHeight;
         this.globalData.navTop = navTop;
         this.globalData.windowHeight = res.windowHeight;
+        //console.log(res)
+        if(res.platform == "ios"){
+            console.log('ios')
+            this.globalData.isIphone = true
+        }else{
+          console.log('安卓')
+        }
       },
       fail(err) {
         console.log(err);
@@ -32,6 +38,8 @@ App({
   },
   globalData: {
     userInfo: null,
-    menuRight:0
+    menuRight:0,
+    isIphone:false,
+    switchStores:false
   }
 })

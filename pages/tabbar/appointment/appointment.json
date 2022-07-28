@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "calendar": "plugin://calendar/calendar"
+    "calendar": "/components/calendar/calendar",
+    "no-class":"/components/no-class/no-class"
   },
   "navigationBarTitleText":"预约"
 }

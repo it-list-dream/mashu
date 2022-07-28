@@ -24,18 +24,16 @@ page {
   height: 32px;
   line-height: 32px;
   text-align: center;
-
   color: #ffffff;
   font-size: 16px;
-  font-weight: 400;
+  /* font-weight: bold; */
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-  font-family: PingFang SC;
 }
 
 .profile_bg {
-  position: fixed;
+  position: absolute;
   width: 100%;
   top: 0;
   left: 0;
@@ -44,6 +42,7 @@ page {
 
 .profile_bg image {
   width: 100%;
+  height: 494rpx;
 }
 
 .profile_top {
@@ -120,6 +119,21 @@ page {
 
 .base_card>view:first-child {
   padding: 0 30rpx;
+}
+
+.concatMe {
+  margin-top: 122rpx;
+  margin-left: 80rpx;
+  width: 180rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  background: #383241;
+  border-radius: 30rpx;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #E9BA85;
 }
 
 .card_date {

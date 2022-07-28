@@ -5,6 +5,7 @@
 
 .coach_item {
   display: flex;
+  align-items: center;
   box-sizing: border-box;
   padding: 25rpx 30rpx;
   margin: 0 auto;
@@ -16,25 +17,48 @@
   border-radius: 10rpx;
 }
 
-.coach_item image {
+.coach_item .course_image {
   width: 210rpx;
   height: 140rpx;
+  border-radius: 12rpx;
+  flex-shrink: 0;
 }
-
+.course_image image{
+  width: 100%;
+  height: 100%;
+  border-radius: 10rpx;
+}
 .detail_info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   margin-left: 30rpx;
   flex: 1;
   font-family: PingFang SC;
   font-weight: 500;
+  overflow: hidden;
 }
 
 .detail_all{
-  font-size: 32rpx;
+  display: flex;
+  justify-content: space-between;
   color: #333333;
   font-family: PingFang SC;
 }
+.detail_all text:first-child{
+  font-size: 32rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.detail_all>text{
+  display: inline-block;
+  font-size: 26rpx;
+}
+
 .remaining{
   margin-left: 30rpx;
+  flex-shrink: 0;
 }
 .detail_info>.info1 {
   margin-top: 15rpx;

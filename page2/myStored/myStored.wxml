@@ -20,11 +20,11 @@
       <view class="scroll_wrapper">
         <view class="stored_bill" wx:for="{{storedList}}" wx:key="ROWID">
           <view>
-            <view class="pay_stored">{{item.TypeName=='充值'?'支付充值':'充值消费'}}</view>
+            <view class="pay_stored">{{item.TypeName}}</view>
             <view class="date_time">{{item.Createdate}}</view>
           </view>
           <view class="bill_right" style="color: {{item.TypeName=='消费'?'#FF282C':'#333333'}};">
-            {{item.TypeName=='充值'?'+':'-'}} {{item.UP_MoneyShould}}</view>
+            {{item.TypeName=='充值' || item.TypeName =='退款'?'+':'-'}} {{item.UP_MoneyShould}}</view>
         </view>
 
       </view>

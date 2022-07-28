@@ -16,8 +16,10 @@ Page({
     var tip;
     if (options.type == 1) {
       tip = '购买成功'
+      this.se_id = options.SE_ID;
     } else {
       tip = '预约成功'
+      this.se_id = options.SE_ID;
     }
     this.setData({
       tipMessage: tip
@@ -40,5 +42,28 @@ Page({
    */
   onShow: function () {
 
+  },
+  // 分享
+  onShareAppMessage({
+    from
+  }) {
+    var shareContent = {
+      GB_ID: wx.getStorageSync('GB_ID'),
+      SE_ID: this.se_id,
+      sign: wx.getStorageSync('sign')
+    }
+    var pathUrl = '';
+    if (from == 'button') {
+      console.log('来自按钮的分享');
+      pathUrl = "/pages/courseDetail/courseDetail?courseInfo=" + JSON.stringify(shareContent)
+    } else {
+      console.log('来自菜单栏的分享');
+      pathUrl = "/pages/courseDetail/courseDetail?courseInfo=" + JSON.stringify(shareContent)
+    }
+    return {
+      title: '课程详情',
+      imageUrl: 'http://mmbiz.qpic.cn/mmbiz_png/Uh5zpoOsMunRnZvh4wdn9ZQfHib7W4QfKseSD11Ru5dfar7cQhVqLkeMMw6sDia1edriakBA3ibwoPJ49T8TheibwGw/0?wx_fmt=png',
+      path: pathUrl
+    }
   }
 })

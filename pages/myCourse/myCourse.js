@@ -3,6 +3,7 @@ import {
   getMyEquestrianListHave
 } from '../../service/other.js'
 var uitil = require('../../utils/util.js')
+const app = getApp();
 Page({
 
   /**
@@ -32,8 +33,8 @@ Page({
     })
   },
   classStatus(isexpire) {
-    var GB_ID = wx.getStorageSync('GB_ID') || 88;
-    var UI_ID = wx.getStorageSync('UI_ID') || 3840;
+    var GB_ID = wx.getStorageSync('GB_ID');
+    var UI_ID = wx.getStorageSync('UI_ID') || 0;
     getMyEquestrianListHave(GB_ID, UI_ID, isexpire).then(res => {
       if (res.data.code == 1) {
         let newList = res.data.data;
@@ -41,10 +42,19 @@ Page({
           item.EO_ActiveEnd = uitil.format(item.EO_ActiveEnd, 'yyyy-mm-dd')
         })
         this.setData({
-          list: newList
+          list:newList
         })
       }
     })
+  },
+  //
+  handleAppointment(e){
+      var aboutCourse = e.currentTarget.dataset.course;
+      console.log(aboutCourse)
+      app.globalData.aboutCourse = aboutCourse;
+      wx.switchTab({
+        url: '/pages/tabbar/appointment/appointment',
+      })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -85,13 +95,6 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
 
   }
 })

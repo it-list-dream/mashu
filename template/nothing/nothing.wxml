@@ -1,6 +1,6 @@
 <template name="nothing">
     <view class="nothing">
-        <image src="/asset/images/none/none.png" class="nothing-img" mode="widthFix"></image>
+        <image src="/asset/images/none/none.png" class="nothing-img"></image>
         <view class="nothing-text">{{message}}</view>
     </view>
 </template>

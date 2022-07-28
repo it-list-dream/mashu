@@ -4,7 +4,9 @@ import {
   getWxUserLogin,
   getUserPhoneBind
 } from '../../service/login.js'
-import {getMyCardList} from '../../service/my.js'
+import {
+  getMyCardList
+} from '../../service/my.js'
 Page({
 
   /**
@@ -12,7 +14,6 @@ Page({
    */
   data: {
     showModal: false,
-    // showModal:true
   },
 
   /**
@@ -23,7 +24,9 @@ Page({
       navHeight: app.globalData.navHeight,
       navTop: app.globalData.navTop,
       windowHeight: app.globalData.windowHeight,
-      hasUserInfo: wx.getStorageSync('hasUserInfo') || false
+      hasUserInfo: wx.getStorageSync('hasUserInfo') || false,
+      storeName: wx.getStorageSync('storeName'),
+      stroeLogo: wx.getStorageSync('storeLogo')
     })
     this.login();
   },
@@ -64,6 +67,17 @@ Page({
     })
   },
   onCancel() {
+    wx.showToast({
+      icon: "none",
+      title: '取消授权',
+    })
+    setTimeout(() => {
+      wx.navigateBack({
+        delta: 1,
+      })
+    }, 1500)
+  },
+  modalCancel() {
     wx.navigateBack({
       delta: 1,
     })
@@ -93,11 +107,12 @@ Page({
                   wx.setStorageSync('loginStatus', 2);
                   // 保存手机号码
                   wx.setStorageSync('phone', res.data.phone);
-                  that.getMyCard();
+                   that.getMyCard();
+                } else {
+                  wx.navigateBack({
+                    delta: 1,
+                  })
                 }
-                wx.navigateBack({
-                  delta: 1,
-                })
               })
             }
           })
@@ -110,13 +125,17 @@ Page({
       })
     }
   },
-  getMyCard(){
+  getMyCard() {
     let gb_id = wx.getStorageSync('GB_ID')
-    getMyCardList(gb_id).then(res=>{
-       if(res.data.code ==1 && res.data.data.length>0){
-          // console.log(res)
+    getMyCardList(gb_id).then(res => {
+      if (res.data.code == 1) {
+        if(res.data.data.length>0){
           wx.setStorageSync('UI_ID', res.data.data[0].UI_ID)
-       }
+        }
+        wx.navigateBack({
+          delta: 1,
+        })
+      }
     })
   },
   /**
@@ -158,13 +177,6 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
 
   }
 })

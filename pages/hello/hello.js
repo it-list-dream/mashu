@@ -26,6 +26,7 @@ Page({
         if (res.data.code == 1) {
           //console.log(res)
           wx.setStorageSync('token', res.data.user_token);
+          wx.setStorageSync('storeName', res.data.GymName)
           wx.switchTab({
             url: '/pages/tabbar/home/home'
           })

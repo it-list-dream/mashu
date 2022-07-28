@@ -9,9 +9,16 @@ var request = (options) => {
       key: "BD687B66ECDBED4E12C4320B0ABB3BB111",
     }
   }
+  if (options.url == '/EquestrianOrderBuyBywxPay' || options.url == '/EquestrianOrderBuyByStored' || options.url == '/EquestrianOrderBywxPay' || options.url == '/EquestrianOrderClassBywxPay' || options.url == '/EquestrianOrderByStored' || options.url == '/EquestrianOrderClassByStored') {
+    ajaxTimes++;
+    wx.showLoading({
+      title: '支付中...',
+      mask: true
+    })
+  }
   return new Promise((resolve, reject) => {
     const token = wx.getStorageSync('token');
-   // console.log(token)
+    // console.log(token)
     let header = {
       'content-type': 'application/x-www-form-urlencoded',
       'Authorization': token
@@ -30,22 +37,32 @@ var request = (options) => {
       header: options.header || header,
       timeout: 15000,
       success(res) {
-        resolve(res);
+        if (res.data.code == 1) {
+          resolve(res)
+        } else {
+          wx.showToast({
+            title: res.data.msg || '未知错误',
+            icon: "none"
+          })
+        }
       },
       fail(res) {
         wx.showToast({
-          title: '网络断开了',
+          title: '网络不稳定',
           icon: 'error',
           duration: 2000
         })
         reject(res);
       },
       complete: function () {
-        // ajaxTimes--;
-        // if (ajaxTimes === 0) {
-        //   //  关闭正在等待的图标
-        //   wx.hideLoading();
-        // }
+        if (options.url == '/EquestrianOrderBuyBywxPay' || options.url == '/EquestrianOrderBuyByStored' || options.url == '/EquestrianOrderBywxPay' || options.url == '/EquestrianOrderClassBywxPay' || options.url == '/EquestrianOrderByStored' || options.url == '/EquestrianOrderClassByStored') {
+          ajaxTimes--;
+          if (ajaxTimes === 0) {
+            //  关闭正在等待的图标
+            wx.hideLoading();
+          }
+        }
+
       }
     })
   })

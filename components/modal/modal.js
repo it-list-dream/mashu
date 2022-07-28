@@ -70,7 +70,6 @@ Component({
         //登录
         wx.login({
           success: function (res) {
-            // let code = res.code
             getWxUserLogin(res.code).then(res => {
               if (res.data.code == 1) {
                 wx.setStorageSync('userOpenid', res.data.openid);
@@ -83,10 +82,12 @@ Component({
                     wx.setStorageSync('loginStatus', 2);
                     // 保存手机号码
                     wx.setStorageSync('phone', res.data.phone);
-                  }
-                  wx.navigateBack({
-                    delta: 1,
-                  })
+                    that.getMyCard() 
+                  }else{
+                    wx.navigateBack({
+                      delta: 1,
+                    })
+                  }                
                 })
               }
             })
@@ -103,8 +104,13 @@ Component({
     getMyCard() {
       let gb_id = wx.getStorageSync('GB_ID')
       getMyCardList(gb_id).then(res => {
-        if (res.data.code == 1 && res.data.data.length>0) {
-          wx.setStorageSync('UI_ID', res.data.data[0].UI_ID)
+        if (res.data.code == 1) {
+          if(res.data.data.length>0){
+            wx.setStorageSync('UI_ID', res.data.data[0].UI_ID)
+          }
+          wx.navigateBack({
+            delta: 1,
+          })
         }
       })
     }

@@ -1,18 +1,39 @@
-// pages/rules/rules.js
+import {
+  getReservationRule
+} from '../../service/other.js'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    rules: null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var gb_id = wx.getStorageSync('GB_ID')
+    getReservationRule(gb_id).then(res => {
+      if (res.data.code == 1) {
+        var rulesTime = res.data.data[0];
+       // rulesTime.CancelClass = 361;
+        var hours = 0;
+        var miniutes = 0;
+        if (rulesTime.CancelClass % 60 == 0) {
+          hours = Math.floor(rulesTime.CancelClass / 60);
+          rulesTime.CancelClass = hours + '小时'
+        }else{
+          hours = Math.floor(rulesTime.CancelClass / 60);
+          miniutes = rulesTime.CancelClass - hours * 60;
+          rulesTime.CancelClass = hours + '小时' + miniutes + '分钟'
+        }
+        this.setData({
+          rules: rulesTime
+        })
+      }
+    })
   },
 
   /**
@@ -54,13 +75,6 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
 
   }
 })

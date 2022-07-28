@@ -1,4 +1,4 @@
-<import src="/template/nothing/nothing.wxml"/>
+<import src="/template/nothing/nothing.wxml" />
 <view class="appointment_header">
   <block wx:for="{{tabs_list}}" wx:key="index">
     <view bindtap="chooseTabs" data-index="{{index}}" class="rewrads_item {{index==chooseId?'rewards_active':''}}">
@@ -6,16 +6,16 @@
   </block>
 </view>
 <!-- scroll-top='{{topDistance}}' enable-back-to-top="true"-->
-<scroll-view scroll-y lower-threshold="100" scroll-anchoring="true" class="my-scroll" scroll-top='{{topNum}}' 
+<scroll-view scroll-y lower-threshold="100" scroll-anchoring="true" class="my-scroll" scroll-top='{{topNum}}'
   style="height:calc({{windowHeight}}px - 116rpx)px" bindscrolltolower="loadMore">
-  <view class="reward_content" wx:for="{{appointmentList[currentType].list}}">
+  <view class="reward_content" wx:for="{{appointmentList[currentType].list}}" wx:key="ROWID">
     <view class="reward_week">
       <text>{{item.ReservDate}}</text>
       <text>{{item.StateName}}</text>
     </view>
     <view class="reward_item">
       <view>
-        <image src="{{item.SE_Logo1?item.SE_Logo:'/asset/images/home/tu1.png'}}"></image>
+        <image src="{{item.SE_Logo?item.SE_Logo:'/asset/images/home/tu1.png'}}"></image>
       </view>
       <view class="course_cont">
         <view class="level">{{item.SE_Name}}</view>
@@ -23,8 +23,8 @@
         <view>时间：{{item.ReservTime}}</view>
       </view>
     </view>
-    <view class="cancle_list" wx:if="{{item.StateName == '预约中'}}">
-      <view class="cancel_btn">取消</view>
+    <view class="cancle_list" wx:if="{{item.ES_OrderNo && item.StateName == '预约中'}}">
+      <view class="cancel_btn" bindtap="appointmentCancel" data-order="{{item.ES_OrderNo}}">取消</view>
     </view>
   </view>
   <!-- 加载更多 -->
@@ -39,5 +39,5 @@
   </view>
 </scroll-view>
 <block wx:if="{{appointmentList[currentType].list.length == 0}}">
-     <template is="nothing" data="{{message:'暂无内容'}}"></template>
-  </block>
+  <template is="nothing" data="{{message:'暂无内容'}}"></template>
+</block>

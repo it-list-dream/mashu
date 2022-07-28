@@ -1,15 +1,17 @@
 import {
   request
 } from '../utils/request.js';
-
-export function getClassPriceByTearchId(teacherid) {
+//查询课程
+export function getClassPriceByTearchId(GB_ID,teacherid) {
   return request({
     url: '/ClassPriceByTearchId',
     data: {
+      GB_ID,
       teacherid
     }
   })
 }
+
 
 export function getEquestrianClassDetails(GB_ID, UI_ID, SE_ID) {
   return request({
@@ -22,7 +24,7 @@ export function getEquestrianClassDetails(GB_ID, UI_ID, SE_ID) {
   })
 }
 //1过期
-export function getMyEquestrianListHave(GB_ID, UI_ID,isexpire) {
+export function getMyEquestrianListHave(GB_ID, UI_ID, isexpire) {
   return request({
     url: '/MyEquestrianListHave',
     data: {
@@ -34,7 +36,7 @@ export function getMyEquestrianListHave(GB_ID, UI_ID,isexpire) {
 }
 
 //课程推荐
-export function getEquestrianClassAll( GB_ID,UI_ID){
+export function getEquestrianClassAll(GB_ID, UI_ID) {
   return request({
     url: '/EquestrianClassAll',
     data: {
@@ -54,7 +56,7 @@ export function getStoreMoneyRecord(json1) {
   })
 }
 //储值支付
-export function getEquestrianOrderBuyByStored(json1){
+export function getEquestrianOrderBuyByStored(json1) {
   return request({
     url: '/EquestrianOrderBuyByStored',
     data: {
@@ -63,7 +65,7 @@ export function getEquestrianOrderBuyByStored(json1){
   })
 }
 //微信支付
-export function getEquestrianOrderBuyBywxPay(json1){
+export function getEquestrianOrderBuyBywxPay(json1) {
   return request({
     url: '/EquestrianOrderBuyBywxPay',
     data: {
@@ -72,11 +74,51 @@ export function getEquestrianOrderBuyBywxPay(json1){
   })
 }
 //支付成功
-export function getEquestrianOrderBuyBywxPaySuccess(orderNo){
+export function getEquestrianOrderBuyBywxPaySuccess(orderNo) {
   return request({
     url: '/EquestrianOrderBuyBywxPay',
     data: {
       orderNo
+    }
+  })
+}
+//分享
+export function getEquestrianClass(GB_ID, UI_ID, SE_ID) {
+  return request({
+    url: '/EquestrianClassDetails',
+    data: {
+      GB_ID,
+      UI_ID,
+      SE_ID
+    }
+  })
+}
+//我的订单
+export function getMyOrderList(json1) {
+  return request({
+    url: '/MyOrderList',
+    data: {
+      json1
+    }
+  })
+}
+//查询课时费用
+export function getClassPriceByTearchIdUserId(GB_ID,teacherid,userId){
+   return request({
+     url:"/ClassPriceByTearchIdUserId",
+     data:{
+       GB_ID,
+       teacherid,
+       userId
+     }
+   })
+}
+//规则
+export function getReservationRule(gymId){
+  return request({
+    url:"/ReservationRule",
+    data:{
+      gymId,
     }
   })
 }

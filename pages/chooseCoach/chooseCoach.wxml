@@ -1,13 +1,16 @@
 <view class="coach_list">
   <view class="coach_item" wx:for="{{coachList}}" wx:key="index" bindtap="coachStatus" data-coach="{{item}}">
-    <image src="/asset/images/coach_list.png"></image>
+    <image src="{{item.AI_Face?item.AI_Face:'/asset/images/coach_list.png'}}"></image>
     <view class="detail_info">
-      <view class="detail_name">{{item.AI_Name}}</view>
+      <view class="detail_name">
+        <text>{{item.AI_Name}}</text>
+        <image src="/asset/images/arr1.png"></image>
+      </view>
       <view class="info1">{{item.CoachLv}}</view>
       <view class="info1" wx:if="{{item.ST_Price}}">课时费 <text class="red">￥{{item.ST_Price}}/节</text></view>
-      <view class="nex_arrow">
-        <image src="/asset/images/arrow.png"></image>
-      </view>
+    </view>
+    <view class="phone-box" catchtap="callPhone" data-phone="{{item.AI_Tel}}">
+      <image src="../../asset/images/phone2x.png"></image>
     </view>
   </view>
 </view>

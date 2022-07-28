@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    storedTabs: ['全部', '充值', '消费'],
+    storedTabs: ['全部', '充值', '消费','退款'],
     stored_index: 0,
     pagesSize:10,
     //当前页数

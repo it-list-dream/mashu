@@ -28,6 +28,7 @@ Page({
       checked_horse:false,
       isChooseCoach:false
     })
+    console.log('重新选择课程')
     wx.navigateBack({
       delta: 1,
     })

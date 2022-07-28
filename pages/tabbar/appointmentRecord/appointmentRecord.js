@@ -1,8 +1,29 @@
 // pages/tabbar/appointmentRecord/appointmentRecord.js
 
 import {
-  getMyReservationList
+  getMyReservationList,
+  getCancelReservation
 } from '../../../service/appointment.js'
+var initRewardsList = {
+  reserved: {
+    //当前页数
+    pageIndex: 1,
+    list: [],
+    flag: true
+  },
+  uncomplete: {
+    //当前页数
+    pageIndex: 1,
+    list: [],
+    flag: true
+  },
+  completed: {
+    //当前页数
+    pageIndex: 1,
+    list: [],
+    flag: true
+  }
+}
 Page({
 
   /**
@@ -19,26 +40,7 @@ Page({
     isLoadingMoreData: false,
     //当前选中的元素
     currentType: 'reserved',
-    appointmentList: {
-      reserved: {
-        //当前页数
-        pageIndex: 1,
-        list: [],
-        flag: true
-      },
-      uncomplete: {
-        //当前页数
-        pageIndex: 1,
-        list: [],
-        flag: true
-      },
-      completed: {
-        //当前页数
-        pageIndex: 1,
-        list: [],
-        flag: true
-      }
-    },
+    appointmentList: initRewardsList,
     //返回顶部
     topNum: 0,
   },
@@ -60,11 +62,11 @@ Page({
       }
     })
     //已预约
-    this.getReservationList('reserved', 1);
-    //未完成
-    this.getReservationList('uncomplete', 3);
-    //已完成
-    this.getReservationList('completed', 2);
+    // this.getReservationList('reserved', 1);
+    // //未完成
+    // this.getReservationList('uncomplete', 3);
+    // //已完成
+    // this.getReservationList('completed', 2);
   },
   chooseTabs(e) {
     var index = e.currentTarget.dataset.index;
@@ -78,7 +80,7 @@ Page({
         currentType = 'reserved';
         break
       case 1:
-        currentType = 'uncomplete'
+        currentType = 'uncomplete';
         this.goTop()
         break
       case 2:
@@ -88,7 +90,8 @@ Page({
     }
     this.setData({
       currentType: currentType,
-      chooseId: index
+      chooseId: index,
+      isLoadingMoreData: false
     })
   },
   //加载更多数据
@@ -140,7 +143,7 @@ Page({
     getMyReservationList(JSON.stringify(reservation)).then(res => {
       let appointmentList = this.data.appointmentList;
       if (res.data.code == 1) {
-        console.log(appointmentList)
+        //console.log(appointmentList)
         if (res.data.data.length > 0) {
           appointmentList[currentType].list.push(...res.data.data)
           this.setData({
@@ -156,18 +159,113 @@ Page({
       }
     })
   },
+  //取消
+  appointmentCancel(e) {
+    //  console.log(e)
+    var that = this;
+    var orderNo = e.currentTarget.dataset.order;
+    wx.showModal({
+      title: '',
+      content: '确定取消预约?',
+      success(res) {
+        if (res.confirm) {
+          getCancelReservation(orderNo).then(res => {
+            if (res.data.code == 1) {
+              wx.showToast({
+                icon: "success",
+                title: '取消成功',
+              })
+              //将数据清除
+              var clearData = this.data.appointmentList.reserved.list;
+              var deleteIndex = clearData.findIndex(value => value.ES_OrderNo == orderNo)
+              clearData.splice(deleteIndex, 1)
+              this.setData({
+                appointmentList: appointmentList
+              })
+              //刷新
+              this.refreshCancelData();
+            } else {
+              wx.showToast({
+                icon: "none",
+                title: res.data.msg,
+              })
+            }
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+
+
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
 
   },
-
+  //刷新取消的数据
+  refreshCancelData() {
+    let ui_id = wx.getStorageSync('UI_ID') || 0;
+    this.setData({
+      'appointmentList.uncomplete': {
+        pageIndex: 1,
+        list: [],
+        flag: true
+      }
+    })
+    var reservation = {
+      pageindex: 1,
+      pagesize: this.data.pageSize,
+      userid: ui_id,
+      type: 3
+    };
+    //type=0 全部，1预约中，2，已完成，3，已取消
+    getMyReservationList(JSON.stringify(reservation)).then(res => {
+      if (res.data.code == 1) {
+        this.setData({
+          'appointmentList.uncomplete.list': res.data.adata
+        })
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.setData({
+      appointmentList: {
+        reserved: {
+          //当前页数
+          pageIndex: 1,
+          list: [],
+          flag: true
+        },
+        uncomplete: {
+          //当前页数
+          pageIndex: 1,
+          list: [],
+          flag: true
+        },
+        completed: {
+          //当前页数
+          pageIndex: 1,
+          list: [],
+          flag: true
+        }
+      },
+      isLoadingMoreData:false,
+      currentType: 'reserved',
+      chooseId:0
+    })
+   // console.log(initRewardsList)
+    //已预约
+    this.getReservationList('reserved', 1);
+    //未完成
+    this.getReservationList('uncomplete', 3);
+    //已完成
+    this.getReservationList('completed', 2);
   },
 
   /**

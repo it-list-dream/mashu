@@ -26,9 +26,9 @@ page {
   left: 28rpx;
   bottom: 18rpx;
   width: 30rpx;
-  height: 6rpx;
+  height: 8rpx;
   background: #0C1131;
-  border-radius: 4rpx;
+  border-radius: 25%;
 }
 
 .rewards_active {
@@ -125,7 +125,7 @@ scroll-view {
   height: 100rpx;
   font-size: 30rpx;
   text-align: center;
-  margin-top: 30rpx;
+  /* margin-top: 30rpx; */
 }
 
 .weui-loading {

@@ -1,17 +1,16 @@
 <view class="couse_detail">
-  <image class="course_image" src="/asset/images/coachDetail/big_img.png"></image>
-  <view class="couse_info" style="padding-bottom: {{isShowPrice?'375rpx':'0'}};">
-    <view class="course_price" wx:if="{{isShowPrice}}">￥{{courseDetail.Price}}</view>
-    <view class="same">课程名： {{courseDetail.SE_Name}}</view>
-    <view class="same time">时长:  {{courseDetail.SE_Time}}分钟</view>
+  <image class="course_image" src="{{courseDetail.SE_Logo?courseDetail.SE_Logo:'/asset/images/home/tu1.png'}}" mode="aspectFit"></image>
+  <view class="couse_info" style="padding-bottom: {{isShowPrice?'375rpx':'130rpx'}};">
+    <view class="course_price" wx:if="{{isShowPrice}}">￥{{courseDetail.Price || courseDetail.SE_Price}}</view>
+    <view class="same" style="margin-top:{{isShowPrice?'0':'24rpx'}};">课程名：{{courseDetail.SE_Name}}</view>
+    <view class="same time">时长: <text decode>&nbsp;</text> {{courseDetail.SE_Time}}分钟</view>
     <view class="introduction">
       <text>介绍：</text>
-      <view>
-        <!-- 学习对象：从来没有骑过马，对马的知识不了解。学习目的:初步了解骑马的正确原理，以安全骑马为重。课前能力评定：根据学员的年龄、身体条件等来评定，学习内容：正确的骑马姿势；马匹慢步、快步节奏的控制；轻快步；停止和简单的转圈和变换方向；跑步。 -->
-        {{courseDetail.Remarks}}
-      </view>
+      <view>{{courseDetail.Remarks}}</view>
     </view>
   </view>
+ 
+  <!--  -->
   <view class="bottom_list" wx:if="{{isShowPrice}}">
     <view class="first_box">
       <view class="buyCountList">
@@ -40,5 +39,8 @@
       <view class="all_price">合计：{{allPrice}}元</view>
       <view class="pay_btn" bindtap="payClass">购买</view>
     </view>
+  </view>
+  <view class="callMeBox" wx:else>
+    <view class="concatMeBtn" bindtap="concatMe">联系我们</view>
   </view>
 </view>

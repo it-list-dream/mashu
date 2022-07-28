@@ -4,7 +4,7 @@
  * 参数3: 结束截取的index
  */
 var sub = function (val, start, end) {
-  console.log(val,start,end)
+  //console.log(val,start,end)
   if (val == undefined || val == '' || val == null) {
     return;
   }

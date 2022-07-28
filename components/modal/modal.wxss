@@ -28,7 +28,7 @@
 
 .confirm-btn {
   flex: 1;
-  background: #12D58B;
+  background: #0B1030;
   border-radius: 0 0 10rpx 0;
   text-align: center;
   font-size: 36rpx;

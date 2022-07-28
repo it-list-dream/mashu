@@ -12,10 +12,10 @@
   <!--  -->
   <view class="login-layout">
     <view class="avatar">
-      <image src="/asset/images/login/logo.png"></image>
+      <image src="{{stroeLogo}}"></image>
     </view>
     <view class="personal_info">
-      <view class="sto_title">{{GymName}}</view>
+      <view class="sto_title">{{storeName}}</view>
       <view class="getInfo">申请获取你的公开信息（昵称、头像等）</view>
     </view>
     <!-- 登录 -->
@@ -28,7 +28,7 @@
     <!-- 绑定手机号码 -->
     <modal show="{{showModal}}" height='40%' bindcancel="modalCancel" bindconfirm='modalConfirm' wx:if="{{showModal}}">
       <view class="succ-icon">
-        <icon type="success" size="50"></icon>
+        <icon type="success" size="50" color="#2DC6AE"></icon>
       </view>
       <view class="modalTip">
         <view>微信授权成功</view>

@@ -11,7 +11,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    // tabsList: [],
     checked_horse: false,
     dayStyle: [{
         month: 'current',
@@ -36,6 +35,8 @@ Page({
     datatime: [],
     //登录
     isLogin: false,
+    //是否有卡
+    hasCard: false,
     //是否指定教练
     isChooseCoach: false,
     num: 0,
@@ -54,15 +55,26 @@ Page({
       today: today,
       SearchDate: today
     })
-    this.getMyChooseCourse();
   },
-  isLogin() {
-    let status = wx.getStorageSync('loginStatus')
-    if (status !== 2) {
+  checkLogin() {
+    var status = wx.getStorageSync('loginStatus');
+    var ui_id = wx.getStorageSync('UI_ID')
+    this.status = status;
+    if (status == 0 || status == 1) {
       this.setData({
-        isLogin: false
+        isLogin: false,
+        hasCard: false
       })
     } else {
+      if (ui_id > 0) {
+        this.setData({
+          hasCard: true
+        });
+      } else {
+        this.setData({
+          hasCard: false
+        })
+      }
       this.setData({
         isLogin: true
       })
@@ -89,17 +101,18 @@ Page({
       })
     }
   },
-  getMyPrivateTime(serachDate, CoachID) {
+  //教练的预约事件
+  getMyPrivateTime(serachDate, CoachID, resolve) {
     getPrivateClass(serachDate, CoachID).then(res => {
       if (res.data.code == 1) {
         this.setData({
           datatime: res.data.data
         })
         this.getMyCurrentTime();
+        typeof resolve == 'function' && resolve();
       }
     })
   },
-  // 
   //显示日期
   showCalendar() {
     this.setData({
@@ -107,7 +120,7 @@ Page({
     })
   },
   dayClick(event) {
-    console.log(event)
+    //console.log(event)
     let clickYear = event.detail.year;
     let clickMonth = event.detail.month;
     let clickDay = event.detail.day;
@@ -123,9 +136,12 @@ Page({
         [changeDay]: clickDay,
         [changeBg]: "#84e7d0",
         date: false,
-        SearchDate: chose_date
+        SearchDate: chose_date,
+        choosesDay: 0,
+        num: null
       })
       this.getWeekList(chose_date);
+
       this.getMyPrivateTime(chose_date, this.data.currentCoach.TeacherId)
     } else {
       wx.showToast({
@@ -137,11 +153,6 @@ Page({
   //指定教练
   applyCoach() {
     var id = this.data.currentCourse.SE_ID;
-    // if(this.data.currentCourse.EO_ID){
-    //     id = this.data.currentCourse.EO_ID
-    // }else{
-    //   id = this.data.currentCourse.SE_ID
-    // }
     wx.navigateTo({
       url: '/pages/chooseCoach/chooseCoach?title=选择教练&id=' + id,
     })
@@ -161,16 +172,16 @@ Page({
   showch1(e) {
     //获取上课的结束时间
     var stime = e.currentTarget.dataset.s;
+   // console.log('179', stime)
     var classTime = this.data.currentCourse.SE_Time;
-    var sdate = this.data.SearchDate + ' ' + stime;
-    sdate = new Date(sdate);
+    stime = this.data.SearchDate + ' ' + stime
+    var sdate = new Date(stime.replace(/-/g, '/'));
     sdate = sdate.setMinutes(sdate.getMinutes() + Number(classTime));
-    console.log(util.format(sdate, 'yyyy-MM-dd hh:mm'))
     this.setData({
       num: e.currentTarget.dataset.num,
       starttime: this.data.SearchDate + ' ' + stime,
-      endtime: util.format(sdate, 'yyyy-MM-dd hh:mm')
-    })
+      endtime: util.formatTime(new Date(sdate))
+    });
   },
   // 判断哪些时间已过期
   getMyCurrentTime: function () {
@@ -196,18 +207,21 @@ Page({
   },
   getMyChooseCourse() {
     var gb_id = wx.getStorageSync('GB_ID');
-    var ui_id = wx.getStorageSync('UI_ID') || 0;
+    var ui_id = wx.getStorageSync('UI_ID');
     getMyEquestrianList(gb_id, ui_id).then(res => {
       let newList = res.data.data;
-      // console.log(res)
       if (res.data.code == 1) {
         newList.forEach(item => {
-          if( item.EO_ActiveEnd !==''){
+          if (item.EO_ActiveEnd !== '') {
             item.EO_ActiveEnd = util.format(item.EO_ActiveEnd, 'yyyy-mm-dd')
           }
         })
         this.setData({
           currentCourse: res.data.data[0]
+        })
+      } else {
+        this.setData({
+          currentCourse: null
         })
       }
     })
@@ -223,11 +237,37 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.isLogin();
-    if (this.data.currentCoach) {
-      let id = this.data.currentCoach.FK_AL_TeachCoach_ID ? this.data.currentCoach.FK_AL_TeachCoach_ID : this.data.currentCoach.TeacherId
-      this.getMyPrivateTime(this.data.SearchDate, id);
-      this.getWeekList();
+    this.checkLogin();
+    if (app.globalData.aboutCourse) {
+      console.log(app.globalData.aboutCourse)
+      this.setData({
+        currentCourse: app.globalData.aboutCourse,
+        currentCoach: null,
+        isChooseCoach: false,
+        checked_horse: false,
+        datatime: null,
+        weekList: []
+      })
+      app.globalData.aboutCourse = null;
+      return;
+    }
+    if (this.status == 2) {
+      //选中上次约课的课程
+      //console.log(222)
+      if (JSON.stringify(this.data.currentCourse) == "{}" || !this.data.currentCourse || app.globalData.switchStores) {
+        this.getMyChooseCourse();
+        //console.log('111')
+      }
+    } else {
+      console.log('游客状态')
+      this.setData({
+        currentCourse: {},
+        currentCoach: {},
+        isChooseCoach: false,
+        checked_horse: false,
+        datatime: null,
+        weekList: []
+      })
     }
   },
   getWeekList: function (t) {
@@ -238,6 +278,7 @@ Page({
     } else {
       myDate = new Date()
     }
+    // console.log('fdsfds');
     dayList.push({
       'day': myDate.getDate(),
       'month': myDate.getMonth() + 1,
@@ -261,7 +302,7 @@ Page({
         dayList[i].day = '0' + dayList[i].day
       }
     }
-    console.log(dayList)
+    // console.log(dayList)
     this.setData({
       weekList: dayList
     })
@@ -272,11 +313,6 @@ Page({
         title: '请选择时间',
         icon: 'none'
       })
-    } else if (!this.data.currentCoach) {
-      wx.showToast({
-        title: '请选择教练',
-        icon: 'none'
-      })
     } else {
       let appoinmentObj = {
         starttime: this.data.starttime,
@@ -285,6 +321,7 @@ Page({
         chooseCourse: this.data.currentCourse,
         chooseCoach: this.data.currentCoach
       }
+      console.log(this.data.starttime)
       wx.navigateTo({
         url: '/pages/courseBooking/courseBooking?appoinemntInfo=' + JSON.stringify(appoinmentObj),
       })

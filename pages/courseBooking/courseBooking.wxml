@@ -5,7 +5,7 @@
       <text>课程名</text>
       <view bindtap="switchCoupon" class="align-center">
         <text>{{appoinemntInfo.chooseCourse.SE_Name}}</text>
-        <image src="/asset/images/arrow11.png" mode="widthFix" class="icon-arrow"></image>
+        <image src="/asset/images/arrow11.png" class="icon-arrow"></image>
       </view>
     </view>
 
@@ -14,7 +14,7 @@
       <picker mode="date" value="{{date}}" start="{{startDate}}" end="{{lastDate}}" bindchange="bindDateChange">
         <view class="align-center">
           <text>{{appoinemntInfo.SearchDate}}</text>
-          <image src="/asset/images/arrow11.png" mode="widthFix" class="icon-arrow"></image>
+          <image src="/asset/images/arrow11.png" class="icon-arrow"></image>
         </view>
       </picker>
     </view>
@@ -23,14 +23,14 @@
       <text>预约时间</text>
       <picker bindchange="anewChooseTime" value="{{index}}" range="{{datatime}}" range-key="StartTime">
         <view class="align-center">
-          <text>{{tools.sub(appoinemntInfo.starttime,11,16)}} - {{tools.sub(appoinemntInfo.endtime,11,16)}}</text>
-          <image src="/asset/images/arrow11.png" mode="widthFix" class="icon-arrow"></image>
+          <text>{{appoinemntInfo.starttime?appoinemntInfo.starttime+'-'+ appoinemntInfo.endtime:"请选择"}}</text>
+          <image src="/asset/images/arrow11.png" class="icon-arrow"></image>
         </view>
       </picker>
     </view>
     <view class="course_info">
       <text>课程费用</text>
-      <view><text class="red">￥{{appoinemntInfo.chooseCourse.Price}}</text> × 1</view>
+      <view><text class="red">￥{{appoinemntInfo.chooseCourse.Price?appoinemntInfo.chooseCourse.Price:0}}</text> × 1</view>
     </view>
 
     <view class="course_info">
@@ -38,7 +38,7 @@
       <picker bindchange="anewChooseCoach" value="{{index}}" range="{{coachList}}" range-key="AI_Name">
         <view class="align-center">
           <text>{{appoinemntInfo.chooseCoach.AI_Name}}</text>
-          <image src="/asset/images/arrow11.png" mode="widthFix" class="icon-arrow"></image>
+          <image src="/asset/images/arrow11.png" class="icon-arrow"></image>
         </view>
       </picker>
     </view>
@@ -86,8 +86,8 @@
   </view>
 </view>
 <!--选择课程  -->
-<view wx:if="{{useCoupon}}" bindtouchmove="false">
-  <view class="coupon_list" animation="{{animationData}}" >
+<view wx:if="{{useCoupon}}" bindtouchmove="true">
+  <view class="coupon_list" animation="{{animationData}}">
     <view class="coupon_title">选择课程</view>
     <scroll-view scroll-y class="scroll-y">
       <view class="scroll_wrapper">
@@ -95,9 +95,7 @@
           <image src="/asset/images/coupon.png"></image>
           <text class="coupon_count">{{item.EO_ID?item.EO_Have+'张':'无'}}</text>
           <text class="coupon_level">{{item.SE_Name}}</text>
-          <view class="coupon_tip" bindtap="useCoupon1"  data-course="{{item}}">
-            点击使用
-          </view>
+          <view class="coupon_tip" bindtap="useCoupon1" data-course="{{item}}">点击使用</view>
         </view>
       </view>
     </scroll-view>
@@ -105,5 +103,5 @@
       <view class="no_used" bindtap="noUse">不使用</view>
     </view>
   </view>
-  <view class="close" catchtap="cancelMask" ></view>
+  <view class="close" catchtap="cancelMask"></view>
 </view>
