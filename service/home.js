@@ -1,4 +1,4 @@
-import {request} from '../utils/request.js';
+var { request} = require('../utils/request.js')
 
 export function getCoachStyleList(GB_ID) {
   return request({

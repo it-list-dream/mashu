@@ -1,6 +1,6 @@
 // pages/courseBooking/courseBooking.js
 var uitl = require('../../utils/util.js')
-let animationShowHeight = 600;
+let animationShowHeight = 420;
 import {
   getPrivateClass,
   getEquestrianPriceByTeacher,
@@ -21,10 +21,11 @@ Page({
    */
   data: {
     //查看课时券
-    useCoupon: false,
+    useCoupon: true,
     animationData: "",
     pay_index: 0,
-    payList: ['微信支付', '储值支付'],
+    payList: ['储值支付'],
+    //payList: ['微信支付', '储值支付'],
     //选择日期
     startDate: null,
     lastDate: null,
@@ -33,38 +34,36 @@ Page({
     //最终价格
     finalPrice: 0,
     //总价
-    totalPrice: 0
+    totalPrice: 0,
+    courseList1: []
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // console.log(options)
     if (options.appoinemntInfo) {
       var appoinemntInfo = JSON.parse(options.appoinemntInfo);
-     // console.log(appoinemntInfo)
       var price = 0;
       if (Number(appoinemntInfo.chooseCourse.EO_Have) > 0) {
-        price = Number(appoinemntInfo.chooseCoach.ST_Price)
+        price = Number(appoinemntInfo.chooseCoach.ST_Price);
         this.setData({
           isUseConpoun: true
-        })
+        });
       } else {
-        price = Number(appoinemntInfo.chooseCourse.Price) + Number(appoinemntInfo.chooseCoach.ST_Price)
+        price = Number(appoinemntInfo.chooseCourse.Price) + Number(appoinemntInfo.chooseCoach.ST_Price);
+
         this.setData({
           isUseConpoun: false
-        })
+        });
       }
       appoinemntInfo.starttime = appoinemntInfo.starttime.substring(appoinemntInfo.starttime.length - 5);
       appoinemntInfo.endtime = appoinemntInfo.endtime.substring(appoinemntInfo.endtime.length - 5);
-      
       this.setData({
         appoinemntInfo: appoinemntInfo,
         finalPrice: price,
         totalPrice: price
-      })
-    }
+      });
+    };
     this.selectDate();
     //选择时间
     this.chooseCoachPrivateTime();
@@ -83,14 +82,7 @@ Page({
       lastDate: lastDate
     })
   },
-  switchCoupon() {
-    this.showModal();
-  },
   useCoupon1(e) {
-    // wx.showLoading({
-    //   title: '加载中',
-    //   mask:true
-    // })
     //当前的课程  
     var curr_course = this.data.appoinemntInfo.chooseCourse;
     //选择的课程
@@ -125,20 +117,16 @@ Page({
       'appoinemntInfo.chooseCourse': choose_course
     })
     // //重新选择教练
-    var se_id = this.data.appoinemntInfo.chooseCourse.SE_ID
+    var se_id = this.data.appoinemntInfo.chooseCourse.SE_ID;
     var GB_ID = wx.getStorageSync('GB_ID')
     getEquestrianPriceByTeacher(GB_ID, se_id).then(res => {
-      if (res.data.code == 1) {
+      if (res.data.data.length > 0) {
         this.setData({
           coachList: res.data.data,
           'appoinemntInfo.chooseCoach': res.data.data[0],
-          'appoinemntInfo.SearchDate': "请选择",
+          'appoinemntInfo.SearchDate': null,
           'appoinemntInfo.endtime': null,
           'appoinemntInfo.starttime': null
-        })
-        //更新教练的时间
-        this.chooseCoachPrivateTime(() => {
-          // wx.hideLoading()
         })
         //重新计算价格
         this.afreshCountPrice();
@@ -149,6 +137,13 @@ Page({
         })
         //关闭弹窗
         this.hideModal();
+      } else {
+        //console.log('123')
+        this.hideModal();
+        // wx.showToast({
+        //   icon: "none",
+        //   title: '抱歉，该课程没有对应的教练',
+        // });
       }
     })
   },
@@ -157,49 +152,41 @@ Page({
     this.hideModal();
     this.setData({
       isUseConpoun: false
-    })
+    });
     //重新计算
     this.afreshCountPrice();
   },
-  showModal: function () {
-    // 显示遮罩层
+  hideModal: function () {
+    var that = this;
     var animation = wx.createAnimation({
-      duration: 200,
-      timingFunction: "linear",
-      delay: 0
+      duration: 500,
+      timingFunction: 'ease',
     })
-    this.animation = animation
     animation.translateY(animationShowHeight).step()
-    this.setData({
+    that.setData({
       animationData: animation.export(),
-      useCoupon: true
-    })
+    });
+    setTimeout(function () {
+      that.setData({
+        useCoupon: true
+      })
+    }, 600) //先执行下滑动画，再隐藏模块
+  },
+  showModal: function () {
+    var that = this;
+    that.setData({
+      useCoupon: false
+    });
+    var animation = wx.createAnimation({
+      duration: 500,
+      timingFunction: 'ease',
+    });
     setTimeout(function () {
       animation.translateY(0).step()
-      this.setData({
+      that.setData({
         animationData: animation.export()
       })
-    }.bind(this), 200)
-  },
-  hideModal: function () {
-    // 隐藏遮罩层
-    var animation = wx.createAnimation({
-      duration: 200,
-      timingFunction: "linear",
-      delay: 0
-    })
-    this.animation = animation;
-    animation.translateY(animationShowHeight).step()
-    this.setData({
-      animationData: animation.export(),
-    })
-    setTimeout(function () {
-      animation.translateY(0).step()
-      this.setData({
-        animationData: animation.export(),
-        useCoupon: false
-      })
-    }.bind(this), 200)
+    }, 200);
   },
   bindChange(e) {
     var value = e.detail.value
@@ -252,7 +239,7 @@ Page({
       if (res.data.code == 1) {
         this.setData({
           coachList: res.data.data
-        })
+        });
       }
     })
   },
@@ -260,15 +247,15 @@ Page({
   anewChooseCoach(e) {
     var chooseCoach = this.data.coachList[e.detail.value];
     var currCoach = this.data.appoinemntInfo.chooseCoach;
-    if (currCoach.TeacherId !== chooseCoach.TeacherId) {
+    if (currCoach && currCoach.TeacherId !== chooseCoach.TeacherId) {
       //更新时间
-      this.chooseCoachPrivateTime()
+      this.chooseCoachPrivateTime();
       this.setData({
         'appoinemntInfo.chooseCoach': chooseCoach,
-        'appoinemntInfo.SearchDate': "请选择",
+        'appoinemntInfo.SearchDate': null,
         'appoinemntInfo.endtime': null,
         'appoinemntInfo.starttime': null
-      })
+      });
       wx.showToast({
         icon: "none",
         title: '请重新选择日期和时间',
@@ -296,9 +283,7 @@ Page({
   },
   //选择时间
   anewChooseTime(e) {
-    //下标
-    console.log(e)
-    if (this.data.appoinemntInfo.SearchDate == '请选择') {
+    if (!this.data.appoinemntInfo.SearchDate) {
       wx.showToast({
         icon: "none",
         title: '请先选择日期',
@@ -322,7 +307,7 @@ Page({
     this.setData({
       'appoinemntInfo.starttime': startTime,
       'appoinemntInfo.endtime': endTime
-    })
+    });
   },
   getMyChooseCourse1() {
     var gb_id = wx.getStorageSync('GB_ID');
@@ -341,10 +326,6 @@ Page({
   onShow: function () {
 
   },
-  //取消
-  cancelMask() {
-    this.hideModal();
-  },
   //微信支付
   getByWechat() {
     /**
@@ -356,6 +337,7 @@ Page({
         icon: "none",
         title: '请选择日期或时间',
       })
+      return;
     }
     var wechatObj = {
       userId: wx.getStorageSync('UI_ID'),
@@ -372,17 +354,18 @@ Page({
       getEquestrianOrderBywxPay(JSON.stringify(wechatObj)).then(res => {
         if (res.data.code == 1) {
           //微信支付
-          this.getpaydata(res.data.data[0].OrderNo, res.data.businessNo, res.data.data[0].MoneyReal * 100)
+          this.getpaydata(res.data.data[0].OrderNo, res.data.businessNo, res.data.data[0].MoneyReal)
         }
       })
     } else {
-      console.log('没有优惠券')
+
+      //  console.log('没有优惠券')
       wechatObj.se_id = this.data.appoinemntInfo.chooseCourse.SE_ID
       getEquestrianOrderClassBywxPay(JSON.stringify(wechatObj)).then(res => {
         if (res.data.code == 1) {
-          console.log('没有使用优惠券',res.data.data[0].MoneyReal)
+          //  console.log('没有使用优惠券', res.data.data[0].MoneyReal)
           //微信支付
-          this.getpaydata(res.data.data[0].OrderNo, res.data.businessNo, res.data.data[0].MoneyReal * 100)
+          this.getpaydata(res.data.data[0].OrderNo, res.data.businessNo, res.data.data[0].MoneyReal)
         }
       })
     }
@@ -391,71 +374,102 @@ Page({
   getByStored() {
     var pages = getCurrentPages(); //当前页面
     var prevPage = pages[pages.length - 2]; //上一页面
-    console.log(prevPage.data.currentCourse)
-    //return
     var that = this;
     if (!this.data.appoinemntInfo.SearchDate || !this.data.appoinemntInfo.starttime || !this.data.appoinemntInfo.endtime) {
       wx.showToast({
         icon: "none",
         title: '请选择日期或时间',
-      })
+      });
+      return;
     }
-    //使用
-    var json = {
-      userId: wx.getStorageSync('UI_ID'),
-      teacherId: this.data.appoinemntInfo.chooseCoach.TeacherId,
-      gymId: wx.getStorageSync('GB_ID'),
-      startdate: this.data.appoinemntInfo.SearchDate + ' ' + this.data.appoinemntInfo.starttime,
-      enddate: this.data.appoinemntInfo.SearchDate + ' ' + this.data.appoinemntInfo.endtime
-    }
-    if (this.data.isUseConpoun) {
-      json.eo_id = this.data.appoinemntInfo.chooseCourse.EO_ID;
-      getEquestrianOrderByStored(JSON.stringify(json)).then(res => {
-        if (res.data.code == 1) {
-          if (prevPage.data.currentCourse.EO_Have > 0) {
-            var eo_have = Number(prevPage.data.currentCourse.EO_Have) - 1
-            prevPage.setData({
-              'currentCourse.EO_Have': eo_have
+    //
+    wx.showModal({
+      title: '',
+      content: '是否预约该课程？',
+      success(res) {
+        if (res.confirm) {
+          //使用
+          var json = {
+            userId: wx.getStorageSync('UI_ID'),
+            teacherId: that.data.appoinemntInfo.chooseCoach.TeacherId,
+            gymId: wx.getStorageSync('GB_ID'),
+            startdate: that.data.appoinemntInfo.SearchDate + ' ' + that.data.appoinemntInfo.starttime,
+            enddate: that.data.appoinemntInfo.SearchDate + ' ' + that.data.appoinemntInfo.endtime
+          }
+          // console.log(json)
+          if (that.data.isUseConpoun) {
+            json.eo_id = that.data.appoinemntInfo.chooseCourse.EO_ID;
+            getEquestrianOrderByStored(JSON.stringify(json)).then(res => {
+              if (res.data.code == 1) {
+                var pervClass = prevPage.data.currentCourse,
+                  currClass = that.data.appoinemntInfo.chooseCourse;
+                if (pervClass.EO_ID == currClass.EO_ID && currClass.EO_Have > 1) {
+                  prevPage.setData({
+                    'currentCourse.EO_Have': Number(currClass.EO_Have) - 1
+                  });
+                  let newCoachId = that.data.appoinemntInfo.chooseCoach.TeacherId,
+                  oldCoachId = prevPage.data.currentCoach.TeacherId;
+                  //刷新
+                  if(newCoachId == oldCoachId){
+                    prevPage.getMyPrivateTime(prevPage.data.SearchDate,newCoachId);
+                  }
+                }
+
+                if(pervClass.EO_ID == currClass.EO_ID && currClass.EO_Have == 1){
+                  prevPage.setData({
+                    currentCoach:null,
+                    isChooseCoach:false,
+                    currentCourse:null
+                  });
+                }     
+
+                wx.navigateTo({
+                  url: '/page2/success/success?type=2&SE_ID=' + that.data.appoinemntInfo.chooseCourse.SE_ID,
+                })
+              } else {
+                wx.showToast({
+                  icon: "none",
+                  title: res.data.msg,
+                })
+              }
+            })
+          } else {
+            console.log('未购买课程,储值支付')
+            return;
+            json.se_id = that.data.appoinemntInfo.chooseCourse.SE_ID;
+            getEquestrianOrderClassByStored(JSON.stringify(json)).then(res => {
+              if (res.data.code == 1) {
+                wx.navigateTo({
+                  url: '/page2/success/success?type=2&SE_ID=' + that.data.appoinemntInfo.chooseCourse.SE_ID,
+                });
+              } else {
+                wx.showToast({
+                  icon: "none",
+                  title: res.data.msg,
+                })
+              }
             })
           }
-          wx.navigateTo({
-            url: '/page2/success/success?type=2&SE_ID=' + that.data.appoinemntInfo.chooseCourse.SE_ID,
-          })
-        } else {
-          wx.showToast({
-            icon: "none",
-            title: res.data.msg,
-          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
         }
-      })
-    } else {
-      json.se_id = this.data.appoinemntInfo.chooseCourse.SE_ID;
-      getEquestrianOrderClassByStored(JSON.stringify(json)).then(res => {
-        if (res.data.code == 1) {
-          wx.navigateTo({
-            url: '/page2/success/success?type=2&SE_ID=' + that.data.appoinemntInfo.chooseCourse.SE_ID,
-          })
-        } else {
-          wx.showToast({
-            icon: "none",
-            title: res.data.msg,
-          })
-        }
-      })
-    }
+      }
+    })
+
   },
   //付款
   payMoney() {
     //获取微信支付
-    var payWay = this.data.pay_index
-    if (payWay == 0) {
-      console.log('微信支付')
-      //微信支付
-      this.getByWechat();
-    } else {
-      console.log('储值支付')
-      this.getByStored();
-    }
+    //var payWay = this.data.pay_index;
+    this.getByStored();
+    // if (payWay == 0) {
+    //   console.log('微信支付')
+    //   //微信支付
+    //   this.getByWechat();
+    // } else {
+    //   console.log('储值支付')
+    //   this.getByStored();
+    // }
   },
   getpaydata(order, businessNo, money) {
     var that = this
@@ -472,11 +486,11 @@ Page({
         body: "ss",
         attach: "df",
         sub_mch_id: businessNo,
-        total_fee: money
+        total_fee: money * 1000 / 10
       },
       method: 'POST',
       success: function (res) {
-        console.log(res.data)
+        //console.log(res.data)
         // 微信支付接口
         wx.requestPayment({
           'timeStamp': res.data.data[0].timeStamp,
@@ -514,7 +528,7 @@ Page({
       getEquestrianBywxPaySuccess(order).then(res => {
         if (res.data.code == 1) {
           if (prevPage.data.currentCourse.EO_Have > 0) {
-            var eo_have = Number(prevPage.data.currentCourse.EO_Have) - 1
+            var eo_have = Number(prevPage.data.currentCourse.EO_Have) - 1;
             prevPage.setData({
               'currentCourse.EO_Have': eo_have
             })
@@ -531,6 +545,7 @@ Page({
       })
     } else {
       //不使用优惠券
+      console.log('不使用优惠券')
       getEquestrianOrderClassBywxPaySuccess(order).then(res => {
         if (res.data.code == 1) {
           wx.navigateTo({

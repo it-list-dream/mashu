@@ -17,7 +17,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    array: ['微信支付', '储值支付'],
+    // '微信支付'
+    array: ['储值支付'],
     pay_index: 0,
     //课程的总价
     allPrice: 0,
@@ -30,7 +31,6 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    // console.log(options.course)
     // console.log('----32-------', options)
     if (options.course) {
       var course = JSON.parse(options.course)
@@ -71,14 +71,12 @@ Page({
             if (res.data.code == 1) {
               //console.log('----67------',res)
               if (Number(res.data.data[0].Price) > 0) {
-                // console.log(1111)
                 that.setData({
                   courseDetail: res.data.data[0],
                   allPrice: res.data.data[0].Price,
                   isShowPrice: true
                 })
               } else {
-                // console.log(222);
                 that.setData({
                   courseDetail: res.data.data[0],
                   isShowPrice: false
@@ -135,13 +133,14 @@ Page({
   },
   //买课
   payClass() {
-    if (this.data.pay_index == 1) {
-      console.log('储值支付')
-      this.getStoredPay();
-    } else {
-      console.log('微信支付')
-      this.getWechat()
-    }
+    this.getStoredPay();
+    // if (this.data.pay_index == 1) {
+    //   console.log('储值支付')
+    //   this.getStoredPay();
+    // } else {
+    //   console.log('微信支付')
+    //   this.getWechat()
+    // }
   },
   //微信支付
   getWechat() {
@@ -319,7 +318,7 @@ Page({
       SE_ID: this.data.courseDetail.SE_ID,
       sign: wx.getStorageSync('sign')
     }
-    console.log("/pages/courseDetail/courseDetail?courseInfo=" + JSON.stringify(courseInfo))
+   // console.log("/pages/courseDetail/courseDetail?courseInfo=" + JSON.stringify(courseInfo))
     return {
       title: '课程详情',
       path: "/pages/courseDetail/courseDetail?courseInfo=" + JSON.stringify(courseInfo),

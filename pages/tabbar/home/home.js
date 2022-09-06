@@ -52,7 +52,6 @@ Page({
   },
   getEquestrianClass() {
     let GB_ID = wx.getStorageSync('GB_ID');
-    //3838
     let UI_ID = wx.getStorageSync('UI_ID') || 0;
     getSuggestEquestrianClass(GB_ID, UI_ID).then(res => {
       //console.log(res)
@@ -67,7 +66,6 @@ Page({
   getStoreLogo() {
     getSearchGymQR().then(res => {
       if (res.data.code == 1) {
-        //console.log(res)
         wx.setStorageSync('storeLogo', res.data.data[0].GymLogo)
         this.setData({
           storeLogo: res.data.data[0].GymLogo
@@ -196,7 +194,7 @@ Page({
     })
   },
   courseDetail(e) {
-    let course = JSON.stringify(e.currentTarget.dataset.course)
+    let course = JSON.stringify(e.currentTarget.dataset.course);
     wx.navigateTo({
       url: '/pages/courseDetail/courseDetail?course=' + course,
     })

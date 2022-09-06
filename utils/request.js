@@ -1,4 +1,4 @@
-var baseURL = 'https://user.360ruyu.cn/EquestrianUser.asmx';
+var baseURL = 'https://user.360ruyu.cn/EquestrianUserV2.asmx';
 // 同时发送异步代码的次数
 let ajaxTimes = 0;
 var fixtion = {};
@@ -9,6 +9,7 @@ var request = (options) => {
       key: "BD687B66ECDBED4E12C4320B0ABB3BB111",
     }
   }
+  
   if (options.url == '/EquestrianOrderBuyBywxPay' || options.url == '/EquestrianOrderBuyByStored' || options.url == '/EquestrianOrderBywxPay' || options.url == '/EquestrianOrderClassBywxPay' || options.url == '/EquestrianOrderByStored' || options.url == '/EquestrianOrderClassByStored') {
     ajaxTimes++;
     wx.showLoading({
@@ -16,9 +17,9 @@ var request = (options) => {
       mask: true
     })
   }
+
   return new Promise((resolve, reject) => {
     const token = wx.getStorageSync('token');
-    // console.log(token)
     let header = {
       'content-type': 'application/x-www-form-urlencoded',
       'Authorization': token
@@ -41,17 +42,20 @@ var request = (options) => {
           resolve(res)
         } else {
           wx.showToast({
-            title: res.data.msg || '未知错误',
-            icon: "none"
+            title: res.data.msg,
+            icon: "none",
+            fail(err){
+               console.log(err)
+            }
           })
         }
       },
       fail(res) {
-        wx.showToast({
-          title: '网络不稳定',
-          icon: 'error',
-          duration: 2000
-        })
+        // wx.showToast({
+        //   title: '网络不稳定',
+        //   icon: 'error',
+        //   duration: 2000
+        // })
         reject(res);
       },
       complete: function () {

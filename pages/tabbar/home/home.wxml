@@ -1,25 +1,26 @@
+<wxs src="../../../utils/util.wxs" module="tools" />
 <view class='nav-wrap' style='height:{{navHeight}}px;'>
   <view class="navbar" style='height:{{navHeight}}px;'>
     <navigator url="/pages/shop/shop" hover-class="none" class="navbar-action-wrap"
       style='top:{{navTop}}px;left:{{menuRight}}px;'>
       <image src="/asset/images/home/store.png"></image>
     </navigator>
-    <view class='navbar-title' style="top:{{navTop}}px;font-weight:{{isIphone?'bold':' normal'}};">{{myStore.GB_Name}}</view>
+    <view class='navbar-title' style="top:{{navTop}}px;font-weight:{{isIphone?'bold':' normal'}};">{{myStore.GB_Name}}
+    </view>
   </view>
 </view>
 <!-- 轮播图 -->
 <m-swiper images="{{list}}" class="my_swiper" style="margin-top:calc({{navHeight}}px + 20rpx)"></m-swiper>
 <view class="club_wrapper">
   <view class="club_title">{{myStore.GB_Name}}</view>
-  <view class="business">营业中：{{myStore.StartShop}}-{{myStore.StopShop}}</view>
+  <view class="business">营业中：{{myStore.StartShop?myStore.StartShop:'' }}-{{myStore.StopShop?myStore.StopShop:''}}</view>
   <view class="phone" data-type="1" bindtap="callPhone" data-phone="{{myStore.GB_Tel}}">联系电话：{{myStore.GymTel}}</view>
   <view class="address" bindtap="showMap">
     <image src="/asset/images/home/location.png" class="location_icon"></image>
     <text class="add_detail">{{myStore.GB_Address}}</text>
     <image src="/asset/images/home/arrow.png" class="bottom_arrow"></image>
   </view>
-  <!-- storeLogo?storeLogo:'/asset/images/home/logo2.png -->
-  <image src="/asset/images/home/logo2.png" class="store_logo"></image>
+  <image src="{{storeLogo}}" class="store_logo"></image>
 </view>
 
 <navigator url="/pages/chooseCoach/chooseCoach?title={{navigateTitle}}" class="nav_wrapper" style="margin-bottom:10rpx;"
@@ -67,18 +68,11 @@
       <image src="{{item.SE_Logo?item.SE_Logo:'/asset/images/home/tu1.png'}}" class="house_pic"></image>
       <view class="cl">
         <view class="class_level">{{item.SE_Name}}</view>
-        <!-- <view class="sign_up">
-          <image src="/asset/images/home/fire.png"></image>
-          <text>火热报名中</text>
-        </view> -->
       </view>
       <block wx:if="{{item.Price}}">
         <view class="price">￥<text>{{item.Price}}/节</text></view>
-        <view class="buy_btn">立即购买</view>
       </block>
-      <block wx:else>
-         <view class="buy_btn" catchtap="callPhone" data-phone="{{myStore.GymTel}}">联系我们</view>
-      </block>
+      <!-- <view class="buy_btn" catchtap="callPhone" data-phone="{{myStore.GymTel}}">联系我们</view> -->
     </view>
   </block>
 </view>

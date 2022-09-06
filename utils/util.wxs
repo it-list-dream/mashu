@@ -14,6 +14,17 @@ var sub = function (val, start, end) {
     return val;
   }
 }
+
+var replaceNull = function(newStr){
+   if(newStr){
+     console.log('1234')
+       return newStr;
+   }else{
+     return " ";
+   }
+}
+
 module.exports = {
-  sub: sub
+  sub: sub,
+  replaceNull:replaceNull
 }

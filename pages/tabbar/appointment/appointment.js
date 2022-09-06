@@ -1,11 +1,12 @@
 // Pages/tabbar/appointment/appointment.js
 const util = require('../../../utils/util.js')
-const app = getApp()
+const app = getApp();
+
 import {
   getPrivateClass,
   getMyEquestrianList
-} from '../../../service/appointment.js'
-//getMyEquestrianList 课程以及券
+} from '../../../service/appointment.js';
+
 Page({
   /**
    * 页面的初始数据
@@ -54,7 +55,7 @@ Page({
     this.setData({
       today: today,
       SearchDate: today
-    })
+    });
   },
   checkLogin() {
     var status = wx.getStorageSync('loginStatus');
@@ -64,7 +65,7 @@ Page({
       this.setData({
         isLogin: false,
         hasCard: false
-      })
+      });
     } else {
       if (ui_id > 0) {
         this.setData({
@@ -131,6 +132,8 @@ Page({
     // console.log(changeDay,changeBg)
     let chose_date = clickYear + '-' + clickMonth + "-" + clickDay
     var caniclick = Date.parse(chose_date) >= Date.parse(this.data.today)
+    // let appoinmentTime = Date.parse(chose_date) - Date.parse(this.data.today);
+    // && appoinmentTime - 6 * 1000 * 60 * 60 * 24<=0
     if (caniclick) {
       this.setData({
         [changeDay]: clickDay,
@@ -139,14 +142,13 @@ Page({
         SearchDate: chose_date,
         choosesDay: 0,
         num: null
-      })
+      });
       this.getWeekList(chose_date);
-
       this.getMyPrivateTime(chose_date, this.data.currentCoach.TeacherId)
     } else {
       wx.showToast({
         icon: "none",
-        title: '时间已过',
+        title: '时间已过或该时间段不能预约',
       })
     }
   },
@@ -172,7 +174,6 @@ Page({
   showch1(e) {
     //获取上课的结束时间
     var stime = e.currentTarget.dataset.s;
-   // console.log('179', stime)
     var classTime = this.data.currentCourse.SE_Time;
     stime = this.data.SearchDate + ' ' + stime
     var sdate = new Date(stime.replace(/-/g, '/'));
@@ -195,6 +196,10 @@ Page({
         //不可预约
         dataTime[i].type = 0;
       }
+
+      if (dataTime[i].StartTime == "12:00" || dataTime[i].StartTime == "13:00") {
+        dataTime[i].type = 0;
+      }
     }
     this.setData({
       datatime: dataTime
@@ -207,10 +212,10 @@ Page({
   },
   getMyChooseCourse() {
     var gb_id = wx.getStorageSync('GB_ID');
-    var ui_id = wx.getStorageSync('UI_ID');
+    var ui_id = wx.getStorageSync('UI_ID') || 0;
     getMyEquestrianList(gb_id, ui_id).then(res => {
       let newList = res.data.data;
-      if (res.data.code == 1) {
+      if (res.data.data.length > 0) {
         newList.forEach(item => {
           if (item.EO_ActiveEnd !== '') {
             item.EO_ActiveEnd = util.format(item.EO_ActiveEnd, 'yyyy-mm-dd')
@@ -218,11 +223,20 @@ Page({
         })
         this.setData({
           currentCourse: res.data.data[0]
-        })
+        });
       } else {
         this.setData({
           currentCourse: null
-        })
+        });
+        wx.showToast({
+          icon: "none",
+          title: '余课不足，请联系门店',
+        });
+        setTimeout(function () {
+          wx.switchTab({
+            url: '/pages/tabbar/home/home',
+          });
+        }, 1500);
       }
     })
   },
@@ -253,10 +267,8 @@ Page({
     }
     if (this.status == 2) {
       //选中上次约课的课程
-      //console.log(222)
       if (JSON.stringify(this.data.currentCourse) == "{}" || !this.data.currentCourse || app.globalData.switchStores) {
         this.getMyChooseCourse();
-        //console.log('111')
       }
     } else {
       console.log('游客状态')
@@ -269,6 +281,18 @@ Page({
         weekList: []
       })
     }
+    if (this.data.currentCoach) {
+      let coachId = this.data.currentCoach.TeacherId;
+      this.getMyPrivateTime(this.data.SearchDate, coachId);
+    }
+
+    if(app.globalData.switchCard){
+       this.setData({
+        checked_horse:false,
+        currentCoach:null
+       })
+       this.getMyChooseCourse();
+    }
   },
   getWeekList: function (t) {
     let dayList = [];
@@ -278,7 +302,6 @@ Page({
     } else {
       myDate = new Date()
     }
-    // console.log('fdsfds');
     dayList.push({
       'day': myDate.getDate(),
       'month': myDate.getMonth() + 1,

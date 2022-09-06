@@ -1,5 +1,6 @@
-/* Pages/tabbar/appointment/appointment.wxss */
-/* .scroll_x {
+/*
+
+ .scroll_x {
   display: flex;
   white-space: nowrap;
   padding: 20rpx 30rpx;
@@ -11,10 +12,14 @@
   font-family: PingFang SC;
   font-weight: 500;
   color: #0B1030;
-} */
-.appoinmentContainer{
+} 
+
+*/
+
+.appoinmentContainer {
   padding-top: 30rpx;
 }
+
 .choose_coach {
   padding: 0 30rpx;
 }
@@ -126,7 +131,7 @@
 .chooseCoachList image {
   width: 116rpx;
   height: 116rpx;
- border-radius: 50%;
+  border-radius: 50%;
 }
 
 .current_coach {
@@ -221,6 +226,7 @@
 
 .calendar {
   background-color: rgb(255, 255, 255);
+  padding-bottom: 30rpx;
 }
 
 .calendar-header {
@@ -245,15 +251,17 @@
   color: #c7cbe2;
   font-weight: bold;
 }
-.mycol{
+
+.mycol {
   background: #F0F2F5;
   border: none !important;
 }
+
 /* 私教详情 */
 .trainer {
   padding: 0 30rpx;
   background: #ffffff;
-  height: 520rpx;
+  /* height: 520rpx; */
 }
 
 .trainer .time {
@@ -264,6 +272,7 @@
 }
 
 .trainer .time .clock {
+  margin-bottom: 30rpx;
   width: 100%;
   flex-basis: 20%;
   background: #FFFFFF;
@@ -282,6 +291,7 @@
   font-family: PingFang SC;
   font-size: 26rpx;
 }
+
 /* ::-webkit-scrollbar {
   width: 0;
   height: 0;
@@ -289,7 +299,7 @@
 } */
 /*  */
 .appointmentBtnList {
-  margin: 80rpx 0;
+  margin: 140rpx 0 80rpx;
 }
 
 .app_btn {

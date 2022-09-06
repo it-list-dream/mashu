@@ -22,11 +22,9 @@ Page({
     this.title = options.title;
     if (options.title == '教练列表') {
       console.log('教练列表')
-      console.log('id:', options.id)
       this.getCoachList();
     } else {
       console.log('选择教练')
-      console.log('id:', options.id)
       this.getTeacherPrice(options.id);
     }
     wx.setNavigationBarTitle({

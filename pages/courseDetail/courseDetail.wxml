@@ -11,7 +11,7 @@
   </view>
  
   <!--  -->
-  <view class="bottom_list" wx:if="{{isShowPrice}}">
+  <!-- <view class="bottom_list" wx:if="{{isShowPrice}}">
     <view class="first_box">
       <view class="buyCountList">
         <view>购买节数</view>
@@ -39,8 +39,9 @@
       <view class="all_price">合计：{{allPrice}}元</view>
       <view class="pay_btn" bindtap="payClass">购买</view>
     </view>
-  </view>
-  <view class="callMeBox" wx:else>
+  </view> -->
+  <!-- wx:else -->
+  <view class="callMeBox">
     <view class="concatMeBtn" bindtap="concatMe">联系我们</view>
   </view>
 </view>

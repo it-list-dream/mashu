@@ -1,0 +1,101 @@
+<!--
+此文件为开发者工具生成，生成时间: 2022/8/26 下午3:48:56
+使用方法：
+在 D:\weixinEworkSpace\equestrian\pages\tabbar\home\home.wxml 引入模板
+
+```
+<import src="home.skeleton.wxml"/>
+<template is="skeleton" wx-if="{{loading}}" />
+```
+
+在 D:\weixinEworkSpace\equestrian\pages\tabbar\home\home.wxss 中引入样式
+```
+@import "./home.skeleton.wxss";
+```
+
+更多详细信息可以参考文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/skeleton.html
+-->
+<template name="skeleton">
+  <view class="sk-container">
+    <view class="nav-wrap" style="height:60px;">
+      <view class="navbar" style="height:60px;">
+        <navigator class="navbar-action-wrap" hover-class="none" style="top:24px;left:7px;">
+          <image class="sk-image"></image>
+        </navigator>
+        <view class="navbar-title sk-transparent sk-text-25-0000-916 sk-text" style="top: 24px; font-weight: normal; background-position-x: 50%;">如渔健身</view>
+      </view>
+    </view>
+    <view is="components/m-swiper/m-swiper" class="my_swiper" style="margin-top:calc(60px + 10px)">
+      <swiper autoplay="false" circular="true" class="swiper--swiper" interval="3000" current="0">
+        <swiper-item style="position: absolute; width: 100%; height: 100%; transform: translate(0%, 0px) translateZ(0px);">
+          <image class="swiper--swiper-image sk-image" mode="widthFix" style="height: 192.5px;"></image>
+        </swiper-item>
+      </swiper>
+    </view>
+    <view class="club_wrapper">
+      <view class="club_title sk-transparent sk-text-14-2857-348 sk-text">如渔健身</view>
+      <view class="business sk-transparent sk-text-14-2857-20 sk-text">营业中：08:00-23:30</view>
+      <view class="phone sk-transparent sk-text-14-2857-597 sk-text" data-phone="4000000000" data-type="1">联系电话：02123222222222222222</view>
+      <view class="address">
+        <image class="location_icon sk-image"></image>
+        <text class="add_detail sk-transparent sk-text-14-2857-657 sk-text">上海市徐汇区中山西路2025号407室</text>
+        <image class="bottom_arrow sk-image"></image>
+      </view>
+      <image class="store_logo sk-image"></image>
+    </view>
+    <navigator class="nav_wrapper" hover-class="none" style="margin-bottom:5px;">
+      <view class="nav_left">
+        <image class="sk-image"></image>
+        <text class="sk-transparent sk-text-14-2857-819 sk-text">马术教练</text>
+      </view>
+      <view class="nav_right">
+        <text class="sk-transparent sk-text-14-2857-566 sk-text">全部</text>
+        <image class="sk-image"></image>
+      </view>
+    </navigator>
+    <view class="coach_list">
+      <scroll-view scroll-x="true" class="scroll_x">
+        <view class="scroll-item" data-coach="[object Object]">
+          <view class="coach_item">
+            <view>
+              <image class="coach_image sk-image"></image>
+            </view>
+            <view class="coach_name sk-transparent sk-text-14-2857-613 sk-text" style="background-position-x: 50%;">教练</view>
+            <view class="coach_level"></view>
+            <view class="cancatTa sk-transparent sk-text-22-7273-978 sk-text" data-phone="15575380981" data-type="1" style="background-position-x: 50%;">联系他</view>
+          </view>
+        </view>
+        <view class="scroll-item" data-coach="[object Object]">
+          <view class="coach_item">
+            <view>
+              <image class="coach_image sk-image"></image>
+            </view>
+            <view class="coach_name sk-transparent sk-text-14-2857-348 sk-text" style="background-position-x: 50%;">杨阳</view>
+            <view class="coach_level"></view>
+            <view class="cancatTa sk-transparent sk-text-22-7273-738 sk-text" data-phone="13817930802" data-type="1" style="background-position-x: 50%;">联系他</view>
+          </view>
+        </view>
+        <view class="scroll-item" data-coach="[object Object]">
+          <view class="coach_item">
+            <view>
+              <image class="coach_image sk-image"></image>
+            </view>
+            <view class="coach_name sk-transparent sk-text-14-2857-184 sk-text" style="background-position-x: 50%;">张三</view>
+            <view class="coach_level"></view>
+            <view class="cancatTa sk-transparent sk-text-22-7273-626 sk-text" data-phone="17710780307" data-type="1" style="background-position-x: 50%;">联系他</view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+    <navigator class="nav_wrapper sug-nav" hover-class="none">
+      <view class="nav_left">
+        <image class="sk-image"></image>
+        <text class="sk-transparent sk-text-14-2857-449 sk-text">推荐课程</text>
+      </view>
+      <view class="nav_right">
+        <text class="sk-transparent sk-text-14-2857-213 sk-text">全部</text>
+        <image class="sk-image"></image>
+      </view>
+    </navigator>
+  </view>
+</template>

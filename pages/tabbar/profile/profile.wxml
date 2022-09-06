@@ -21,9 +21,8 @@
     </view>
     <!-- 卡信息 -->
     <view class="base_card" wx:if="{{myCard}}">
-      <view>卡期限：</view>
-      <view class="card_date">
-        <text> {{myCard.UI_FirstDate}} ~ {{myCard.UI_LastDate}}</text>
+      <view>{{myCard.SC_Name}}</view>
+      <view class="card_date">卡期限:<text>{{myCard.UI_FirstDate}} ~ {{myCard.UI_LastDate}}</text>
         <view class="card_day">剩余{{myCard.RemainingTime}}天</view>
       </view>
     </view>
@@ -54,6 +53,13 @@
     <view>
       <image src="/asset/images/profile/appoinment.png"></image>
       <text class="schedule_title">我的订单</text>
+    </view>
+    <image src="/asset/images/profile/left_arrow.png" mode="widthFix"></image>
+  </view>
+  <view class="schedule" bindtap="myCardBag">
+    <view>
+      <image src="/asset/images/profile/card.png"></image>
+      <text class="schedule_title">切换卡包</text>
     </view>
     <image src="/asset/images/profile/left_arrow.png" mode="widthFix"></image>
   </view>

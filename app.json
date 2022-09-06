@@ -1,6 +1,6 @@
 {
   "pages": [
-    "pages/hello/hello",
+    "pages/guide/guide",
     "pages/tabbar/home/home",
     "pages/tabbar/appointment/appointment",
     "pages/tabbar/appointmentRecord/appointmentRecord",
@@ -19,7 +19,8 @@
     "pages/courseDetail/courseDetail",
     "page2/success/success",
     "page2/courseList/courseList",
-    "page2/myStored/myStored"
+    "page2/myStored/myStored",
+    "page2/cardBag/cardBag"
   ],
   "window": {
     "backgroundTextStyle": "light",

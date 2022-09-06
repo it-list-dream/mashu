@@ -1,0 +1,11 @@
+<view class="cardBag">
+  <block wx:for="{{allCard}}" wx:key="UI_No">
+    <view>
+      <view class='con'>
+        <text class='card'>{{item.SC_Name}}</text>
+        <image src="{{item.checked?'/asset/images/open.png':'/asset/images/close.png'}}" bindtap="switchChange"  data-userid="{{item.UI_ID}}">
+        </image>
+      </view>
+    </view>
+  </block>
+</view>

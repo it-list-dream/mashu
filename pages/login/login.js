@@ -94,7 +94,6 @@ Page({
       //登录
       wx.login({
         success: function (res) {
-          // let code = res.code
           getWxUserLogin(res.code).then(res => {
             if (res.data.code == 1) {
               wx.setStorageSync('userOpenid', res.data.openid);

@@ -176,14 +176,15 @@ Page({
                 title: '取消成功',
               })
               //将数据清除
-              var clearData = this.data.appointmentList.reserved.list;
-              var deleteIndex = clearData.findIndex(value => value.ES_OrderNo == orderNo)
+              var clearData = that.data.appointmentList.reserved.list;
+              var deleteIndex = clearData.findIndex(value => value.ES_OrderNo == orderNo);
+              
               clearData.splice(deleteIndex, 1)
-              this.setData({
-                appointmentList: appointmentList
-              })
+              that.setData({
+                "appointmentList.reserved.list": clearData
+              });
               //刷新
-              this.refreshCancelData();
+              that.refreshCancelData();
             } else {
               wx.showToast({
                 icon: "none",
@@ -225,7 +226,7 @@ Page({
     getMyReservationList(JSON.stringify(reservation)).then(res => {
       if (res.data.code == 1) {
         this.setData({
-          'appointmentList.uncomplete.list': res.data.adata
+          'appointmentList.uncomplete.list': res.data.data
         })
       }
     })

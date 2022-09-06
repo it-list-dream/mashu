@@ -14,8 +14,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.showLoading({
+      title: '加载中...',
+      mask: true
+    })
     getGymList().then(res => {
       if (res.data.code == 1) {
+        wx.hideLoading();
         this.setData({
           myStore: res.data.data,
           gymCount:res.data.gymCount
@@ -25,7 +30,6 @@ Page({
   },
   //
   chooseShop(e){
-    // console.log(e.currentTarget.dataset.shop)
      var shop = e.currentTarget.dataset.shop;
      var my_id = wx.getStorageSync('UI_ID');
      if(shop.UI_ID){

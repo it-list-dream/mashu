@@ -4,7 +4,7 @@
     "ignore": []
   },
   "setting": {
-    "urlCheck": false,
+    "urlCheck": true,
     "es6": true,
     "enhance": false,
     "postcss": true,
@@ -40,7 +40,7 @@
   },
   "compileType": "miniprogram",
   "libVersion": "2.18.0",
-  "appid": "wxe59f293859896591",
+  "appid": "wxac6641ffb2ba4711",
   "projectname": "equestrian",
   "debugOptions": {
     "hidedInDevtools": []

@@ -131,8 +131,8 @@
   position: absolute;
   top: 28rpx;
   right: 38rpx;
-  width: 230rpx;
-  height: 171rpx;
+  width: 142rpx;
+  height: 142rpx;
 }
 
 .nav_wrapper {
@@ -260,7 +260,7 @@
   background: #FFFFFF;
   box-shadow: 0px 0px 30rpx 0px rgba(81, 58, 9, 0.1);
   border-radius: 10rpx;
-  margin-bottom: 30rpx;
+  padding-bottom: 16rpx;
 }
 
 .recommend::after {
@@ -279,7 +279,7 @@
   display: flex;
   padding: 0 30rpx;
   justify-content: space-between;
-  margin-top: 22rpx;
+  margin-top: 20rpx;
 }
 
 .class_level {
@@ -304,8 +304,7 @@
 
 .price {
   padding-left: 30rpx;
-  margin-top: 22rpx;
-  /* margin: 22rpx 0; */
+  margin-top: 20rpx;
   font-size: 24rpx;
   font-family: PingFang SC;
   font-weight: 500;

@@ -1,4 +1,3 @@
-// pages/tabbar/profile/profile.js
 const app = getApp();
 import {
   getUrlBySign
@@ -30,22 +29,38 @@ Page({
     })
   },
   getMyCard() {
-    let gb_id = wx.getStorageSync('GB_ID');
+    let gb_id = wx.getStorageSync('GB_ID'),
+      ui_id = wx.getStorageSync('UI_ID');
     getMyCardList(gb_id).then(res => {
-      if (res.data.code == 1) {
-        if (res.data.data.length > 0) {
+      if (res.data.data.length > 0) {
+        let allList = res.data.data,
+          selectCard = null;
+        if (ui_id) {
+          for (let i = 0; i < allList.length; i++) {
+            if (ui_id == allList[i].UI_ID) {
+              selectCard = allList[i];
+              break;
+            }
+          }
           this.setData({
-            myCard: res.data.data[0],
-            myStoredValue: res.data.data[0].UI_Money,
-            myCoupon: res.data.data[0].EO_Have || 0
+            myCard: selectCard,
+            myStoredValue: selectCard.UI_Money || 0,
+            myCoupon: selectCard.EO_Have || 0
           })
         } else {
           this.setData({
-            myCard: null,
-            myStoredValue: 0,
-            myCoupon: 0
-          })
+            myCard: res.data.data[0],
+            myStoredValue: res.data.data[0].UI_Money || 0,
+            myCoupon: res.data.data[0].EO_Have || 0
+          });
+          wx.setStorageSync('UI_ID', res.data.data[0].UI_ID);
         }
+      } else {
+        this.setData({
+          myCard: null,
+          myStoredValue: 0,
+          myCoupon: 0
+        });
       }
     })
   },
@@ -114,12 +129,11 @@ Page({
       status: status,
       user: user,
       phone: phone
-    })
+    });
   },
   //退出
   exit() {
     var that = this;
-    var sign = wx.getStorageSync('sign');
     wx.showModal({
       title: '',
       content: '确定是否需要退出',
@@ -133,7 +147,7 @@ Page({
           wx.removeStorageSync('userInfo')
           wx.removeStorageSync('hasUserInfo')
           wx.setStorageSync('loginStatus', 0)
-          that.getStoreSign(sign);
+          that.getStoreSign("wdly");
         } else if (res.cancel) {
           console.log('用户点击取消')
         }
@@ -163,6 +177,11 @@ Page({
         that.getMyCard();
         that.showMyInfo();
       }
+    });
+  },
+  myCardBag() {
+    wx.navigateTo({
+      url: '/page2/cardBag/cardBag',
     })
   },
   /**

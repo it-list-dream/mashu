@@ -25,12 +25,6 @@
           "scene": null
         },
         {
-          "name": "pages/tabbar/appointment/appointment",
-          "pathName": "pages/tabbar/appointment/appointment",
-          "query": "",
-          "scene": null
-        },
-        {
           "name": "page2/myStored/myStored",
           "pathName": "page2/myStored/myStored",
           "query": "",
@@ -67,15 +61,27 @@
           "scene": null
         },
         {
-          "name": "page2/courseList/courseList",
-          "pathName": "page2/courseList/courseList",
+          "name": "page2/myStored/myStored",
+          "pathName": "page2/myStored/myStored",
+          "query": "money=12693.89",
+          "scene": null
+        },
+        {
+          "name": "预约",
+          "pathName": "pages/tabbar/appointment/appointment",
           "query": "",
           "scene": null
         },
         {
-          "name": "page2/myStored/myStored",
-          "pathName": "page2/myStored/myStored",
-          "query": "money=12693.89",
+          "name": "预约详情",
+          "pathName": "pages/courseBooking/courseBooking",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "卡包",
+          "pathName": "page2/cardBag/cardBag",
+          "query": "",
           "scene": null
         }
       ]

@@ -1,6 +1,4 @@
-import {
-  request
-} from '../utils/request.js';
+var { request} = require('../utils/request.js')
 //查询课程
 export function getClassPriceByTearchId(GB_ID,teacherid) {
   return request({

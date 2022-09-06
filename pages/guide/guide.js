@@ -1,7 +1,6 @@
-// pages/hello/hello.js
 import {
   getUrlBySign
-} from '../../service/login.js'
+} from '../../service/login.js';
 Page({
 
   /**
@@ -15,26 +14,24 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.setStorageSync('sign', options.sign || 'ruyu')
-    if (wx.getStorageSync('token')) {
+    var phone = wx.getStorageSync('phone');
+    //"wdly"
+    var sign = "ruyu";
+    if (!phone) {
+      getUrlBySign(sign).then(res => {
+        wx.setStorageSync('token', res.data.user_token);
+        wx.setStorageSync('storeName', res.data.GymName)
+        wx.switchTab({
+          url: '/pages/tabbar/home/home'
+        })
+      });
+    }else{
       wx.switchTab({
         url: '/pages/tabbar/home/home'
       })
-    } else {
-      getUrlBySign(options.sign || 'ruyu').then(res => {
-        //console.log(res)
-        if (res.data.code == 1) {
-          //console.log(res)
-          wx.setStorageSync('token', res.data.user_token);
-          wx.setStorageSync('storeName', res.data.GymName)
-          wx.switchTab({
-            url: '/pages/tabbar/home/home'
-          })
-        }
-      })
     }
-
   },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -74,13 +71,6 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
 
   }
 })

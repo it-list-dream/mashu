@@ -12,7 +12,6 @@
           <view class="course">{{currentCourse.SE_Name}}</view>
           <view class="residue" wx:if="{{currentCourse.EO_Have}}">剩余（{{currentCourse.EO_Have}}张券）</view>
           <view class="residue" wx:else style="color:#F93E3E;">￥{{currentCourse.Price}}</view>
-          <!-- <view class="residue" wx:else>无课程券</view> -->
           <view>
             <text>时长：{{currentCourse.SE_Time}}分钟</text>
             <text class="expiration"
@@ -74,7 +73,7 @@
       </view>
     </view>
   </block>
-  <no-class wx:else type="2" title="联系我们" ></no-class>
+  <no-class wx:else type="2" title="联系我们"></no-class>
 </view>
 <view wx:else>
   <no-class type="1" title="请登录"></no-class>

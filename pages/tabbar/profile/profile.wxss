@@ -141,6 +141,7 @@ page {
   justify-content: space-between;
   align-items: flex-end;
   padding: 0 30rpx;
+  font-size: 26rpx;
 }
 
 .base_card .card_day {
@@ -152,10 +153,6 @@ page {
   border-radius: 25rpx;
   color: #ffffff;
   font-size: 24rpx;
-}
-
-.card_date text {
-  font-size: 28rpx;
 }
 
 .category {

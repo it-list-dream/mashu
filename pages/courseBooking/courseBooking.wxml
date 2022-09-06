@@ -3,7 +3,7 @@
   <view class="booking_item">
     <view class="course_info">
       <text>课程名</text>
-      <view bindtap="switchCoupon" class="align-center">
+      <view bindtap="showModal" class="align-center">
         <text>{{appoinemntInfo.chooseCourse.SE_Name}}</text>
         <image src="/asset/images/arrow11.png" class="icon-arrow"></image>
       </view>
@@ -13,7 +13,7 @@
       <text>预约日期</text>
       <picker mode="date" value="{{date}}" start="{{startDate}}" end="{{lastDate}}" bindchange="bindDateChange">
         <view class="align-center">
-          <text>{{appoinemntInfo.SearchDate}}</text>
+          <text>{{appoinemntInfo.SearchDate?appoinemntInfo.SearchDate:'请选择'}}</text>
           <image src="/asset/images/arrow11.png" class="icon-arrow"></image>
         </view>
       </picker>
@@ -42,14 +42,12 @@
         </view>
       </picker>
     </view>
-
     <view class="course_info">
       <text>教练费用</text>
       <view>
         <text class="red money">￥{{appoinemntInfo.chooseCoach.ST_Price}}</text>
       </view>
     </view>
-
     <navigator class="askClassRules red" url="/pages/rules/rules" hover-class="none">约课规则</navigator>
   </view>
 
@@ -86,7 +84,7 @@
   </view>
 </view>
 <!--选择课程  -->
-<view wx:if="{{useCoupon}}" bindtouchmove="true">
+<view hidden="{{useCoupon}}" bindtouchmove="true">
   <view class="coupon_list" animation="{{animationData}}">
     <view class="coupon_title">选择课程</view>
     <scroll-view scroll-y class="scroll-y">
@@ -99,9 +97,9 @@
         </view>
       </view>
     </scroll-view>
-    <view class="btn">
+    <!-- <view class="btn">
       <view class="no_used" bindtap="noUse">不使用</view>
-    </view>
+    </view> -->
   </view>
-  <view class="close" catchtap="cancelMask"></view>
+  <view class="close" catchtap="hideModal"></view>
 </view>
