@@ -10,12 +10,15 @@
         </view>
         <view class="right_box">
           <view class="course">{{currentCourse.SE_Name}}</view>
-          <view class="residue" wx:if="{{currentCourse.EO_Have}}">剩余（{{currentCourse.EO_Have}}张券）</view>
+          <view class="residue" wx:if="{{currentCourse.EO_Have}}">
+            剩余（{{currentCourse.EO_Have}}张券）
+          </view>
           <view class="residue" wx:else style="color:#F93E3E;">￥{{currentCourse.Price}}</view>
           <view>
             <text>时长：{{currentCourse.SE_Time}}分钟</text>
-            <text class="expiration"
-              wx:if="{{currentCourse.EO_ActiveEnd!==''}}">截止：{{currentCourse.EO_ActiveEnd}}</text>
+            <text class="expiration" wx:if="{{currentCourse.EO_ActiveEnd!==''}}">
+              截止：{{currentCourse.EO_ActiveEnd}}
+            </text>
           </view>
         </view>
       </view>
@@ -23,7 +26,7 @@
         <view class="assign_coach">指定教练预约</view>
         <image src="/asset/images/appointment/plus.png" class="add"></image>
       </view>
-      <!--选择 教练 -->
+      <!-- 选择 教练 -->
       <view class="chooseCoachList" hidden="{{!checked_horse}}" bindtap="applyCoach">
         <image src="{{currentCoach.AI_Face?currentCoach.AI_Face:'/asset/images/appointment/horse2.png'}}"></image>
         <view class="current_coach">
@@ -31,17 +34,22 @@
           <view>{{currentCoach.CoachLv}}</view>
           <view>课时费：￥{{currentCoach.ST_Price}}/节</view>
         </view>
+        <view class="switch-icon">
+          <image src="/asset/images/appointment/white_switch.png"></image>
+        </view>
       </view>
     </view>
     <!-- 时间 -->
     <view hidden="{{!isChooseCoach}}">
       <view class="dayList">
         <view class="day_item">
-          <view wx:for="{{weekList}}" wx:key="index2" wx:for-index="index2"
-            class="day {{choosesDay == index2?'ch_active':''}}" catchtap="chooseDate" data-index="{{index2}}"
-            data-date="{{item.month+'.'+item.day}}">
-            <view class="week" style="color:{{choosesDay == index2?'#ffffff':''}}">{{item.week}}</view>
-            <view class="date" style="color:{{choosesDay == index2?'#ffffff':''}}">{{item.month+'.'+item.day}}</view>
+          <view wx:for="{{weekList}}" wx:key="index2" wx:for-index="index2" class="day {{choosesDay == index2?'ch_active':''}}" catchtap="chooseDate" data-index="{{index2}}" data-date="{{item.month+'.'+item.day}}">
+            <view class="week" style="color:{{choosesDay == index2?'#ffffff':''}}">
+              {{item.week}}
+            </view>
+            <view class="date" style="color:{{choosesDay == index2?'#ffffff':''}}">
+              {{item.month+'.'+item.day}}
+            </view>
           </view>
           <view class="selectDate day" bindtap="showCalendar">
             <image src="/asset/images/appointment/calendar.png"></image>
@@ -49,8 +57,7 @@
         </view>
         <!-- 日历 -->
         <view class="calendar_list" wx:if="{{date}}">
-          <calendar calendar-style="calendar" header-style="calendar-header" board-style="calendar-board"
-            days-color="{{dayStyle}}" weeks-type="cn" binddayClick="dayClick" />
+          <calendar calendar-style="calendar" header-style="calendar-header" board-style="calendar-board" days-color="{{dayStyle}}" weeks-type="cn" binddayClick="dayClick" />
         </view>
       </view>
       <!--  -->
@@ -58,11 +65,9 @@
         <ul class="time">
           <block wx:for="{{datatime}}" wx:key="index">
             <li class="clock">
-              <view class="{{item.type !==2?'mycol':''}}"
-                style="color:{{num==index+1 ? 'white':'#333333'}};background:{{num==index+1 ? '#0B1030':''}};border:{{num==index+1 ?'none':''}};line-height: {{num==index+1 ? '50rpx':'48rpx'}};"
-                data-s="{{item.StartTime}}" data-e="{{item.EndTime}}" catchtap="show{{item.type !==2 ? 'ch':'ch1'}}"
-                data-num="{{index+1}}">
-                {{item.StartTime}}</view>
+              <view class="{{item.type !==2?'mycol':''}}" style="color:{{num==index+1 ? 'white':'#333333'}};background:{{num==index+1 ? '#0B1030':''}};border:{{num==index+1 ?'none':''}};line-height: {{num==index+1 ? '50rpx':'48rpx'}};" data-s="{{item.StartTime}}" data-e="{{item.EndTime}}" catchtap="show{{item.type !==2 ? 'ch':'ch1'}}" data-num="{{index+1}}">
+                {{item.StartTime}}
+              </view>
             </li>
           </block>
         </ul>

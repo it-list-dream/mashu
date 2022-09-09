@@ -1,5 +1,3 @@
-// pages/tabbar/appointmentRecord/appointmentRecord.js
-
 import {
   getMyReservationList,
   getCancelReservation
@@ -178,7 +176,7 @@ Page({
               //将数据清除
               var clearData = that.data.appointmentList.reserved.list;
               var deleteIndex = clearData.findIndex(value => value.ES_OrderNo == orderNo);
-              
+
               clearData.splice(deleteIndex, 1)
               that.setData({
                 "appointmentList.reserved.list": clearData
@@ -235,38 +233,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.setData({
-      appointmentList: {
-        reserved: {
-          //当前页数
-          pageIndex: 1,
-          list: [],
-          flag: true
-        },
-        uncomplete: {
-          //当前页数
-          pageIndex: 1,
-          list: [],
-          flag: true
-        },
-        completed: {
-          //当前页数
-          pageIndex: 1,
-          list: [],
-          flag: true
-        }
-      },
-      isLoadingMoreData:false,
-      currentType: 'reserved',
-      chooseId:0
-    })
-   // console.log(initRewardsList)
-    //已预约
-    this.getReservationList('reserved', 1);
-    //未完成
-    this.getReservationList('uncomplete', 3);
-    //已完成
-    this.getReservationList('completed', 2);
+    this.refreshData();
   },
 
   /**
@@ -282,12 +249,48 @@ Page({
   onUnload: function () {
 
   },
-
+  refreshData() {
+    this.data.appointmentList = {
+      reserved: {
+        //当前页数
+        pageIndex: 1,
+        list: [],
+        flag: true
+      },
+      uncomplete: {
+        //当前页数
+        pageIndex: 1,
+        list: [],
+        flag: true
+      },
+      completed: {
+        //当前页数
+        pageIndex: 1,
+        list: [],
+        flag: true
+      }
+    }
+    this.setData({
+      isLoadingMoreData: false,
+      currentType: 'reserved',
+      chooseId: 0
+    })
+    // console.log(initRewardsList)
+    //已预约
+    this.getReservationList('reserved', 1);
+    //未完成
+    this.getReservationList('uncomplete', 3);
+    //已完成
+    this.getReservationList('completed', 2);
+  },
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.refreshData();
+    setTimeout(function () {
+      wx.stopPullDownRefresh();
+    }, 1200);
   },
 
   /**

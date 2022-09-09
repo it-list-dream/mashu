@@ -2,23 +2,23 @@ import {
   getReservationRule
 } from '../../service/other.js'
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-    rules: null
+    rules: null,
+    storeName:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var gb_id = wx.getStorageSync('GB_ID')
+    var gb_id = wx.getStorageSync('GB_ID'),
+        gb_name = wx.getStorageSync('storeName');
     getReservationRule(gb_id).then(res => {
       if (res.data.code == 1) {
         var rulesTime = res.data.data[0];
-       // rulesTime.CancelClass = 361;
         var hours = 0;
         var miniutes = 0;
         if (rulesTime.CancelClass % 60 == 0) {
@@ -30,7 +30,8 @@ Page({
           rulesTime.CancelClass = hours + '小时' + miniutes + '分钟'
         }
         this.setData({
-          rules: rulesTime
+          rules: rulesTime,
+          storeName:gb_name
         })
       }
     })

@@ -419,6 +419,7 @@ Page({
                   prevPage.setData({
                     currentCoach:null,
                     isChooseCoach:false,
+                    checked_horse:false,
                     currentCourse:null
                   });
                 }     

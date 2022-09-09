@@ -5,7 +5,7 @@
       {{item}}</view>
   </block>
 </view>
-<!-- scroll-top='{{topDistance}}' enable-back-to-top="true"-->
+<!--  -->
 <scroll-view scroll-y lower-threshold="100" scroll-anchoring="true" class="my-scroll" scroll-top='{{topNum}}'
   style="height:calc({{windowHeight}}px - 116rpx)px" bindscrolltolower="loadMore">
   <view class="reward_content" wx:for="{{appointmentList[currentType].list}}" wx:key="ROWID">

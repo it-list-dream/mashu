@@ -1,14 +1,12 @@
 const app = getApp();
 import {
   getUrlBySign
-} from '../../../service/login.js';
+} from '../../../service/login.js'
 
 import {
   getMyCardList
-} from '../../../service/my.js';
-
+} from '../../../service/my.js'
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -16,7 +14,7 @@ Page({
     unloginUrl: 'https://thirdwx.qlogo.cn/mmopen/vi_32/POgEwh4mIHO4nibH0KlMECNjjGxQUq24ZEaGT4poC6icRiccVGKSyXwibcPq4BWmiaIGuG1icwxaQX6grC9VemZoJ8rg/132',
     myStoredValue: 0,
     myCoupon: 0,
-
+    myCard: null
   },
   /**
    * 生命周期函数--监听页面加载
@@ -146,8 +144,14 @@ Page({
           wx.removeStorageSync('UI_ID')
           wx.removeStorageSync('userInfo')
           wx.removeStorageSync('hasUserInfo')
-          wx.setStorageSync('loginStatus', 0)
+          wx.setStorageSync('loginStatus', 0);
           that.getStoreSign("wdly");
+         // that.getStoreSign("ruyu");
+          that.setData({
+            myStoredValue: 0,
+            myCoupon: 0,
+            myCard: null
+          })
         } else if (res.cancel) {
           console.log('用户点击取消')
         }
@@ -160,7 +164,7 @@ Page({
       wx.makePhoneCall({
         phoneNumber: phoneNumber
       }).catch((e) => {
-        console.log(e) //用catch(e)来捕获错误{makePhoneCall:fail cancel}
+        console.log(e)
       })
     } else {
       wx.showToast({
@@ -174,7 +178,6 @@ Page({
     getUrlBySign(sign).then(res => {
       if (res.data.code == 1) {
         wx.setStorageSync('token', res.data.user_token);
-        that.getMyCard();
         that.showMyInfo();
       }
     });

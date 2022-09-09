@@ -260,7 +260,7 @@
   background: #FFFFFF;
   box-shadow: 0px 0px 30rpx 0px rgba(81, 58, 9, 0.1);
   border-radius: 10rpx;
-  padding-bottom: 16rpx;
+  padding-bottom: 26rpx;
 }
 
 .recommend::after {
@@ -304,7 +304,7 @@
 
 .price {
   padding-left: 30rpx;
-  margin-top: 20rpx;
+  margin-top: 14rpx;
   font-size: 24rpx;
   font-family: PingFang SC;
   font-weight: 500;

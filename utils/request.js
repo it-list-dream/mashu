@@ -12,10 +12,10 @@ var request = (options) => {
   
   if (options.url == '/EquestrianOrderBuyBywxPay' || options.url == '/EquestrianOrderBuyByStored' || options.url == '/EquestrianOrderBywxPay' || options.url == '/EquestrianOrderClassBywxPay' || options.url == '/EquestrianOrderByStored' || options.url == '/EquestrianOrderClassByStored') {
     ajaxTimes++;
-    wx.showLoading({
-      title: '支付中...',
-      mask: true
-    })
+    // wx.showLoading({
+    //   title: '支付中...',
+    //   mask: true
+    // })
   }
 
   return new Promise((resolve, reject) => {
@@ -44,6 +44,7 @@ var request = (options) => {
           wx.showToast({
             title: res.data.msg,
             icon: "none",
+            duration: 2000,
             fail(err){
                console.log(err)
             }
@@ -63,7 +64,7 @@ var request = (options) => {
           ajaxTimes--;
           if (ajaxTimes === 0) {
             //  关闭正在等待的图标
-            wx.hideLoading();
+          //  wx.hideLoading();
           }
         }
 

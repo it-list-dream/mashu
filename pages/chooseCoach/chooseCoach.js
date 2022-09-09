@@ -18,7 +18,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    //console.log(options)
     this.title = options.title;
     if (options.title == '教练列表') {
       console.log('教练列表')
@@ -32,23 +31,14 @@ Page({
     })
   },
   coachStatus(e) {
-    var pages = getCurrentPages(); //当前页面
-    var prevPage = pages[pages.length - 2];
     let coach = e.currentTarget.dataset.coach;
     if (this.title == '选择教练') {
-      prevPage.setData({
-        checked_horse: true,
-        currentCoach: coach,
-        isChooseCoach: true
-      });
-      prevPage.getWeekList();
-      prevPage.getMyPrivateTime(prevPage.data.SearchDate, coach.TeacherId, () => {
-        wx.navigateBack({
-          delta: 1,
-        })
+      const eventChannel = this.getOpenerEventChannel()
+      eventChannel.emit('updateCoach', {coach:coach});
+      wx.navigateBack({
+        delta: 1,
       })
     } else {
-      //console.log('教练详情')
       wx.navigateTo({
         url: '/pages/coachDetail/coachDetail?coach=' + JSON.stringify(coach),
       })

@@ -17,16 +17,18 @@
           <view class="bind_btn" bindtap="loginout">{{status==1?'点击绑定手机号':'登录/注册'}}</view>
         </view>
       </veiw>
-      <!-- <image class="profile_arrow" src="/asset/images/profile/right_arrow.png"></image> -->
     </view>
     <!-- 卡信息 -->
     <view class="base_card" wx:if="{{myCard}}">
       <view>{{myCard.SC_Name}}</view>
-      <view class="card_date">卡期限:<text>{{myCard.UI_FirstDate}} ~ {{myCard.UI_LastDate}}</text>
+      <view class="card_date">
+        <view>
+          卡期限: <text>{{myCard.UI_FirstDate}} ~ {{myCard.UI_LastDate}}</text>
+        </view>
         <view class="card_day">剩余{{myCard.RemainingTime}}天</view>
       </view>
     </view>
-     <view class="concatMe"  wx:else  bindtap="callPhone">联系我们</view>
+    <view class="concatMe" wx:else bindtap="callPhone">联系我们</view>
   </view>
 </view>
 <!-- 卡卷 -->

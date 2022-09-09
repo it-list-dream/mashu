@@ -83,6 +83,16 @@
           "pathName": "page2/cardBag/cardBag",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "更新",
+          "pathName": "pages/guide/guide",
+          "query": "",
+          "scene": null,
+          "partialCompile": {
+            "enabled": true,
+            "pages": []
+          }
         }
       ]
     }
